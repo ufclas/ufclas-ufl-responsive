@@ -1,0 +1,403 @@
+/*-  INSTITUTIONAL NAVIGATION
+----------------------------------------------------------------------*/
+
+#institutional-nav {
+	background: transparent url(../../images/bg-institutional-nav.jpg) repeat-x;
+	border-bottom: 1px solid #D7DEF0; /* Light Blue */
+	height: 27px;
+  font-size: .9em;
+  padding-left: 0;
+  position: relative;
+  z-index: 99999 !important;
+}
+
+#institutional-nav #inst-home a {
+  border: none;
+  width:125px;
+}
+
+#institutional-nav .sub-mega {
+	background: #2a3f8c url(../../images/bg-inst-sub-mega.jpg) 0 0 repeat-x;
+	border: 2px solid #B4BEDD;
+	border-top: none;
+/*  display: block; FOR TESTING MEGA W/O JS*/
+  display:none;
+	font-size: .9em;
+	left: 118px;
+	line-height: 1.9em;
+	position: absolute;
+	top: 23px;
+	margin-left:5px;
+	width: 780px;
+	padding: 0 15px 15px 15px;
+	z-index: 99999 !important;
+}
+
+#inst-students .sub-mega {
+  width: 680px;
+}
+
+#inst-faculty .sub-mega {
+  width: 560px;
+}
+
+#inst-alumni .sub-mega {
+  width: 650px;
+}
+
+#inst-parents .sub-mega {
+  width: 760px;
+}
+
+#institutional-nav .sub-mega div {
+  padding-left: 5px;
+  height: 100%;
+  background: transparent url(../../images/bg-sub-mega-border.png) right 0 no-repeat;
+}
+
+#institutional-nav .sub-mega div.last {
+  background-image: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+#institutional-nav .container {
+	top: 2px;
+	position: relative;
+}
+
+#institutional-nav li {
+  float: left;
+	height: 23px;
+}
+
+#institutional-nav li:hover {
+  background-color: #061a67;
+}
+
+#institutional-nav li li:hover {
+  background-color: transparent;
+}
+
+#institutional-nav a {
+	border-left: 1px solid #495aaa;		/* Medium Blue */
+	border-right: 1px solid #061a67; 	/* Very Dark Blue */
+	line-height: 1.9em;
+	text-align: center;
+  display: block;
+  height: 23px;
+  position: relative;
+  padding: 0; /* 22px;*/
+  text-decoration: none;
+	font-family: Georgia,'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+}
+
+#institutional-nav a span {
+    background: url("../../images/bg-downarrow.png") no-repeat right center transparent;
+	padding-right:10px;
+}
+
+#institutional-nav li#inst-students span#inst-for {
+  font-size: 0.875em;
+  font-style: italic;
+  display: inline;
+  background: none;
+  padding-right: 2px;
+}
+
+#institutional-nav #inst-students a {width:115px;}
+#institutional-nav #inst-faculty a {width:125px;}
+#institutional-nav #inst-alumni a {width:140px;}
+#institutional-nav #inst-parents a {width:175px;}
+
+#institutional-nav h3 {
+  font-family: Georgia,'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+  color: #FFF;
+  font-size: 1.4em;
+}
+
+#institutional-nav a:hover {
+	background-color: #061a67; /* Very Dark Blue */
+	text-decoration: none;
+}
+
+#institutional-nav .last {
+	border-right: none;
+	width: auto;
+}
+
+#inst-home a {
+  padding: 0;
+  width: 118px;
+}
+
+#inst-home img {
+  position: absolute;
+  top: -2px;
+  margin-left:-4px;
+  left: 0;
+  z-index: 100000;
+}
+
+#institutional-nav .sub-mega li {
+  float: none;
+  height: auto;
+}
+
+#institutional-nav .sub-mega li a {
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 3px;
+  float: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+  height: auto;
+  line-height: 1.6em;
+  background: transparent url(../../images/bg-sprite-transparent.png) -988px -137px no-repeat;
+  padding-left: 8px;
+}
+
+#institutional-nav .sub-mega a {
+  float: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+  height: auto;
+  line-height: 1.6em;
+  padding-left: 8px;
+}
+
+#institutional-nav #inst-students .sub-mega a, #institutional-nav #inst-faculty .sub-mega a, #institutional-nav #inst-alumni .sub-mega a, #institutional-nav #inst-parents .sub-mega a {width:auto;}
+
+#institutional-nav .sub-mega li a:hover, #institutional-nav .sub-mega a:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#institutional-nav .sub-mega div {
+  float: left;
+  padding-top: 15px;
+  padding-right: 15px;
+  margin-right: 10px;
+}
+
+#institutional-nav .sub-mega div.two-column {
+  padding-right: 0;
+}
+
+#institutional-nav .sub-mega div.two-column ul {
+  float: left;
+  width: 140px;
+  padding-right: 15px;
+}
+
+#institutional-nav #inst-faculty ul {
+  width: 130px;
+}
+
+#institutional-nav #inst-faculty ul.narrow, #institutional-nav #inst-parents ul.narrow {
+  padding-right: 30px;
+  width: auto;
+}
+
+#institutional-nav #inst-parents ul.wide {
+  width: 155px;
+}
+#institutional-nav #inst-parents a {
+	border-right: none;
+}
+
+#institutional-nav .sub-mega h3 a {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+/*-  INSTITUTIONAL FOOTER
+----------------------------------------------------------------------*/
+
+#institutional-footer {
+	background: #FFF url(../../images/bg-institutional-footer-wrap.jpg) 0 top repeat-x;
+}
+
+#institutional-footer .container {
+	position: relative;
+	padding: 8px 0 20px 0;
+}
+
+#institutional-footer .badge {
+	background: transparent url(../../images/bg-sprite-transparent.png) 0 0 no-repeat;
+	height: 48px;
+	width: 48px;
+	position: absolute;
+	left: 480px;
+	top: -20px;
+	display: block;
+}
+
+#institutional-footer ul {
+	padding-left: 0;
+	display: block;
+	margin-bottom: 10px;
+}
+
+#institutional-footer li {
+	background: transparent url(../../images/bg-sprite-flat.jpg) -430px -7px no-repeat;
+	padding-left: 20px;
+	font-size: .85em;
+	line-height: 1.5em;
+}
+
+#institutional-footer li:last-child {
+	border: none;
+}
+
+#institutional-footer li.vetmed-small-hospital {
+  background: transparent url(../../images/bg-footer-small-animal.png) 0 0 no-repeat;
+}
+
+#institutional-footer li.vetmed-large-hospital {
+  background: transparent url(../../images/bg-footer-small-animal.png) 0 0 no-repeat;
+}
+
+#institutional-footer h5, #institutional-footer h5 a {
+	color: #EF7C00;
+	margin-bottom: .6em;
+}
+
+#institutional-footer h5 {
+	font-size: 1.2em;
+}
+
+#emergency-contact {
+	background: transparent url(../../images/bg-sprite-flat.jpg) -60px -44px no-repeat;
+}
+
+#emergency-contact,
+#colleges-institutes {
+	padding-top: 30px;
+}
+
+#colleges-institutes ul {
+	margin-right: 0;
+}
+
+#emergency-contact p {
+	font-family: 'ufshands';
+	font-weight: normal;
+	font-size: 1.2em;
+	color: #243778;
+	margin-bottom: .5em;
+	padding-left: 30px;
+	padding-bottom: 2px;
+}
+
+#emergency-contact #emergency {
+	font-size: 1.42em;
+	padding-left: 0;
+}
+
+#emergency-contact #footer-phone {
+	background: transparent url(../../images/bg-sprite-transparent.png) -1263px -393px no-repeat;
+}
+
+#emergency-contact #footer-email {
+	background: transparent url(../../images/bg-sprite-transparent.png) -1304px -346px no-repeat;
+	margin-bottom: 20px;
+}
+
+#branding {
+	border-left: 0;
+	border-right: 0;
+	padding: 15px 0 7px;
+	position: relative;
+}
+
+#branding img,
+#branding p {
+	float: left;
+	margin-right: 10px;
+	padding-top: 5px;
+	margin-bottom: 10px;
+}
+
+#branding p {
+	font-family: Georgia, serif;
+	font-style: italic;
+	font-size: .8em;
+	margin-bottom: 0;
+	color: #243778;
+	line-height: 1.3em;
+}
+
+#branding img.last {
+	position: absolute;
+	right: 0;
+	top: 10px;
+}
+
+#footer-links {
+	border: 1px solid #DDE2F4;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+	padding-top: 22px;
+}
+
+#footer-links ul {
+	margin-bottom: 0;
+	overflow: hidden;
+}
+
+#footer-links li {
+	float: left;
+	border-right: 1px solid #7E7E7E;
+}
+
+#footer-links li, #footer-links p {
+	background: none;
+	font-size: .7em;
+	padding: 0 10px 0 0;
+	margin-right: 10px;
+	margin-top: 6px;
+	margin-bottom: 0;
+	line-height: 1.2em;
+}
+
+#footer-links .last {
+	border: 0;
+}
+
+.ie7 #branding p {
+	font-size: .75em;
+}
+
+#footer-links .footer_logo {
+	margin-right: 7px;
+	margin-top: 7px;
+	float: right;
+}
+#footer-links .footer_logo a img {
+	width:210px;
+	height:58px;
+}
+
+/*-  INSTITUTIONAL UTILITY LINKS
+----------------------------------------------------------------------*/
+#institutional-nav li#utility-tabs {float:right;  background: url(../../images/bkgd-left.jpg) 0 0 no-repeat;padding-left:16px;}
+#institutional-nav #utility-tabs ul li a {display:block; float:left; height:23px; background: url(../../images/ufl-utility-buttons.png) no-repeat 0 0; text-indent:-9999px; margin:0; outline:none; width:40px; border:none; padding: 0;}
+#institutional-nav #inst-home a { padding: 0;}
+li#utility-tabs:hover { background-color: transparent;}
+#institutional-nav #utility-tabs ul li a.directory {width:34px; background-position: 0 0;}
+#institutional-nav #utility-tabs ul li a.directory:hover {background-position: 0 -23px;}
+#institutional-nav #utility-tabs ul li a.elearning {width:60px; background-position: -34px 0;}
+#institutional-nav #utility-tabs ul li a.elearning:hover {background-position: -34px -23px;}
+#institutional-nav #utility-tabs ul li a.webmail {background-position: -94px 0;}
+#institutional-nav #utility-tabs ul li a.webmail:hover {background-position: -94px -23px;}
+#institutional-nav #utility-tabs ul li a.isis {background-position: -134px 0;}
+#institutional-nav #utility-tabs ul li a.isis:hover {background-position: -134px -23px;}
+#institutional-nav #utility-tabs ul li a.myufl {background-position: -174px 0;}
+#institutional-nav #utility-tabs ul li a.myufl:hover {background-position: -174px -23px;}
+#institutional-nav #utility-tabs ul li a.maps {background-position: -214px 0;}
+#institutional-nav #utility-tabs ul li a.maps:hover {background-position: -214px -23px;}

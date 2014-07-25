@@ -1,0 +1,21 @@
+#header-actionitem {
+	bottom: 0;
+	position: absolute;
+	right: 25px;
+	border: 1px solid #b50101;
+	border-bottom: none;
+	border-top: none;
+	-moz-box-shadow: inset 0 1px 0 0 #f80101;
+	-webkit-box-shadow: inset 0 1px 0 0 #f80101;
+	box-shadow: inset 0 1px 0 0 #f80101;
+	color: white;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 7px 15px 5px 15px;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 0 1px 1px #f80101;
+	background: transparent url(../../images/bg-custom-button-red.png) 0 0 repeat-x;
+	width: auto;
+}

@@ -1,0 +1,38 @@
+/*
+Theme Name: UF Template Responsive
+Theme URI: http://www.ufl.edu/
+Description: The official responsive WordPress template for The University of Florida
+Version: 1.5
+Author: UF Web Services
+Author URI: http://webservices.it.ufl.edu/
+Build Date: 20130325
+*/
+
+/* import reset.css */
+@import 'library/css/scss/reset';
+
+/* import grind.css */
+@import 'library/css/scss/grid';
+
+/* import typography.css */
+@import 'library/css/scss/typography';
+
+
+/* Importing major CSS libraries for special content zones
+----------------------------------------------------------------------*/
+@import 'library/css/scss/institutional';
+
+/* Institutional header and footer */
+@import 'library/css/scss/featured-content';
+
+/* Featured content zone on homepage */
+@import 'library/css/scss/widgets';
+
+/* Featured content zone on homepage */
+@import 'library/css/scss/shortcodes';
+
+/* import main */
+@import 'main';
+
+/* import navigation */
+@import 'library/css/scss/navigation';
