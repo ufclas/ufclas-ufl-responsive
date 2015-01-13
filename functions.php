@@ -132,6 +132,7 @@ add_filter('get_comment_text', 'ufandshands_lightbox_rel');
 add_theme_support('automatic-feed-links');
 
 function ufandshands_header_adder() {
+  global $detect_mobile;
   
   $bloginfo_url = get_bloginfo('template_url');
   $bloginfo_name = get_bloginfo('name');
@@ -218,6 +219,16 @@ function ufandshands_header_adder() {
 	echo "<meta property=\"fb:admins\" content=\"".$facebookinsights."\" />";  
   }
   
+  if ($detect_mobile == false) {
+        // Only initialize prettyPhoto for non-mobile version
+		echo '<script type="text/javascript">jQuery(function($){ $("a[rel^=\'prettyPhoto\']").prettyPhoto(); });</script>';
+  }
+  else {
+		// For mobile, set a cookie so that pages from mobile browsers will not be cached
+		if (of_get_option('opt_responsive') && !isset($_COOKIE["UFLmobileFull"])) {
+			setcookie("UFLmobileMobile", "enabled", time()+2592000, "/");
+		}
+  }
 }
 add_action('wp_head', 'ufandshands_header_adder');
 

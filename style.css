@@ -3,10 +3,10 @@
 Theme Name: UF CLAS Responsive
 Theme URI: http://it.clas.ufl.edu/
 Description: The official responsive WordPress template for The University of Florida. Modified for CLAS.
-Version: 1.5 (0.0.1)
+Version: 1.5 (0.3.0)
 Author: CLAS IT, UF Web Services
 Author URI: http://it.clas.ufl.edu/
-Build Date: 20140725
+Build Date: 20150212
 */
 /* import reset.css */
 /* --------------------------------------------------------------
@@ -982,7 +982,7 @@ textarea {
 /*-  INSTITUTIONAL FOOTER
 ----------------------------------------------------------------------*/
 #institutional-footer {
-  background: white url(images/bg-institutional-footer-wrap.jpg) 0 top repeat-x; }
+  background: #FFF url(images/bg-institutional-footer-wrap.jpg) 0 top repeat-x; }
 
 #institutional-footer .container {
   position: relative;
@@ -1625,7 +1625,7 @@ li#utility-tabs:hover {
 #feature-wrap,
 #content-wrap,
 #secondary.homepage_layout_white {
-  background: white url(images/bg-content.jpg) center top repeat-x; }
+  background: #FFF url(images/bg-content.jpg) center top repeat-x; }
 
 #feature-shadow,
 #content-shadow {
@@ -1634,7 +1634,7 @@ li#utility-tabs:hover {
   margin: 0 auto; }
 
 #feature-wrap.stacker {
-  background: white url(images/bg-content-stacker.jpg) 0 0 repeat-x; }
+  background: #FFF url(images/bg-content-stacker.jpg) 0 0 repeat-x; }
 
 #content {
   background-color: #FFF;
@@ -1656,7 +1656,7 @@ li#utility-tabs:hover {
 /*-  SECONDARY HOME PAGE CONTENT
 ----------------------------------------------------------------------*/
 #secondary {
-  background: #344a96 url(images/bg-secondary-wrap.jpg) center -47px repeat-x;
+  background: #344A96 url(images/bg-secondary-wrap.jpg) center -47px repeat-x;
   overflow: hidden; }
 
 #secondary .span-6 {
@@ -1732,10 +1732,11 @@ article .widget_body h4 {
   font-size: .9em; }
 
 #secondary-shadow {
-  /*	background: transparent url(../../images/bg-secondary-shadow.jpg) 0 0 repeat-x;*/
+  /*	background: transparent url(images/bg-secondary-shadow.jpg) 0 0 repeat-x;*/
   height: 9px; }
 
 #secondary .time,
+.gce-widget-list .time,
 #secondary .rss-date,
 .news-announcements .dateline,
 .widget_body .time,
@@ -1775,10 +1776,10 @@ h3 a.rsswidget {
 .rsswidget img {
   display: none; }
 
-#events {
+#events, .gce-widget-list {
   padding-bottom: 10px; }
 
-#events .time {
+#events .time, #secondary .gce-widget-list .time {
   margin-left: 52px;
   margin-bottom: 0; }
 
@@ -1790,7 +1791,7 @@ h3 a.rsswidget {
 #sidebar-nav .sidebar_widget li,
 .footer_widget li {
   padding-left: 18px;
-  background: transparent url(images/bg-sprite-transparent.png) -1204px -567px no-repeat;
+  background: transparent url("images/bg-sprite-transparent.png") -1204px -567px no-repeat;
   min-width: 0;
   font-size: 12px; }
 
@@ -1810,7 +1811,7 @@ h3 a.rsswidget {
 
 /*----- White background for homepage widget zone ------*/
 #secondary.homepage_layout_white {
-  background: white url(images/bg-content.jpg) 0 -250px repeat-x;
+  background: #FFF url(images/bg-content.jpg) 0 -250px repeat-x;
   border-top: 3px solid #D7DEF0;
   overflow: hidden; }
 
@@ -1821,7 +1822,7 @@ h3 a.rsswidget {
   color: #444; }
 
 #secondary.homepage_layout_white .widget {
-  background: white url(images/bg-content.jpg) 0 -220px repeat-x;
+  background: #FFF url(images/bg-content.jpg) 0 -220px repeat-x;
   padding: 15px;
   margin-top: 15px;
   border-top: 1px solid #FFF;
@@ -1838,7 +1839,7 @@ article .widget_body img {
 #secondary.homepage_layout_white .item {
   padding-bottom: 0; }
 
-#secondary.homepage_layout_white #events .event-date {
+#secondary.homepage_layout_white #events .event-date, #secondary.homepage_layout_white .gce-widget-list .event-date {
   background: transparent url(images/bg-sprite-transparent.png) -812px -98px no-repeat; }
 
 #secondary.homepage_layout_white .rss-icon {
@@ -2044,34 +2045,34 @@ aside .sidebar_widget h3 {
   float: left;
   margin: 0px 15px 10px 0px; }
 
-/*----- Google Calendar -----*/
-#events .event-date {
+/*----- Google Calendar Events -----*/
+#events .event-date, .gce-widget-list .event-date {
   float: left;
   height: 50px;
   width: 42px;
   background: transparent url(images/bg-sprite-transparent.png) -750px -99px no-repeat;
   margin-right: 10px; }
 
-#events .month,
-#events .day {
+#events .month, .gce-widget-list .month,
+#events .day, .gce-widget-list .day {
   position: absolute;
   width: 41px;
   text-align: center; }
 
-#events .month {
+#events .month, .gce-widget-list .month {
   font-size: .8em;
   top: 6px;
   font-weight: bold;
   text-transform: uppercase;
   color: #ffffff; }
 
-#events .day {
+#events .day, .gce-widget-list .day {
   font-size: 1.5em;
-  top: 21px;
+  top: 19px;
   color: #1F2E63;
   font-weight: bold; }
 
-#events strong {
+#events strong, .gce-widget-list strong {
   font-size: .8em;
   padding-top: 3px;
   display: block;
@@ -2268,15 +2269,6 @@ article .widget_body h3 {
   display: none; }
 
 /* import main */
-/*
-Theme Name: UF Template Responsive
-Theme URI: http://www.ufl.edu/
-Description: The official responsive WordPress template for The University of Florida
-Version: 1.5
-Author: UF Web Services
-Author URI: http://webservices.it.ufl.edu/
-Build Date: 20130325
-*/
 /*-	DEBUG CLASSES
 ----------------------------------------------------------------------*/
 .debug {
@@ -2380,7 +2372,7 @@ strong, th {
   font-weight: bold; }
 
 blockquote {
-  background: #d7def0 url(images/bg-sprite-transparent.png) -1240px -519px no-repeat;
+  background: #D7DEF0 url(images/bg-sprite-transparent.png) -1240px -519px no-repeat;
   color: #243778;
   border-left: 5px solid #6377B2;
   margin: 1.5em;
@@ -2512,19 +2504,19 @@ button {
 header {
   z-index: 99998;
   /* Needed for megamenu in IE7 */
-  background: white url(images/bg-header.jpg) 0 bottom repeat-x;
+  background: #FFF url(images/bg-header.jpg) 0 bottom repeat-x;
   /* Light Blue <=> White */
-  background: -moz-linear-gradient(top, white 0%, white 75%, #d7def0 100%);
+  background: -moz-linear-gradient(top, #FFF 0%, #FFF 75%, #D7DEF0 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(75%, white), color-stop(100%, #d7def0));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFF), color-stop(75%, #FFF), color-stop(100%, #D7DEF0));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, white 0%, white 75%, #d7def0 100%);
+  background: -webkit-linear-gradient(top, #FFF 0%, #FFF 75%, #D7DEF0 100%);
   /* Chrome10+, Safari5.1+ */
-  background: -o-linear-gradient(top, white 0%, white 75%, #d7def0 100%);
+  background: -o-linear-gradient(top, #FFF 0%, #FFF 75%, #D7DEF0 100%);
   /* Opera11.10+ */
-  background: -ms-linear-gradient(top, white 0%, white 75%, #d7def0 100%);
+  background: -ms-linear-gradient(top, #FFF 0%, #FFF 75%, #D7DEF0 100%);
   /* IE10+ */
-  background: linear-gradient(top, white 0%, white 75%, #d7def0 100%);
+  background: linear-gradient(top, #FFF 0%, #FFF 75%, #D7DEF0 100%);
   /* W3C */ }
 
 header .container {
@@ -2729,7 +2721,7 @@ body.home #header-title a:hover h3 {
   height: 21px;
   font-family: Verdana, sans-serif;
   font-size: .8em;
-  background: #e3e3e3 url(images/bg-breadcrumb.jpg) 0 0 repeat-x;
+  background: #E3E3E3 url(images/bg-breadcrumb.jpg) 0 0 repeat-x;
   border-bottom: 1px solid #BEBEBE; }
 
 #breadcrumb a,
@@ -2843,7 +2835,7 @@ body.home #header-title a:hover h3 {
 
 #sidebar-nav ul ul ul a {
   padding-left: 60px;
-  background: white url(images/bg-sprite-transparent.png) -996px -56px no-repeat; }
+  background: #FFF url(images/bg-sprite-transparent.png) -996px -56px no-repeat; }
 
 #sidebar-nav a {
   display: block;
@@ -2855,7 +2847,7 @@ body.home #header-title a:hover h3 {
 #sidebar-nav li li a {
   border-bottom: 1px solid #E0E0E0;
   border-top: none;
-  background: white url(images/bg-sprite-transparent.png) -1065px -1px no-repeat; }
+  background: #FFF url(images/bg-sprite-transparent.png) -1065px -1px no-repeat; }
 
 #sidebar-nav a:hover {
   background-color: #D7DEF0; }
@@ -3048,12 +3040,12 @@ article p a:visited {
   line-height: 1.9em;
   padding: 0 15px;
   background-color: #f0f2fa;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f2fa), to(#d7def0));
-  background-image: -webkit-linear-gradient(top, #f0f2fa, #d7def0);
-  background-image: -moz-linear-gradient(top, #f0f2fa, #d7def0);
-  background-image: -ms-linear-gradient(top, #f0f2fa, #d7def0);
-  background-image: -o-linear-gradient(top, #f0f2fa, #d7def0);
-  background-image: linear-gradient(top, #f0f2fa, #d7def0);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#F0F2FA), to(#D7DEF0));
+  background-image: -webkit-linear-gradient(top, #F0F2FA, #D7DEF0);
+  background-image: -moz-linear-gradient(top, #F0F2FA, #D7DEF0);
+  background-image: -ms-linear-gradient(top, #F0F2FA, #D7DEF0);
+  background-image: -o-linear-gradient(top, #F0F2FA, #D7DEF0);
+  background-image: linear-gradient(top, #F0F2FA, #D7DEF0);
   -moz-box-shadow: 0 0 1px 1px #B3BACE;
   -webkit-box-shadow: 0 0 1px 1px #B3BACE;
   box-shadow: 0 0 1px 1px #B3BACE;
@@ -3094,7 +3086,7 @@ article p a:visited {
 
 /*----- Internal Page - Light Blue Background -----*/
 #user-role {
-  background: #e7eaf6 url(images/bg-role-nav-wrap.jpg) 0 0 repeat-x; }
+  background: #E7EAF6 url(images/bg-role-nav-wrap.jpg) 0 0 repeat-x; }
 
 #user-role .container-5 {
   padding-bottom: 25px;
@@ -3260,17 +3252,17 @@ a img.aligncenter {
   box-shadow: 0px 0px 2px #CCC;
   border: 1px solid #BFBFBF;
   background-color: #eeeeee;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(white));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#ffffff));
   /* Saf4+, Chrome */
-  background-image: -webkit-linear-gradient(top, #eeeeee, white);
+  background-image: -webkit-linear-gradient(top, #eeeeee, #ffffff);
   /* Chrome 10+, Saf5.1+ */
-  background-image: -moz-linear-gradient(top, #eeeeee, white);
+  background-image: -moz-linear-gradient(top, #eeeeee, #ffffff);
   /* FF3.6 */
-  background-image: -ms-linear-gradient(top, #eeeeee, white);
+  background-image: -ms-linear-gradient(top, #eeeeee, #ffffff);
   /* IE10 */
-  background-image: -o-linear-gradient(top, #eeeeee, white);
+  background-image: -o-linear-gradient(top, #eeeeee, #ffffff);
   /* Opera 11.10+ */
-  background-image: linear-gradient(top, #eeeeee, white);
+  background-image: linear-gradient(top, #eeeeee, #ffffff);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#ffffff');
   /* IE6ΓÇôIE9 */ }
 
@@ -3778,7 +3770,7 @@ p.lead {
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
   background-color: #F0F2FA;
-  background-image: -moz-linear-gradient(center top, #f0f2fa, #d7ddf3);
+  background-image: -moz-linear-gradient(center top, #F0F2FA, #D7DDF3);
   border-color: #FFFFFF #FFFFFF -moz-use-text-color;
   border-style: solid solid none;
   border-width: 1px 1px medium;
@@ -4306,7 +4298,7 @@ input[type="checkbox"] {
   /* IE10+ */
   background: linear-gradient(to bottom, #ff7c25 0%, #f6641f 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7c25', endColorstr='#f6641f',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7c25', endColorstr='#f6641f',GradientType=0 );
   /* IE6-9 */ }
 
 #mobile-modal-close {
@@ -4336,6 +4328,46 @@ input[type="checkbox"] {
 
 .shortcode_fullonly {
   display: block; }
+
+/*----- Google Calendar Events Grid -----*/
+.gce-page-grid .gce-calendar {
+  box-shadow: none; }
+  .gce-page-grid .gce-calendar tbody, .gce-page-grid .gce-calendar thead {
+    border: none; }
+  .gce-page-grid .gce-calendar .gce-month-title {
+    font-size: 1.8em;
+    font-family: 'ufshands',ΓÇïArial,ΓÇïsans-serif;
+    color: #243778;
+    margin-bottom: 0.5em; }
+  .gce-page-grid .gce-calendar .gce-day-future {
+    background-color: #fff; }
+  .gce-page-grid .gce-calendar .gce-has-events .gce-day-number {
+    color: #243778; }
+  .gce-page-grid .gce-calendar .gce-today-no-events .gce-day-number {
+    color: #888; }
+  .gce-page-grid .gce-calendar th {
+    background-color: #666;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+    color: #fff;
+    padding: 1em 0;
+    white-space: nowrap; }
+
+.qtip-light {
+  border-color: #ccc; }
+
+.qtip .gce-event-info .event {
+  font-size: 1.1em; }
+  .qtip .gce-event-info .event .event-date, .qtip .gce-event-info .event .eventdate {
+    border-bottom: 2px solid #3D58AF;
+    padding-bottom: 2px; }
+    .qtip .gce-event-info .event .event-date .month, .qtip .gce-event-info .event .event-date .day, .qtip .gce-event-info .event .eventdate .month, .qtip .gce-event-info .event .eventdate .day {
+      display: inline-block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      color: #3D58AF; }
+  .qtip .gce-event-info .event .eventtitle h4 {
+    margin-top: 0.9em; }
 
 /* import navigation */
 /*-  PRIMARY NAVIGATION
@@ -4498,3 +4530,5 @@ input[type="checkbox"] {
 /*#primary-nav li:hover > ul {
 	display: block;
 }*/
+
+/*# sourceMappingURL=style.css.map */
