@@ -296,8 +296,8 @@ include 'widgets/widget-recent-posts.php';
 // widget: insert an image
 include 'widgets/widget-insert-image.php';
 
-// widget: insert Google Calendar
-include 'widgets/widget-google-calendar.php';
+// widget: insert Google Calendar -- NOTE: Disabled because of Google Calendar API v2 deprecation. Use https://wordpress.org/support/plugin/google-calendar-events instead.
+//include 'widgets/widget-google-calendar.php';  
 
 // widget: simple email contact form
 //include 'widgets/widget-email.php';

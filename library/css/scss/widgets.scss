@@ -93,11 +93,12 @@ article .widget_body h4 {
 }
 
 #secondary-shadow {
-/*	background: transparent url(../../images/bg-secondary-shadow.jpg) 0 0 repeat-x;*/
+/*	background: transparent url(images/bg-secondary-shadow.jpg) 0 0 repeat-x;*/
 	height: 9px;
 }
 
 #secondary .time,
+.gce-widget-list .time,
 #secondary .rss-date,
 .news-announcements .dateline,
 .widget_body .time,
@@ -144,11 +145,11 @@ h3 a.rsswidget {
   display: none;
 }
 
-#events {
+#events, .gce-widget-list {
   padding-bottom: 10px; 
 }
 
-#events .time {
+#events .time, #secondary .gce-widget-list .time {
   margin-left: 52px;
   margin-bottom: 0;
 }
@@ -162,7 +163,7 @@ h3 a.rsswidget {
 #sidebar-nav .sidebar_widget li,
 .footer_widget li {
   padding-left: 18px;
-  background: transparent url(images/bg-sprite-transparent.png) -1204px -567px no-repeat;
+  background: transparent url("images/bg-sprite-transparent.png") -1204px -567px no-repeat;
   min-width: 0;
   font-size: 12px;
 }
@@ -220,7 +221,7 @@ article .widget_body img {
   padding-bottom: 0;
 }
 
-#secondary.homepage_layout_white #events .event-date {
+#secondary.homepage_layout_white #events .event-date, #secondary.homepage_layout_white .gce-widget-list .event-date {
   background: transparent url(images/bg-sprite-transparent.png) -812px -98px no-repeat;
 }
 
@@ -475,7 +476,7 @@ aside .sidebar_widget h3 {
 
 /*----- Google Calendar -----*/
 
-#events .event-date {
+#events .event-date, .gce-widget-list  .event-date {
   float: left;
   height: 50px;
   width: 42px;
@@ -483,14 +484,14 @@ aside .sidebar_widget h3 {
   margin-right: 10px;
 }
 
-#events .month,
-#events .day {
+#events .month, .gce-widget-list .month,
+#events .day, .gce-widget-list .day {
   position: absolute;
 	width: 41px;
 	text-align: center;
 }
 
-#events .month {
+#events .month, .gce-widget-list .month {
   font-size: .8em;
   top: 6px;
   font-weight: bold;
@@ -498,14 +499,14 @@ aside .sidebar_widget h3 {
 	color: #ffffff;
 }
 
-#events .day {
+#events .day, .gce-widget-list .day {
   font-size: 1.5em;
-  top: 21px;
+  top: 19px;
   color: #1F2E63;
   font-weight: bold;
 }
 
-#events strong {
+#events strong, .gce-widget-list strong {
   font-size: .8em;
   padding-top: 3px;
   display: block;
