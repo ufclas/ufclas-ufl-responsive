@@ -3,7 +3,7 @@
 Theme Name: UF CLAS Responsive
 Theme URI: http://it.clas.ufl.edu/
 Description: The official responsive WordPress template for The University of Florida. Modified for CLAS.
-Version: 1.5 (0.2.0)
+Version: 1.5 (0.2.1)
 Author: CLAS IT, UF Web Services
 Author URI: http://it.clas.ufl.edu/
 Build Date: 20150205
@@ -2045,7 +2045,7 @@ aside .sidebar_widget h3 {
   float: left;
   margin: 0px 15px 10px 0px; }
 
-/*----- Google Calendar -----*/
+/*----- Google Calendar Events -----*/
 #events .event-date, .gce-widget-list .event-date {
   float: left;
   height: 50px;
@@ -2269,15 +2269,6 @@ article .widget_body h3 {
   display: none; }
 
 /* import main */
-/*
-Theme Name: UF Template Responsive
-Theme URI: http://www.ufl.edu/
-Description: The official responsive WordPress template for The University of Florida
-Version: 1.5
-Author: UF Web Services
-Author URI: http://webservices.it.ufl.edu/
-Build Date: 20130325
-*/
 /*-	DEBUG CLASSES
 ----------------------------------------------------------------------*/
 .debug {
@@ -4337,6 +4328,46 @@ input[type="checkbox"] {
 
 .shortcode_fullonly {
   display: block; }
+
+/*----- Google Calendar Events Grid -----*/
+.gce-page-grid .gce-calendar {
+  box-shadow: none; }
+  .gce-page-grid .gce-calendar tbody, .gce-page-grid .gce-calendar thead {
+    border: none; }
+  .gce-page-grid .gce-calendar .gce-month-title {
+    font-size: 1.8em;
+    font-family: 'ufshands',ΓÇïArial,ΓÇïsans-serif;
+    color: #243778;
+    margin-bottom: 0.5em; }
+  .gce-page-grid .gce-calendar .gce-day-future {
+    background-color: #fff; }
+  .gce-page-grid .gce-calendar .gce-has-events .gce-day-number {
+    color: #243778; }
+  .gce-page-grid .gce-calendar .gce-today-no-events .gce-day-number {
+    color: #888; }
+  .gce-page-grid .gce-calendar th {
+    background-color: #666;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+    color: #fff;
+    padding: 1em 0;
+    white-space: nowrap; }
+
+.qtip-light {
+  border-color: #ccc; }
+
+.qtip .gce-event-info .event {
+  font-size: 1.1em; }
+  .qtip .gce-event-info .event .event-date, .qtip .gce-event-info .event .eventdate {
+    border-bottom: 2px solid #3D58AF;
+    padding-bottom: 2px; }
+    .qtip .gce-event-info .event .event-date .month, .qtip .gce-event-info .event .event-date .day, .qtip .gce-event-info .event .eventdate .month, .qtip .gce-event-info .event .eventdate .day {
+      display: inline-block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      color: #3D58AF; }
+  .qtip .gce-event-info .event .eventtitle h4 {
+    margin-top: 0.9em; }
 
 /* import navigation */
 /*-  PRIMARY NAVIGATION
