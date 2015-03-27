@@ -306,7 +306,7 @@ include 'widgets/widget-insert-image.php';
 // include 'widget-com-list-pages.php';
 
 // widget: HHS.gov My Health Finder widget
-include 'widgets/widget-myhealthfinder.php';
+//include 'widgets/widget-myhealthfinder.php';
 
 // widget: Embed page content into a widgetized area
 include 'widgets/widget-embed-pages.php';
