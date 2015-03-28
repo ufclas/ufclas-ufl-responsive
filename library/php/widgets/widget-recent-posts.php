@@ -8,12 +8,13 @@ class UFCOM_recent_posts extends WP_Widget {
  
 	function widget($args, $instance) {
 		extract($args, EXTR_SKIP);
-
-    $unique_page_content = get_page_by_title($instance['unique_page_id']);
+   
 		global $wp_query;
 		$current_page = $wp_query->post->ID;
- 
-		if ($current_page==$unique_page_content->ID || empty($instance['unique_page_id']) ) {
+		$unique_page_content = get_page_by_title($instance['unique_page_id']);
+		dbgx_trace_var($instance, 'instance');
+		
+		if ( empty($instance['unique_page_id']) || $current_page==$unique_page_content->ID ) {
  
 			echo $before_widget;
 			$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
@@ -33,11 +34,12 @@ class UFCOM_recent_posts extends WP_Widget {
 				$specific_category_id_actual = "&cat=";
 				$specific_category_id_actual .= get_cat_id($instance['specific_category_id']);
 			}
-	
+			
+			$showrssiconimage = '';
 			if ($showrssicon=="on"){
-          $iconpath = get_bloginfo('template_url') . '/images/rss.png';
+          			$iconpath = get_bloginfo('template_url') . '/images/rss.png';
 					$showrssiconimage = "<a href='".get_bloginfo('rss2_url')."'><img class='rss-icon' src='" . $iconpath . "' class='rss_icon' alt='Subscribe to RSS Feed'/></a> ";
-				};
+				}
 	 
 			if ( !empty( $title ) ) { echo $before_title . $title . $showrssiconimage . $after_title; };
 
@@ -45,19 +47,18 @@ class UFCOM_recent_posts extends WP_Widget {
 			$recentPosts->query("showposts=".$numberofposts."&cat=-".$featured_content_category.$specific_category_id_actual."");
 				while ($recentPosts->have_posts()) : $recentPosts->the_post();
 				
-        global $post;
+       
         
-        $margin = '';
-					
+        		$margin = '';
 				echo "<div id='recent-posts' class='news-announcements'><div class='item'>";
 					if ($showthumbnails) {
 			            if((ufandshands_post_thumbnail('thumbnail', 'alignleft', 130, 100))) {
 			              $margin = "margin-160";
 			            }
 			        }  
-		            if (empty($showexcerpt)) {
-						$margin_bottom = 'margin_bottom_none';
-					}
+		            
+					$margin_bottom =(empty($showexcerpt))? 'margin_bottom_none':'';				
+						
 					echo "<h4><a href=\"".get_permalink()."\">".get_the_title()."</a></h4>";
 					if ($showdate){ echo "<p class='time {$margin} {$margin_bottom}'>".get_the_time('M jS, Y')."</p>"; }
 					if ($showexcerpt) { echo "<p>".get_the_excerpt()."</p>"; }
