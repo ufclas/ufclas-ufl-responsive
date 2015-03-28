@@ -12,7 +12,7 @@
           <?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>
 
           <?php /* If this is a category archive */ if (is_category()) { ?>
-            <h1 class="page-title medium-blue"><strong class="dark-blue"><?php single_cat_title(); ?></strong> Category <a title="Subscribe to <?php single_cat_title(); ?> RSS Feed" href="feed/"><img class="rss-icon" src="<?php bloginfo('template_directory'); ?>/images/rss.png" alt="Subscribe to RSS Feed" /></a></h1>
+            <h1 class="page-title medium-blue"><strong class="dark-blue"><?php single_cat_title(); ?></strong> <a title="Subscribe to <?php single_cat_title(); ?> RSS Feed" href="feed/"><img class="rss-icon" src="<?php bloginfo('template_directory'); ?>/images/rss.png" alt="Subscribe to RSS Feed" /></a></h1>
 
           <?php /* If this is a tag archive */
           } elseif (is_tag()) { ?>
