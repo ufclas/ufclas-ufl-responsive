@@ -11,8 +11,7 @@ class UFCOM_recent_posts extends WP_Widget {
    
 		global $wp_query;
 		$current_page = $wp_query->post->ID;
-		$unique_page_content = get_page_by_title($instance['unique_page_id']);
-		dbgx_trace_var($instance, 'instance');
+		$unique_page_content = get_page_by_title($instance['unique_page_id']);;
 		
 		if ( empty($instance['unique_page_id']) || $current_page==$unique_page_content->ID ) {
  

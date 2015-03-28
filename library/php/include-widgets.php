@@ -354,15 +354,23 @@ function widget_first_last_classes($params) {
 		$my_widget_num[$this_id] = 1;
 	}
 
-	$class = 'class="widget-' . $my_widget_num[$this_id] . ' '; // Add a widget number class for additional styling options
+	$class = 'widget-' . $my_widget_num[$this_id] . ' '; // Add a widget number class for additional styling options
 
 	if($my_widget_num[$this_id] == 1) { // If this is the first widget
-		$class .= 'widget-first ';
+		$class .= 'widget-first';
 	} elseif($my_widget_num[$this_id] == count($arr_registered_widgets[$this_id])) { // If this is the last widget
-		$class .= 'widget-last ';
+		$class .= 'widget-last';
 	}
 
-  $params[0]['before_widget'] = preg_replace('/class=\"/', "$class", $params[0]['before_widget'], 1); // Insert our new classes into "before widget"
+  	/**
+	 * Add default classes from register_sidebar
+	 */
+	preg_match("/class=\"([^\"']*)\"/", $params[0]['before_widget'], $defaults);
+	if( $defaults ){
+		$class .= ' ' . $defaults[1];
+	}
+	
+	$params[0]['before_widget'] = sprintf('<div id="%s" class="%s">', $params[0]['widget_id'], $class );
 	return $params;
 
 }
