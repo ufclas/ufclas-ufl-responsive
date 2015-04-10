@@ -1031,4 +1031,8 @@ if (of_get_option('opt_responsive') && $detect_mobile) {
     }
 add_action('wp_enqueue_scripts', 'my_add_styles');
 }
+
+// Include UF CLAS functions
+include_once( 'library/php/functions-ufclas.php' );
+
 ?>

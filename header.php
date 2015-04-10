@@ -67,9 +67,7 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 		<!-- end website title logic -->
 	
 		<ul id="header-social">
-			<li><a href="<?php ufandshands_get_socialnetwork_url("facebook"); ?>" class="facebook ir">Facebook</a></li>
-			<li><a href="<?php ufandshands_get_socialnetwork_url("twitter"); ?>" class="twitter ir">Twitter</a></li>
-			<li><a href="<?php ufandshands_get_socialnetwork_url("youtube"); ?>" class="youtube ir">Youtube</a></li>
+			<?php ufclas_get_site_socialnetworks(); ?>
 		</ul>
 		<div id="header-search-wrap">
 			<?php if(has_nav_menu('header_links')) { //detects if the header_links menu is being used ?>
