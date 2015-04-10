@@ -36,8 +36,8 @@ $ufl_menu = of_get_option("opt_ufl_menu");
 			wp_nav_menu( array(
 			'walker'   => new ufl_nav_walker,
 			'container' => '',
-			'theme_location' => 'main_menu'
-			//'items_wrap' => '<ul id="%1$s" class="%2$s"><li id="home" class="ir"><a href="/">Home</a></li>%3$s</ul>'
+			'theme_location' => 'main_menu',
+			'depth' => 2
 	        ));
 		} else {
       
