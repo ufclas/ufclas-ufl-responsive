@@ -36,7 +36,7 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 <?php endif;  ?>
 </head>
 
-<body <?php body_class($class); ?>>
+<body <?php body_class(); ?>>
 	<div id="full-modal"></div>
 		<ul class="screen-reader-text">
 			<li><a href="http://assistive.usablenet.com/tt/<?php if (is_home()) { echo esc_url(home_url()); } else { echo esc_url(get_permalink( $post->ID )); } ?>" accesskey="t" title="Text-only version of this website">Text-only version of this website</a></li>
@@ -97,8 +97,8 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 		
 		<?php // orange header action item box
 		if (!$detect_mobile || isset($_cookie["UFLmobileFull"])){	
-			$actionitem_text = of_get_option(opt_actionitem_text);
-			$actionitem_url = of_get_option(opt_actionitem_url);
+			$actionitem_text = of_get_option('opt_actionitem_text');
+			$actionitem_url = of_get_option('opt_actionitem_url');
 		
 			if (!empty($actionitem_text)) {
 				echo "<a id='header-actionitem' href='".$actionitem_url."'>".$actionitem_text."</a>";

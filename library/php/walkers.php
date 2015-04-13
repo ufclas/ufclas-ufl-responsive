@@ -24,7 +24,7 @@ class ufandshands_page_walker extends Walker_Page
      * This is effectively a wrapper for the default method, dynamically adding
      * and removing the class filter when the current item has children.
      */
-    function start_el( &$output, $page, $depth, $args, $current_page )
+    function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 )
     {
         if ( !empty($args['has_children']) )
             add_filter( 'page_css_class', array( &$this, '_filterClass') );
@@ -39,7 +39,7 @@ class ufandshands_page_walker extends Walker_Page
 class ufl_nav_walker extends Walker_Nav_Menu
 {
     // Add the children class to the <ul> instead of sub-menu (override default function)
-	function start_lvl(&$output, $depth) {
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat("\t", $depth);
 		$output .= "\n$indent<ul class='children'>\n"; // Using single quotes for class to work with other code HSC wrote
 	}
@@ -63,7 +63,7 @@ class ufl_nav_walker extends Walker_Nav_Menu
 class ufandshands_sidebar_nav_walker extends Walker_Page
 {
 
-	function start_el(&$output, $page, $depth, $args, $current_page) {
+	function start_el(&$output, $page, $depth = 0, $args = array(), $current_page = 0) {
 		if ( $depth )
 			$indent = str_repeat("\t", $depth);
 		else
@@ -94,7 +94,7 @@ class ufandshands_sidebar_nav_walker extends Walker_Page
 
 	}
   
-  function end_el(&$output, $page, $depth) {
+  function end_el(&$output, $page, $depth = 0, $args = array()) {
 		$output .= "</li>\n";
 	}
   	
@@ -106,7 +106,7 @@ class ufandshands_sidebar_nav_walker extends Walker_Page
  */
 class ufandshands_rolebased_walker extends Walker_Nav_Menu {
 
-	function start_el(&$output, $item, $depth, $args) {
+	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
 		global $wp_query;
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
@@ -147,7 +147,7 @@ class ufandshands_rolebased_walker extends Walker_Nav_Menu {
 		
 	}
 
-	function end_el(&$output, $item, $depth) {
+	function end_el(&$output, $item, $depth = 0, $args = array()) {
 		
 		if ($item->menu_item_parent == 0) {
   		$output .= "</section>\n";

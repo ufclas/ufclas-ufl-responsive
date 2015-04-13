@@ -59,7 +59,7 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 				?>Make a Gift</a></li>
 			</ul>
 			<ul>
-				<li>&copy; <?php echo date(Y); ?> <a href="http://www.ufl.edu/">University of Florida</a>, Gainesville, FL 32611; (352) 392-3261</li>
+				<li>&copy; <?php echo date('Y'); ?> <a href="http://www.ufl.edu/">University of Florida</a>, Gainesville, FL 32611; (352) 392-3261</li>
 				<?php
 					if ( is_home() ) {
 						?> <li>Site Updated <?php ufl_site_last_updated(); ?></li> <?php

@@ -133,6 +133,7 @@ add_theme_support('automatic-feed-links');
 
 function ufandshands_header_adder() {
   global $detect_mobile;
+  global $post;
   
   $bloginfo_url = get_bloginfo('template_url');
   $bloginfo_name = get_bloginfo('name');
@@ -244,6 +245,7 @@ add_action('init', 'ufandshands_header_common_scripts');
 
 //load common footer scripts
 function ufandshands_footer_common_scripts() {
+  global $detect_mobile;
   if (!is_admin()) {
     wp_enqueue_script('cycle', get_bloginfo('template_url') . '/library/js/jquery.cycle.min.js', array('jquery'), false, true);
     //wp_enqueue_script('autoclear', get_bloginfo('template_url') . '/library/js/autoclear.js', false, false, true);
@@ -417,6 +419,7 @@ function ufandshands_search_text() {
 /* ----------------------------------------------------------------------------------- */
 
 function ufandshands_members_only() {
+  $ip = $_SERVER['REMOTE_ADDR'];
   if ((preg_match("/(159\.178\.[0-9]{1,3}\.[0-9]{1,3})/", $ip) > 0 || preg_match("/(128\.227\.[0-9]{1,3}\.[0-9]{1,3})/", $ip) > 0 || preg_match("/(10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})/", $ip) > 0) || is_user_logged_in()) {
     return true;
   } else {
@@ -555,15 +558,18 @@ function ufandshands_post_thumbnail($preset, $alignment, $thumb_w, $thumb_h) {
     } else {
       $pattern = '/src=[\'"]?([^\'" >]+)[\'" >]/';
       preg_match($pattern, $post->post_content, $img_matches);
-      $trimmed_img_matches = trim($img_matches[0], "src=");
-      $image_file_extension = end(explode(".", $trimmed_img_matches));
-      $chopend_img_matches = substr($trimmed_img_matches, 0, -12);
-
-      // Only works on RE-SIZED images
-      $edited_image_reg_pattern = '/[0-9][0-9][0-9]x[0-9][0-9][0-9]/';
-      if ($c = preg_match_all($edited_image_reg_pattern, $trimmed_img_matches, $matches)) {
-        $edited_image_reg = "true";
-      }
+	  $edited_image_reg = false;
+	  if( !empty( $img_matches )){
+		  $trimmed_img_matches = trim($img_matches[0], "src=");
+		  $image_file_extension = end(explode(".", $trimmed_img_matches));
+		  $chopend_img_matches = substr($trimmed_img_matches, 0, -12);
+	
+		  // Only works on RE-SIZED images
+		  $edited_image_reg_pattern = '/[0-9][0-9][0-9]x[0-9][0-9][0-9]/';
+		  if ($c = preg_match_all($edited_image_reg_pattern, $trimmed_img_matches, $matches)) {
+			$edited_image_reg = true;
+		  }
+	  }
     }
 
     // Display Thumbnail
@@ -744,7 +750,7 @@ function ufandshands_sidebar_navigation($post) {
             ));
     $sect_title = the_title('', '', false);
   }
-  if ($children || is_active_sidebar(page_sidebar)) {
+  if ($children || is_active_sidebar('page_sidebar')) {
 
     if ($children) {
       return $children;
@@ -787,14 +793,14 @@ include('library/php/walkers.php');
 /* ----------------------------------------------------------------------------------- */
 
 function ufandshands_content_title() {
-
+	global $post;
 		$custom_meta = get_post_custom($post->ID);
     
    if(is_page($post->ID)) {
-		$custom_subtitle = $custom_meta['custom_meta_page_subtitle'][0];
-    $custom_title_override = $custom_meta['custom_meta_page_title_override'][0];
+		$custom_subtitle = ( isset($custom_meta['custom_meta_page_subtitle']) )? $custom_meta['custom_meta_page_subtitle'][0]:null;
+    	$custom_title_override = ( isset($custom_meta['custom_meta_page_title_override']) )? $custom_meta['custom_meta_page_title_override'][0]:null;
    } elseif(is_single($post->ID)) {
-    $custom_subtitle = $custom_meta['custom_meta_post_subtitle'][0];
+    	$custom_subtitle = ( isset($custom_meta['custom_meta_post_subtitle']) )? $custom_meta['custom_meta_post_subtitle'][0]:null;
    } else {
      return;
    }
