@@ -1015,7 +1015,7 @@ if ( ! isset( $content_width ) ) $content_width = 621;
 	define( 'WP_AUTO_UPDATE_CORE', false ); 
 
 // Include theme info and update notification related functions.
-include_once( 'library/php/update-notifier.php' );
+// include_once( 'library/php/update-notifier.php' );
 
 // Include Shibboleth related functions.
 include_once( 'library/php/functions-shibboleth.php' );
