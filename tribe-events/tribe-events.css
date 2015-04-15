@@ -23,7 +23,7 @@
 
 .widget .tribe-events-list-widget-events .event-date {
 	float: left;
-	height: 50px;
+	height: 60px;
 	width: 42px;
 	background: transparent url(../images/bg-sprite-transparent.png) -750px -99px no-repeat;
 	margin-right: 10px;
@@ -37,7 +37,6 @@
 }
 
 .widget .tribe-events-list-widget-events .event-month {
-  	top: 10px;
 	font-size: .8em;
   	top: 6px;
   	font-weight: bold;
