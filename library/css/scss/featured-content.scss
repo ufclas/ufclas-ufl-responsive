@@ -104,12 +104,10 @@
   padding: 50px 0 0 40px;
   position: relative;
   width: 370px;
-  top: 26%;
+  top: 5%;
 }
 
 #slideshow .half-image-feature p  {
-  padding-left: 10px;
-  border-left: 2px solid #D7DEF0;
   color: #243778;
   font-size: 1.1em;
 }
@@ -322,6 +320,7 @@
 }
 #slideshow .full-image-feature .excerpt a {
     text-decoration: none;
+    color: #eee;
 }
 #slideshow .full-image-feature .excerpt h3, .flexslider h3 {
 	color: #fff !important;
@@ -355,16 +354,14 @@
 
 #featured-area .read-more,
 #slideshow .read-more  {
-  display: block;
-  float: left;
-  font-size: .8em;
-  background-color: #D7DEF0;
-  color: #243778;  
-  width: auto;
-  margin-bottom: 0;
-  text-align: center;
-  padding: 4px 6px;
-  background: transparent url(images/bg-sprite-flat.jpg) -7px -9px no-repeat;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #243778;
+}
+
+#slideshow a.read-more::after {
+    content: " »";
+    font-size: 16px;
 }
 
 #featured-area img {

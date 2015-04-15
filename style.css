@@ -3,10 +3,10 @@
 Theme Name: UF CLAS Responsive
 Theme URI: http://it.clas.ufl.edu/
 Description: The official responsive WordPress template for The University of Florida. Modified for CLAS.
-Version: 1.5 (0.3.0)
+Version: 1.5 (0.5.0)
 Author: CLAS IT, UF Web Services
 Author URI: http://it.clas.ufl.edu/
-Build Date: 20150212
+Build Date: 20150415
 */
 /* import reset.css */
 /* --------------------------------------------------------------
@@ -1274,11 +1274,9 @@ li#utility-tabs:hover {
   padding: 50px 0 0 40px;
   position: relative;
   width: 370px;
-  top: 26%; }
+  top: 5%; }
 
 #slideshow .half-image-feature p {
-  padding-left: 10px;
-  border-left: 2px solid #D7DEF0;
   color: #243778;
   font-size: 1.1em; }
 
@@ -1465,7 +1463,8 @@ li#utility-tabs:hover {
   cursor: pointer; }
 
 #slideshow .full-image-feature .excerpt a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #eee; }
 
 #slideshow .full-image-feature .excerpt h3, .flexslider h3 {
   color: #fff !important;
@@ -1495,16 +1494,13 @@ li#utility-tabs:hover {
 
 #featured-area .read-more,
 #slideshow .read-more {
-  display: block;
-  float: left;
-  font-size: .8em;
-  background-color: #D7DEF0;
-  color: #243778;
-  width: auto;
-  margin-bottom: 0;
-  text-align: center;
-  padding: 4px 6px;
-  background: transparent url(images/bg-sprite-flat.jpg) -7px -9px no-repeat; }
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #243778; }
+
+#slideshow a.read-more::after {
+  content: " »";
+  font-size: 16px; }
 
 #featured-area img {
   display: block; }
@@ -3264,7 +3260,7 @@ a img.aligncenter {
   /* Opera 11.10+ */
   background-image: linear-gradient(top, #eeeeee, #ffffff);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#ffffff');
-  /* IE6ΓÇôIE9 */ }
+  /* IE6–IE9 */ }
 
 .wp-caption a,
 .wp-caption a:hover,
@@ -4336,7 +4332,7 @@ input[type="checkbox"] {
     border: none; }
   .gce-page-grid .gce-calendar .gce-month-title {
     font-size: 1.8em;
-    font-family: 'ufshands',ΓÇïArial,ΓÇïsans-serif;
+    font-family: 'ufshands',​Arial,​sans-serif;
     color: #243778;
     margin-bottom: 0.5em; }
   .gce-page-grid .gce-calendar .gce-day-future {
