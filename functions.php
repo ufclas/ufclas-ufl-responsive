@@ -241,7 +241,7 @@ function ufandshands_header_common_scripts() {
     wp_enqueue_script('modernizr', get_bloginfo('template_url') . '/library/js/modernizr-1.7.min.js');
   }
 }
-add_action('init', 'ufandshands_header_common_scripts');
+add_action('wp_enqueue_scripts', 'ufandshands_header_common_scripts');
 
 //load common footer scripts
 function ufandshands_footer_common_scripts() {
@@ -260,7 +260,7 @@ function ufandshands_footer_common_scripts() {
     }
   }
 }
-add_action('init', 'ufandshands_footer_common_scripts');
+add_action('wp_enqueue_scripts', 'ufandshands_footer_common_scripts');
 
 // load single scripts only on single pages
 function ufandshands_single_scripts() {
@@ -279,7 +279,7 @@ function ufandshands_mega_menu() {
     wp_enqueue_script('megamenu', get_bloginfo('template_url') . '/library/js/mega-menu.js', array('jquery', 'hoverintent'), false, true);
   } 
 }
-add_action('init', 'ufandshands_mega_menu');
+add_action('wp_enqueue_scripts', 'ufandshands_mega_menu');
 
 // load default menu script
 function ufandshands_default_menu()  {
@@ -290,7 +290,7 @@ function ufandshands_default_menu()  {
       wp_enqueue_script('responsivemenu', get_bloginfo('template_url') . '/library/js/responsive-menu.js', false, true);}
   }
 }
-add_action('init', 'ufandshands_default_menu');
+add_action('wp_enqueue_scripts', 'ufandshands_default_menu');
 
 
 //load scripts only if not mobile
@@ -301,17 +301,18 @@ if (!$detect_mobile || isset($_COOKIE["UFLmobileFull"])){
 	    wp_enqueue_script('storystacker', get_bloginfo('template_url') . '/library/js/story-stacker.js', array('jquery'), false, true);
 	  }
 	}
-	add_action('init', 'ufandshands_story_stacker');
-	// load autoclear	
-    wp_enqueue_script('autoclear', get_bloginfo('template_url') . '/library/js/autoclear.js', false, false, true);
-
-	// load slider script
+	add_action('wp_enqueue_scripts', 'ufandshands_story_stacker');
+	
 	function ufandshands_feature_slider() {
+	  // load autoclear	
+    wp_enqueue_script('autoclear', get_bloginfo('template_url') . '/library/js/autoclear.js', false, false, true);
+	  
+	  // load slider script
 	  if((of_get_option('opt_number_of_posts_to_show') > '1') && !(of_get_option('opt_story_stacker')) && !is_admin()) {
 	    wp_enqueue_script('featureslider', get_bloginfo('template_url') . '/library/js/feature-slider.js', array('jquery'), false, true);
 	  }
 	}
-	add_action('init', 'ufandshands_feature_slider');
+	add_action('wp_enqueue_scripts', 'ufandshands_feature_slider');
 }
 
 
