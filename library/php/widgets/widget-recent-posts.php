@@ -57,7 +57,7 @@ class UFCOM_recent_posts extends WP_Widget {
 			echo "<div id='recent-posts' class='news-announcements'><div class='item'>";
 				if ($showthumbnails) {
 					if((ufandshands_post_thumbnail('thumbnail', 'alignleft', 130, 100))) {
-					  $margin = "margin-160";
+					  //$margin = "margin-160";
 					}
 				}  
 				
