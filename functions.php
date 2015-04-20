@@ -616,8 +616,7 @@ if (function_exists('add_image_size')) {
   add_image_size('half-width-thumb', 450, 305, true);
   add_image_size('slider-scrubber-thumb', 130, 100, true);
   add_image_size('page_header', 680, 220, true);
-  add_image_size('stacker-thumb', 630, 298, true);
-  add_image_size('stacker-thumb-medium', 600, 284, true);
+  add_image_size('stacker-thumb', 630, 298, array('center', 'top'));
   add_image_size('stacker-thumb-small', 67, 67, true); 
   add_image_size('ufl_menu_thumb', 203, 96, true);
   add_image_size('ufl_post_thumb', 600, 210, false);
