@@ -70,4 +70,12 @@ function ufclas_events_widget_before_title(){
 }
 add_action( 'tribe_events_list_widget_before_the_event_title', 'ufclas_events_widget_before_title' );
 
-
+/**
+ * Show additional sizes in the insert image dialog
+ */
+function ufclas_show_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+		'page_header' => __( 'Page Header' ),
+    ) );
+}
+add_filter( 'image_size_names_choose', 'ufclas_show_custom_sizes' );
