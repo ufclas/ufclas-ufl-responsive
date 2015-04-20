@@ -13,8 +13,8 @@
 	
 	<?php
 	  $custom_meta = get_post_custom($post->ID);
-	  $custom_button_text = $custom_meta['custom_meta_featured_content_button_text'][0];
-	  $disabled_caption = $custom_meta['custom_meta_featured_content_disable_captions'];
+	  $custom_button_text = (isset($custom_meta['custom_meta_featured_content_button_text']))? $custom_meta['custom_meta_featured_content_button_text'][0]:'';
+	  $disabled_caption = (isset($custom_meta['custom_meta_featured_content_disable_captions']))? $custom_meta['custom_meta_featured_content_disable_captions']:null;
 	  $story_stacker_disable_dates = of_get_option("opt_story_stacker_disable_dates");
 	?>
 	
