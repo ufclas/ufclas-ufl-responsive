@@ -36,17 +36,19 @@ add_filter('the_content_more_link', 'ufclas_excerpt_more');
 /**
  * Show either the_content or the_excerpt based on whether post contains the <!--more--> tag
  */
-function ufclas_teaser_excerpt(){
+function ufclas_teaser_excerpt( $excerpt ){
 	global $post;
 	$has_teaser = (strpos($post->post_content, '<!--more') !== false);
 	if ($has_teaser){
 		// Remove extra formatting from the content
-		echo '<p>' . strip_tags( get_the_content(), '<a><br>' ) . '</p>';
+		return strip_tags( get_the_content(), '<a><br>' );
 	}
 	else {
-		the_excerpt();	
+		return $excerpt;	
 	}
 }
+
+add_filter( 'get_the_excerpt', 'ufclas_teaser_excerpt');
 
 /**
  * The Events Calendar functions 
