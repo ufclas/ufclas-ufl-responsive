@@ -3260,7 +3260,7 @@ a img.aligncenter {
   /* Opera 11.10+ */
   background-image: linear-gradient(top, #eeeeee, #ffffff);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#ffffff');
-  /* IE6–IE9 */ }
+  /* IE6ΓÇôIE9 */ }
 
 .wp-caption a,
 .wp-caption a:hover,
@@ -3962,9 +3962,6 @@ th {
   text-align: left;
   padding: 12px; }
 
-article h2 a, article h3 a, article p a {
-  border-bottom: 1px dotted #243778; }
-
 #main-content img.wp-post-image, #main-content img.size-full {
   padding: 4px;
   border: 1px solid #D7DEF0; }
@@ -4096,6 +4093,9 @@ div.gform_wrapper h3.gform_title {
   padding: 5px;
   font-size: 15px; }
 
+.gform_wrapper .gfield input.large {
+  line-height: inherit; }
+
 #secondary .gform_wrapper .gfield input,
 #secondary .gform_wrapper .gfield textarea {
   padding: 3px; }
@@ -4174,6 +4174,9 @@ div.gform_wrapper h3.gform_title {
   border-color: #4F8A10;
   background-color: #DFF2BF;
   background-image: url(images/success.png); }
+
+.ui-datepicker select, .ui-datepicker input, .ui-datepicker textarea, .ui-datepicker button {
+  width: auto; }
 
 /* ========= added styles for responsive theme ========= */
 .flexslider .slides img {
@@ -4332,7 +4335,7 @@ input[type="checkbox"] {
     border: none; }
   .gce-page-grid .gce-calendar .gce-month-title {
     font-size: 1.8em;
-    font-family: 'ufshands',​Arial,​sans-serif;
+    font-family: 'ufshands',ΓÇïArial,ΓÇïsans-serif;
     color: #243778;
     margin-bottom: 0.5em; }
   .gce-page-grid .gce-calendar .gce-day-future {

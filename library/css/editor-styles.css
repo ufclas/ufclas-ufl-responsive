@@ -447,7 +447,7 @@ a img.aligncenter {
   background-image:     -ms-linear-gradient(top, #eeeeee, #ffffff); /* IE10 */
   background-image:      -o-linear-gradient(top, #eeeeee, #ffffff); /* Opera 11.10+ */
   background-image:         linear-gradient(top, #eeeeee, #ffffff);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#ffffff'); /* IE6–IE9 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#ffffff'); /* IE6-IE9 */
 }
 
 .wp-caption a,
