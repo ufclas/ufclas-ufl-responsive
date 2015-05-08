@@ -27,10 +27,10 @@
         <?php while ($slider_feature_posts->have_posts()) : $slider_feature_posts->the_post(); ?>
         <?php        
 			$custom_meta = get_post_custom($post->ID);
-			$image_type = $custom_meta['custom_meta_image_type'];
-			$image_effect_disabled = $custom_meta['custom_meta_image_effect_disabled'];
-			$custom_button_text = $custom_meta['custom_meta_featured_content_button_text'][0]; 
-			$disabled_caption = $custom_meta['custom_meta_featured_content_disable_captions'];
+			$image_type = ( isset($custom_meta['custom_meta_image_type']) )? $custom_meta['custom_meta_image_type']:null;
+			$image_effect_disabled = ( isset($custom_meta['custom_meta_image_effect_disabled']) )? $custom_meta['custom_meta_image_effect_disabled']:null;
+			$custom_button_text = ( isset($custom_meta['custom_meta_featured_content_button_text']) )? $custom_meta['custom_meta_featured_content_button_text'][0]:null; 
+			$disabled_caption = ( isset($custom_meta['custom_meta_featured_content_disable_captions']) )? $custom_meta['custom_meta_featured_content_disable_captions']:null;
 			$disable_timeline = of_get_option("opt_featured_content_disable_timeline");
         ?>
         

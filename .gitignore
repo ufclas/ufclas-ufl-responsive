@@ -3,3 +3,4 @@ _notes
 _notes/*.xml
 Thumbs.db
 .sass-cache
+.css.map

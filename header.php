@@ -36,7 +36,7 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 <?php endif;  ?>
 </head>
 
-<body <?php body_class($class); ?>>
+<body <?php body_class(); ?>>
 	<div id="full-modal"></div>
 		<ul class="screen-reader-text">
 			<li><a href="http://assistive.usablenet.com/tt/<?php if (is_home()) { echo esc_url(home_url()); } else { echo esc_url(get_permalink( $post->ID )); } ?>" accesskey="t" title="Text-only version of this website">Text-only version of this website</a></li>
@@ -67,9 +67,7 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 		<!-- end website title logic -->
 	
 		<ul id="header-social">
-			<li><a href="<?php ufandshands_get_socialnetwork_url("facebook"); ?>" class="facebook ir">Facebook</a></li>
-			<li><a href="<?php ufandshands_get_socialnetwork_url("twitter"); ?>" class="twitter ir">Twitter</a></li>
-			<li><a href="<?php ufandshands_get_socialnetwork_url("youtube"); ?>" class="youtube ir">Youtube</a></li>
+			<?php ufclas_get_site_socialnetworks(); ?>
 		</ul>
 		<div id="header-search-wrap">
 			<?php if(has_nav_menu('header_links')) { //detects if the header_links menu is being used ?>
@@ -99,8 +97,8 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 		
 		<?php // orange header action item box
 		if (!$detect_mobile || isset($_cookie["UFLmobileFull"])){	
-			$actionitem_text = of_get_option(opt_actionitem_text);
-			$actionitem_url = of_get_option(opt_actionitem_url);
+			$actionitem_text = of_get_option('opt_actionitem_text');
+			$actionitem_url = of_get_option('opt_actionitem_url');
 		
 			if (!empty($actionitem_text)) {
 				echo "<a id='header-actionitem' href='".$actionitem_url."'>".$actionitem_text."</a>";

@@ -3,10 +3,10 @@
 Theme Name: UF CLAS Responsive
 Theme URI: http://it.clas.ufl.edu/
 Description: The official responsive WordPress template for The University of Florida. Modified for CLAS.
-Version: 1.5 (0.3.0)
+Version: 1.5 (0.5.0)
 Author: CLAS IT, UF Web Services
 Author URI: http://it.clas.ufl.edu/
-Build Date: 20150212
+Build Date: 20150415
 */
 /* import reset.css */
 /* --------------------------------------------------------------
@@ -1274,11 +1274,9 @@ li#utility-tabs:hover {
   padding: 50px 0 0 40px;
   position: relative;
   width: 370px;
-  top: 26%; }
+  top: 5%; }
 
 #slideshow .half-image-feature p {
-  padding-left: 10px;
-  border-left: 2px solid #D7DEF0;
   color: #243778;
   font-size: 1.1em; }
 
@@ -1465,7 +1463,8 @@ li#utility-tabs:hover {
   cursor: pointer; }
 
 #slideshow .full-image-feature .excerpt a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #eee; }
 
 #slideshow .full-image-feature .excerpt h3, .flexslider h3 {
   color: #fff !important;
@@ -1495,16 +1494,13 @@ li#utility-tabs:hover {
 
 #featured-area .read-more,
 #slideshow .read-more {
-  display: block;
-  float: left;
-  font-size: .8em;
-  background-color: #D7DEF0;
-  color: #243778;
-  width: auto;
-  margin-bottom: 0;
-  text-align: center;
-  padding: 4px 6px;
-  background: transparent url(images/bg-sprite-flat.jpg) -7px -9px no-repeat; }
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #243778; }
+
+#slideshow a.read-more::after {
+  content: " »";
+  font-size: 16px; }
 
 #featured-area img {
   display: block; }
@@ -3966,9 +3962,6 @@ th {
   text-align: left;
   padding: 12px; }
 
-article h2 a, article h3 a, article p a {
-  border-bottom: 1px dotted #243778; }
-
 #main-content img.wp-post-image, #main-content img.size-full {
   padding: 4px;
   border: 1px solid #D7DEF0; }
@@ -4100,6 +4093,9 @@ div.gform_wrapper h3.gform_title {
   padding: 5px;
   font-size: 15px; }
 
+.gform_wrapper .gfield input.large {
+  line-height: inherit; }
+
 #secondary .gform_wrapper .gfield input,
 #secondary .gform_wrapper .gfield textarea {
   padding: 3px; }
@@ -4178,6 +4174,9 @@ div.gform_wrapper h3.gform_title {
   border-color: #4F8A10;
   background-color: #DFF2BF;
   background-image: url(images/success.png); }
+
+.ui-datepicker select, .ui-datepicker input, .ui-datepicker textarea, .ui-datepicker button {
+  width: auto; }
 
 /* ========= added styles for responsive theme ========= */
 .flexslider .slides img {

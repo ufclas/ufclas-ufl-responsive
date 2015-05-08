@@ -11,8 +11,9 @@
  **************************************************************/
 
 // Constants for the theme name, folder and remote XML url
+$template_directory = explode( '/', get_bloginfo('template_directory'));
 define( 'NOTIFIER_THEME_NAME', 'UF Template Responsive' ); // The theme name
-define( 'NOTIFIER_THEME_FOLDER_NAME', array_pop(explode( '/', get_bloginfo('template_directory') ) ) ); // The theme folder name
+define( 'NOTIFIER_THEME_FOLDER_NAME', array_pop( $template_directory ) ); // The theme folder name
 define( 'NOTIFIER_XML_FILE', 'http://webservices.it.ufl.edu/uf-template-notifier.xml' ); // The remote notifier XML file containing the latest version of the theme and changelog
 define( 'NOTIFIER_CACHE_INTERVAL', 604800 ); // The time interval for the remote XML cache in the database (21600 seconds = 6 hours)
 

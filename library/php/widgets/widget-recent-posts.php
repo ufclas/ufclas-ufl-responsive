@@ -9,71 +9,71 @@ class UFCOM_recent_posts extends WP_Widget {
 	function widget($args, $instance) {
 		extract($args, EXTR_SKIP);
    
+		/**
+		 * Check whether the widget should only be shown on a certain page
+		 */
 		global $wp_query;
 		$current_page = $wp_query->post->ID;
-		$unique_page_content = get_page_by_title($instance['unique_page_id']);;
+		$unique_page_id = ( isset($instance['unique_page_id']) )? $instance['unique_page_id']:null;
 		
-		if ( empty($instance['unique_page_id']) || $current_page==$unique_page_content->ID ) {
- 
-			echo $before_widget;
-			$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-			$numberofposts = empty($instance['numberofposts']) ? '&nbsp;' : apply_filters('widget_numberofposts', $instance['numberofposts']);
-			$showexcerpt = isset( $instance['showexcerpt'] ) ? $instance['showexcerpt'] : false;
-			$showthumbnails = isset( $instance['showthumbnails'] ) ? $instance['showthumbnails'] : false;
-			$showdate = isset( $instance['showdate'] ) ? $instance['showdate'] : false;
-			$showrssicon = isset( $instance['showrssicon'] ) ? $instance['showrssicon'] : false;
-			
-			//$feature_category_id = get_settings('featured_category_id');
-
-			//$COM_featured_cat_id = get_cat_id(get_option(COM_featured_category_id));
-
-			$featured_content_category = of_get_option("opt_featured_category");
-			
-			if (!empty($instance['specific_category_id'])) {
-				$specific_category_id_actual = "&cat=";
-				$specific_category_id_actual .= get_cat_id($instance['specific_category_id']);
+		if( !empty($unique_page_id) && is_page( $current_page ) ){
+			$unique_page_content = get_page_by_title($unique_page_id);
+			if( $current_page != $unique_page_content->ID ){
+				return false;	
 			}
-			
-			$showrssiconimage = '';
-			if ($showrssicon=="on"){
-          			$iconpath = get_bloginfo('template_url') . '/images/rss.png';
-					$showrssiconimage = "<a href='".get_bloginfo('rss2_url')."'><img class='rss-icon' src='" . $iconpath . "' class='rss_icon' alt='Subscribe to RSS Feed'/></a> ";
-				}
-	 
-			if ( !empty( $title ) ) { echo $before_title . $title . $showrssiconimage . $after_title; };
+		}
+		
+		echo $before_widget;
+		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
+		$numberofposts = empty($instance['numberofposts']) ? '&nbsp;' : apply_filters('widget_numberofposts', $instance['numberofposts']);
+		$showexcerpt = isset( $instance['showexcerpt'] ) ? $instance['showexcerpt'] : false;
+		$showthumbnails = isset( $instance['showthumbnails'] ) ? $instance['showthumbnails'] : false;
+		$showdate = isset( $instance['showdate'] ) ? $instance['showdate'] : false;
+		$showrssicon = isset( $instance['showrssicon'] ) ? $instance['showrssicon'] : false;
 
-			$recentPosts = new WP_Query();
-			$recentPosts->query("showposts=".$numberofposts."&cat=-".$featured_content_category.$specific_category_id_actual."");
-				while ($recentPosts->have_posts()) : $recentPosts->the_post();
+		$featured_content_category = of_get_option("opt_featured_category");
+		$specific_category_id = isset( $instance['specific_category_id'] ) ? $instance['specific_category_id']:'';
+		$specific_category_id_actual = '';
+		if ( !empty($specific_category_id) ) {
+			$specific_category_id_actual = "&cat=";
+			$specific_category_id_actual .= get_cat_id($specific_category_id);
+		}
+		
+		$showrssiconimage = '';
+		if ($showrssicon=="on"){
+				$iconpath = get_bloginfo('template_url') . '/images/rss.png';
+				$showrssiconimage = "<a href='".get_bloginfo('rss2_url')."'><img class='rss-icon' src='" . $iconpath . "' class='rss_icon' alt='Subscribe to RSS Feed'/></a> ";
+		}
+ 
+		if ( !empty( $title ) ) { echo $before_title . $title . $showrssiconimage . $after_title; };
+
+		$recentPosts = new WP_Query();
+		$recentPosts->query("showposts=".$numberofposts."&cat=-".$featured_content_category.$specific_category_id_actual."");
+			while ($recentPosts->have_posts()) : $recentPosts->the_post();
+			
+   
+	
+			$margin = '';
+			echo "<div id='recent-posts' class='news-announcements'><div class='item'>";
+				if ($showthumbnails) {
+					if((ufandshands_post_thumbnail('thumbnail', 'alignleft', 130, 100))) {
+					  //$margin = "margin-160";
+					}
+				}  
 				
-       
-        
-        		$margin = '';
-				echo "<div id='recent-posts' class='news-announcements'><div class='item'>";
-					if ($showthumbnails) {
-			            if((ufandshands_post_thumbnail('thumbnail', 'alignleft', 130, 100))) {
-			              $margin = "margin-160";
-			            }
-			        }  
-		            
-					$margin_bottom =(empty($showexcerpt))? 'margin_bottom_none':'';				
-						
-					echo "<h4><a href=\"".get_permalink()."\">".get_the_title()."</a></h4>";
-					if ($showdate){ echo "<p class='time {$margin} {$margin_bottom}'>".get_the_time('M jS, Y')."</p>"; }
-					if ($showexcerpt) { echo "<p>".get_the_excerpt()."</p>"; }
-					//if ($showthumbnails){ echo "<div style=\"clear:right;\"></div>"; } -- disabled -- not sure if needed in new UF&Shands template
-					// echo "<div class=\"recent_post_container_bottom_border\"></div>"; -- disabled -- not sure if needed in new UF&Shands template
+				$margin_bottom =(empty($showexcerpt))? 'margin_bottom_none':'';				
 					
-				echo "</div></div>";
-				endwhile;
+				echo "<h4><a href=\"".get_permalink()."\">".get_the_title()."</a></h4>";
+				if ($showdate){ echo "<p class='time {$margin} {$margin_bottom}'>".get_the_time('M jS, Y')."</p>"; }
+				if ($showexcerpt) { echo "<p>". get_the_excerpt() ."</p>"; }
+				
+			echo "</div></div>";
+			endwhile;
 
-				wp_reset_query();
-			
-			echo $after_widget;
+			wp_reset_query();
+		
+		echo $after_widget;
 
-		} else {
-      return false;
-    }
 	}
  
 	function update($new_instance, $old_instance) {

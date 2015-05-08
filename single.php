@@ -22,7 +22,7 @@
 				
 				<p><?php 
 				$custom_meta = get_post_custom($post->ID);
-				$custom_remove_featured = $custom_meta['custom_meta_post_remove_featured'][0];
+				$custom_remove_featured = ( isset($custom_meta['custom_meta_post_remove_featured']) )? $custom_meta['custom_meta_post_remove_featured'][0]:false;
 				if ( ( has_post_thumbnail() ) && ( $custom_remove_featured == false ) ) {
 					the_post_thumbnail( 'ufl_post_thumb', array('class' => 'shadow') );
 				}
@@ -61,7 +61,7 @@
 		</article><!-- end #main-content --> 
 		
 		
-		<?php get_sidebar(post_sidebar); ?>
+		<?php get_sidebar('post_sidebar'); ?>
 		
 		
 		

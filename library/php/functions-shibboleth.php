@@ -58,7 +58,7 @@ function ufl_check_shibboleth_auth() {
 function ufl_check_page_visitor_level($postid) {
 	// Check if Shib is required for this page.
 	$custom_meta = get_post_custom($postid);
-	$custom_visitor_auth_level = $custom_meta['custom_meta_visitor_auth_level'][0];
+	$custom_visitor_auth_level = ( isset($custom_meta['custom_meta_visitor_auth_level']) )? $custom_meta['custom_meta_visitor_auth_level'][0]:'';
 	switch ($custom_visitor_auth_level) {
 		case 'WordPress Users':
 			$custom_visitor_auth_level = '1';

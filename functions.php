@@ -133,6 +133,7 @@ add_theme_support('automatic-feed-links');
 
 function ufandshands_header_adder() {
   global $detect_mobile;
+  global $post;
   
   $bloginfo_url = get_bloginfo('template_url');
   $bloginfo_name = get_bloginfo('name');
@@ -240,10 +241,11 @@ function ufandshands_header_common_scripts() {
     wp_enqueue_script('modernizr', get_bloginfo('template_url') . '/library/js/modernizr-1.7.min.js');
   }
 }
-add_action('init', 'ufandshands_header_common_scripts');
+add_action('wp_enqueue_scripts', 'ufandshands_header_common_scripts');
 
 //load common footer scripts
 function ufandshands_footer_common_scripts() {
+  global $detect_mobile;
   if (!is_admin()) {
     wp_enqueue_script('cycle', get_bloginfo('template_url') . '/library/js/jquery.cycle.min.js', array('jquery'), false, true);
     //wp_enqueue_script('autoclear', get_bloginfo('template_url') . '/library/js/autoclear.js', false, false, true);
@@ -258,7 +260,7 @@ function ufandshands_footer_common_scripts() {
     }
   }
 }
-add_action('init', 'ufandshands_footer_common_scripts');
+add_action('wp_enqueue_scripts', 'ufandshands_footer_common_scripts');
 
 // load single scripts only on single pages
 function ufandshands_single_scripts() {
@@ -277,7 +279,7 @@ function ufandshands_mega_menu() {
     wp_enqueue_script('megamenu', get_bloginfo('template_url') . '/library/js/mega-menu.js', array('jquery', 'hoverintent'), false, true);
   } 
 }
-add_action('init', 'ufandshands_mega_menu');
+add_action('wp_enqueue_scripts', 'ufandshands_mega_menu');
 
 // load default menu script
 function ufandshands_default_menu()  {
@@ -288,7 +290,7 @@ function ufandshands_default_menu()  {
       wp_enqueue_script('responsivemenu', get_bloginfo('template_url') . '/library/js/responsive-menu.js', false, true);}
   }
 }
-add_action('init', 'ufandshands_default_menu');
+add_action('wp_enqueue_scripts', 'ufandshands_default_menu');
 
 
 //load scripts only if not mobile
@@ -299,17 +301,18 @@ if (!$detect_mobile || isset($_COOKIE["UFLmobileFull"])){
 	    wp_enqueue_script('storystacker', get_bloginfo('template_url') . '/library/js/story-stacker.js', array('jquery'), false, true);
 	  }
 	}
-	add_action('init', 'ufandshands_story_stacker');
-	// load autoclear	
-    wp_enqueue_script('autoclear', get_bloginfo('template_url') . '/library/js/autoclear.js', false, false, true);
-
-	// load slider script
+	add_action('wp_enqueue_scripts', 'ufandshands_story_stacker');
+	
 	function ufandshands_feature_slider() {
+	  // load autoclear	
+    wp_enqueue_script('autoclear', get_bloginfo('template_url') . '/library/js/autoclear.js', false, false, true);
+	  
+	  // load slider script
 	  if((of_get_option('opt_number_of_posts_to_show') > '1') && !(of_get_option('opt_story_stacker')) && !is_admin()) {
 	    wp_enqueue_script('featureslider', get_bloginfo('template_url') . '/library/js/feature-slider.js', array('jquery'), false, true);
 	  }
 	}
-	add_action('init', 'ufandshands_feature_slider');
+	add_action('wp_enqueue_scripts', 'ufandshands_feature_slider');
 }
 
 
@@ -417,6 +420,7 @@ function ufandshands_search_text() {
 /* ----------------------------------------------------------------------------------- */
 
 function ufandshands_members_only() {
+  $ip = $_SERVER['REMOTE_ADDR'];
   if ((preg_match("/(159\.178\.[0-9]{1,3}\.[0-9]{1,3})/", $ip) > 0 || preg_match("/(128\.227\.[0-9]{1,3}\.[0-9]{1,3})/", $ip) > 0 || preg_match("/(10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})/", $ip) > 0) || is_user_logged_in()) {
     return true;
   } else {
@@ -555,15 +559,18 @@ function ufandshands_post_thumbnail($preset, $alignment, $thumb_w, $thumb_h) {
     } else {
       $pattern = '/src=[\'"]?([^\'" >]+)[\'" >]/';
       preg_match($pattern, $post->post_content, $img_matches);
-      $trimmed_img_matches = trim($img_matches[0], "src=");
-      $image_file_extension = end(explode(".", $trimmed_img_matches));
-      $chopend_img_matches = substr($trimmed_img_matches, 0, -12);
-
-      // Only works on RE-SIZED images
-      $edited_image_reg_pattern = '/[0-9][0-9][0-9]x[0-9][0-9][0-9]/';
-      if ($c = preg_match_all($edited_image_reg_pattern, $trimmed_img_matches, $matches)) {
-        $edited_image_reg = "true";
-      }
+	  $edited_image_reg = false;
+	  if( !empty( $img_matches )){
+		  $trimmed_img_matches = trim($img_matches[0], "src=");
+		  $image_file_extension = end(explode(".", $trimmed_img_matches));
+		  $chopend_img_matches = substr($trimmed_img_matches, 0, -12);
+	
+		  // Only works on RE-SIZED images
+		  $edited_image_reg_pattern = '/[0-9][0-9][0-9]x[0-9][0-9][0-9]/';
+		  if ($c = preg_match_all($edited_image_reg_pattern, $trimmed_img_matches, $matches)) {
+			$edited_image_reg = true;
+		  }
+	  }
     }
 
     // Display Thumbnail
@@ -605,12 +612,11 @@ include('library/php/shortcodes.php');
 /* ----------------------------------------------------------------------------------- */
 
 if (function_exists('add_image_size')) {
-  add_image_size('full-width-thumb', 930, 325, true);
-  add_image_size('half-width-thumb', 450, 305, true);
+  add_image_size('full-width-thumb', 930, 325, array('center', 'top'));
+  add_image_size('half-width-thumb', 450, 305, array('center', 'top'));
   add_image_size('slider-scrubber-thumb', 130, 100, true);
-  add_image_size('page_header', 680, 220, true);
-  add_image_size('stacker-thumb', 630, 298, true);
-  add_image_size('stacker-thumb-medium', 600, 284, true);
+  add_image_size('page_header', 680, 220, array('center', 'top'));
+  add_image_size('stacker-thumb', 630, 298, array('center', 'top'));
   add_image_size('stacker-thumb-small', 67, 67, true); 
   add_image_size('ufl_menu_thumb', 203, 96, true);
   add_image_size('ufl_post_thumb', 600, 210, false);
@@ -744,7 +750,7 @@ function ufandshands_sidebar_navigation($post) {
             ));
     $sect_title = the_title('', '', false);
   }
-  if ($children || is_active_sidebar(page_sidebar)) {
+  if ($children || is_active_sidebar('page_sidebar')) {
 
     if ($children) {
       return $children;
@@ -787,14 +793,14 @@ include('library/php/walkers.php');
 /* ----------------------------------------------------------------------------------- */
 
 function ufandshands_content_title() {
-
+	global $post;
 		$custom_meta = get_post_custom($post->ID);
     
    if(is_page($post->ID)) {
-		$custom_subtitle = $custom_meta['custom_meta_page_subtitle'][0];
-    $custom_title_override = $custom_meta['custom_meta_page_title_override'][0];
+		$custom_subtitle = ( isset($custom_meta['custom_meta_page_subtitle']) )? $custom_meta['custom_meta_page_subtitle'][0]:null;
+    	$custom_title_override = ( isset($custom_meta['custom_meta_page_title_override']) )? $custom_meta['custom_meta_page_title_override'][0]:null;
    } elseif(is_single($post->ID)) {
-    $custom_subtitle = $custom_meta['custom_meta_post_subtitle'][0];
+    	$custom_subtitle = ( isset($custom_meta['custom_meta_post_subtitle']) )? $custom_meta['custom_meta_post_subtitle'][0]:null;
    } else {
      return;
    }
@@ -1009,7 +1015,7 @@ if ( ! isset( $content_width ) ) $content_width = 621;
 	define( 'WP_AUTO_UPDATE_CORE', false ); 
 
 // Include theme info and update notification related functions.
-include_once( 'library/php/update-notifier.php' );
+// include_once( 'library/php/update-notifier.php' );
 
 // Include Shibboleth related functions.
 include_once( 'library/php/functions-shibboleth.php' );
@@ -1031,4 +1037,8 @@ if (of_get_option('opt_responsive') && $detect_mobile) {
     }
 add_action('wp_enqueue_scripts', 'my_add_styles');
 }
+
+// Include UF CLAS functions
+include_once( 'library/php/functions-ufclas.php' );
+
 ?>
