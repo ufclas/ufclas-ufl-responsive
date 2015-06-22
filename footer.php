@@ -38,7 +38,7 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 				<li><a href="http://www.questions.ufl.edu/">Ask UF</a></li>
 			</ul>
 			<ul>
-				<li><a href="http://assistive.usablenet.com/tt/<?php if (is_home()) { echo esc_url(home_url()); } else { echo esc_url(get_permalink( $post->ID )); } ?>" accesskey="t" title="Text-only version of this website">Text-only Version</a></li>
+				<li><a href="http://assistive.usablenet.com/tt/<?php if ( empty($post->ID) ) { echo esc_url(home_url()); } else { echo esc_url(get_permalink( $post->ID )); } ?>" accesskey="t" title="Text-only version of this website">Text-only Version</a></li>
 				<li><a href="http://www.ufl.edu/disability/">Disability Services</a></li>
 				<li><a href="http://privacy.ufl.edu/privacystatement.html">Privacy Policy</a></li>
 				<li><a href="http://regulations.ufl.edu/">Regulations</a></li>

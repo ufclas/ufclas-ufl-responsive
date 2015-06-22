@@ -71,6 +71,8 @@ class ufandshands_sidebar_nav_walker extends Walker_Page
 
 		extract($args, EXTR_SKIP);
 		$css_class = array('page_item', 'page-item-'.$page->ID);
+		$active_arrow = '';
+		
 		if ( !empty($current_page) ) {
 			$_current_page = get_page( $current_page );
 			_get_post_ancestors($_current_page);

@@ -4,7 +4,8 @@
 <!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
 		<?php wp_head(); ?>
 <?php
 if (of_get_option('opt_responsive') && $detect_mobile && !isset($_COOKIE["UFLmobileFull"])) {
@@ -39,7 +40,7 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 <body <?php body_class(); ?>>
 	<div id="full-modal"></div>
 		<ul class="screen-reader-text">
-			<li><a href="http://assistive.usablenet.com/tt/<?php if (is_home()) { echo esc_url(home_url()); } else { echo esc_url(get_permalink( $post->ID )); } ?>" accesskey="t" title="Text-only version of this website">Text-only version of this website</a></li>
+			<li><a href="http://assistive.usablenet.com/tt/<?php if ( empty($post->ID) ) { echo esc_url(home_url()); } else { echo esc_url(get_permalink( $post->ID )); } ?>" accesskey="t" title="Text-only version of this website">Text-only version of this website</a></li>
 			<li><a href="#content" accesskey="s" title="Skip navigation">Skip navigation</a></li>
 			<li><a href="<?php bloginfo( 'url' ); ?>" accesskey="1" title="Home page">Home page</a></li>
 			<li><a href="<?php bloginfo( 'url' ); ?>/#secondary" accesskey="2" title="what's new">What's new</a></li>

@@ -1,7 +1,12 @@
 <?php
 
 function loadCustomButtons() {
-    $buttonArr = array();
+    // Semi-decent way to get the base url for the images in form fields
+	$file_path = str_replace('\\', '/', dirname(__FILE__));
+	$file_index = strpos( $file_path, 'wp-content');
+	$custom_button_images_url = '//' . $_SERVER['HTTP_HOST'] . '/' . substr($file_path, $file_index);
+	
+	$buttonArr = array();
     
     $button = new CustomButton();
     $button->title = 'Left Column';
@@ -23,7 +28,7 @@ function loadCustomButtons() {
     $button->title = 'Google Map';
     $button->shortCodeTag = 'googlemap';
     $button->icon = '/images/maps.png';
-    $button->description = '<img src="/wp-content/themes/UFandShands/library/php/tinymce-custombuttons/images/shortcode-google-map.png" class="alignright" alt="Google Maps"/><p>Insert an interactive Google Map into the body of your content. Simply paste the full address of your location into the address field below.</p><p>Additional options include the ability to set the width and height of the embedded map to make it easier to fit into your body.</p>';
+    $button->description = '<img src="' . $custom_button_images_url . '/images/shortcode-google-map.png" class="alignright" alt="Google Maps"/><p>Insert an interactive Google Map into the body of your content. Simply paste the full address of your location into the address field below.</p><p>Additional options include the ability to set the width and height of the embedded map to make it easier to fit into your body.</p>';
     $button->buttonSeparator = '|';
     $button->addField(new FormField('Address*', FormField::Text, 'address', null, 'Required. The address of the location. e.g., 1600 SW Archer Rd, Gainesville, Fl'));
     //$button->addField(new FormField('Zoom', FormField::Text, 'zoom', '13', 'The starting zoom level.'));
@@ -53,7 +58,7 @@ function loadCustomButtons() {
     $button->title = 'RSS Feed';
     $button->shortCodeTag = 'rss';
     $button->icon = '/images/rss.png';
-	$button->description = '<img src="/wp-content/themes/UFandShands/library/php/tinymce-custombuttons/images/shortcode-rss.png" class="alignright" alt="RSS"/><p>Insert an RSS feed into the body of your content.</p><p>RSS feeds are listings of content that another website would like people to subscribe to or share. You can embed these feeds on your website, and everytime the feed is updated by it\'s owner, your subscription is automatically updated.</p><p> Some examples of popular feeds include:</p><p>- <a href="http://news.ufl.edu/feed/">UF News News</a> (http://news.ufl.edu/feed/)<br />- <a href="http://news.ufl.edu/campus/feed/">Inside UF</a> (http://news.ufl.edu/campus/feed/)';
+	$button->description = '<img src="' . $custom_button_images_url . '/images/shortcode-rss.png" class="alignright" alt="RSS"/><p>Insert an RSS feed into the body of your content.</p><p>RSS feeds are listings of content that another website would like people to subscribe to or share. You can embed these feeds on your website, and everytime the feed is updated by it\'s owner, your subscription is automatically updated.</p><p> Some examples of popular feeds include:</p><p>- <a href="http://news.ufl.edu/feed/">UF News News</a> (http://news.ufl.edu/feed/)<br />- <a href="http://news.ufl.edu/campus/feed/">Inside UF</a> (http://news.ufl.edu/campus/feed/)';
     $button->addField(new FormField('Feed URL', FormField::Text, 'feed', '', 'The URL to the RSS feed. e.g., http://news.health.ufl.edu/feed/'));
     $button->addField(new FormField('Number of items to display', FormField::Text, 'num', '5'));
     $button->addField(new FormField('Display summary of item', FormField::Checkbox, 'summary', 'false'));
@@ -120,8 +125,9 @@ function loadCustomButtons() {
     $button->shortCodeTag = 'gallery';
     $button->icon = '/images/gallery.png';
     array_push($buttonArr, $button);
-    
+	
 	$button = new CustomButton();
+		/* Removing button due to bugs (does not work with shortCode Tag='widget')
 		$button->title = 'Recent Posts';
 		$button->shortCodeTag = 'widget';
 		$button->icon = '/images/recent-posts.png';
@@ -135,7 +141,8 @@ function loadCustomButtons() {
 		$button->addField(new FormField('Show thumbnails', FormField::Checkbox, 'showthumbnails', 'true'));
 		$button->addField(new FormField('Show dates', FormField::Checkbox, 'showdate', 'true'));
 		$button->addField(new FormField('Show RSS icon', FormField::Checkbox, 'showrssicon', 'true'));
-    array_push($buttonArr, $button);
+    	array_push($buttonArr, $button);
+	*/
   
 /*  disabled for now -- too complicated for normal users
     $button = new CustomButton();

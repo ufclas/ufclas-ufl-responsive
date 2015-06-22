@@ -168,29 +168,6 @@ function ufandshands_sidebar_widget_count($sidebar) {
 $homepage_layout = of_get_option("opt_homepage_layout");
 
 if ( function_exists ('register_sidebar')) { 
-
-		// Commenting these out as they do not seem to work...
-		/*if (is_super_admin()) {
-			register_sidebar (array(
-				'name' => 'Home Top (Super Admin Only)',
-				'id' => 'home_top',
-				'description' => 'Widgets in this area will be shown at the TOP of your HOME PAGE (but below your menu or featured area)',
-				'before_widget' => '<div class="widget home_widget">',
-				'after_widget' => '</div>',
-				'before_title' => '<h3>',
-				'after_title' => '</h3>',
-			)); 
-		
-			register_sidebar (array(
-				'name' => 'Home Bottom (Super Admin Only)',
-				'id' => 'home_bottom',
-				'description' => 'Widgets in this area will be shown at the BOTTOM of your HOME PAGE (but below your menu or featured area)',
-				'before_widget' => '<div class="widget home_widget">',
-				'after_widget' => '</div>',
-				'before_title' => '<h3>',
-				'after_title' => '</h3>',
-			)); 
-		}*/
 		
 		register_sidebar (array(
 			'name' => 'Home Left',
@@ -271,19 +248,12 @@ if ( function_exists ('register_sidebar')) {
 
 // unregister some default WP Widgets
 function unregister_default_wp_widgets() {
-	unregister_widget('COM_widget_pages'); // some custom pages widget... not sure why I'm using it!
- 	unregister_widget('WP_Widget_Pages');
+	unregister_widget('WP_Widget_Pages');
  	unregister_widget('WP_Widget_Calendar');
- 	// unregister_widget('WP_Widget_Archives');
- 	// unregister_widget('WP_Widget_Links');
  	unregister_widget('WP_Widget_Meta');
  	unregister_widget('WP_Widget_Search');
- 	// unregister_widget('WP_Widget_Text');
- 	// unregister_widget('WP_Widget_Categories');
  	unregister_widget('WP_Widget_Recent_Posts');
- 	// unregister_widget('WP_Widget_Recent_Comments');
  	unregister_widget('WP_Widget_RSS');
- 	// unregister_widget('WP_Widget_Tag_Cloud');
 }
 add_action('widgets_init', 'unregister_default_wp_widgets', 1);
 
@@ -295,18 +265,6 @@ include 'widgets/widget-recent-posts.php';
 
 // widget: insert an image
 include 'widgets/widget-insert-image.php';
-
-// widget: insert Google Calendar -- NOTE: Disabled because of Google Calendar API v2 deprecation. Use https://wordpress.org/support/plugin/google-calendar-events instead.
-//include 'widgets/widget-google-calendar.php';  
-
-// widget: simple email contact form
-//include 'widgets/widget-email.php';
-
-// widget: List Pages -- modified in some way from original... I cant remember how now (oops)
-// include 'widget-com-list-pages.php';
-
-// widget: HHS.gov My Health Finder widget
-//include 'widgets/widget-myhealthfinder.php';
 
 // widget: Embed page content into a widgetized area
 include 'widgets/widget-embed-pages.php';
