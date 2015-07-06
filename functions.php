@@ -237,7 +237,7 @@ add_action('wp_head', 'ufandshands_header_adder');
 function ufandshands_header_common_scripts() {
   if (!is_admin()) {
     wp_deregister_script('jquery'); //remove the built-in one first.
-    wp_enqueue_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js");
+    wp_enqueue_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
     wp_enqueue_script('modernizr', get_bloginfo('template_url') . '/library/js/modernizr-1.7.min.js');
   }
 }
@@ -1011,10 +1011,10 @@ function ufl_check_email_address($email) {
 // This is the default (single post size), overwritten where needed. 
 if ( ! isset( $content_width ) ) $content_width = 621;
 
-// Disables all core updates: 
-	define( 'WP_AUTO_UPDATE_CORE', false ); 
+// Disables all core updates (Removed to manage updates in wp-config or plugin file instead) 
+// define( 'WP_AUTO_UPDATE_CORE', false ); 
 
-// Include theme info and update notification related functions.
+// Include theme info and update notification related functions. (Removed because file isn't working)
 // include_once( 'library/php/update-notifier.php' );
 
 // Include Shibboleth related functions.

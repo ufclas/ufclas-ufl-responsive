@@ -9,53 +9,60 @@ class UFCOM_random_quotes extends WP_Widget {
 	function widget($args, $instance) {
 		extract($args, EXTR_SKIP);
  
-		$unique_page_content = get_page_by_title($instance['unique_page_id']);
+		/**
+		 * Check whether the widget should only be shown on a certain page
+		 */
 		global $wp_query;
 		$current_page = $wp_query->post->ID;
- 
-		if ($current_page==$unique_page_content->ID || empty($instance['unique_page_id']) ) {
-
-			echo $before_widget;
-			$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
-			
-			$quote_1 = $instance['quote_1'];
-			$signature_1 = $instance['signature_1'];
-			
-			$quote_2 = $instance['quote_2'];
-			$signature_2 = $instance['signature_2'];
-			
-			$quote_3 = $instance['quote_3'];
-			$signature_3 = $instance['signature_3'];
-			 
-			if ( !empty( $title ) ) { echo $before_title . $title . $after_title; };
-			
+		$unique_page_id = ( isset($instance['unique_page_id']) )? $instance['unique_page_id']:null;
 		
-
-			if (strlen($quote_1)>5) {
-				$quote_array[] = $quote_1;
-				$signature_array[] = $signature_1;
+		if( !empty($unique_page_id) && is_page( $current_page ) ){
+			$unique_page_content = get_page_by_title($unique_page_id);
+			if( $current_page != $unique_page_content->ID ){
+				return false;	
 			}
-			
-			if (strlen($quote_2)>5) {
-				$quote_array[] = $quote_2;
-				$signature_array[] = $signature_2;
-			}
-			
-			if (strlen($quote_3)>5) {
-				$quote_array[] = $quote_3;
-				$signature_array[] = $signature_3;
-			}
-			
-			$quote_key = array_rand($quote_array,1);
-			
-			echo "<div class=\"widget_random_quote\">";
-			echo "<div class=\"widget_random_quote_body\">".wpautop($quote_array[$quote_key])."</div>";
-			echo "<div class=\"widget_random_quote_signature\">".wpautop($signature_array[$quote_key])."</div>";
-			echo "</div>";
-
-			
-			echo $after_widget;
 		}
+
+		echo $before_widget;
+		$title = empty($instance['title']) ? '' : apply_filters('widget_title', $instance['title']);
+		
+		$quote_1 = $instance['quote_1'];
+		$signature_1 = $instance['signature_1'];
+		
+		$quote_2 = $instance['quote_2'];
+		$signature_2 = $instance['signature_2'];
+		
+		$quote_3 = $instance['quote_3'];
+		$signature_3 = $instance['signature_3'];
+		 
+		if ( !empty( $title ) ) { echo $before_title . $title . $after_title; };
+		
+	
+
+		if (strlen($quote_1)>5) {
+			$quote_array[] = $quote_1;
+			$signature_array[] = $signature_1;
+		}
+		
+		if (strlen($quote_2)>5) {
+			$quote_array[] = $quote_2;
+			$signature_array[] = $signature_2;
+		}
+		
+		if (strlen($quote_3)>5) {
+			$quote_array[] = $quote_3;
+			$signature_array[] = $signature_3;
+		}
+		
+		$quote_key = array_rand($quote_array,1);
+		
+		echo "<div class=\"widget_random_quote\">";
+		echo "<div class=\"widget_random_quote_body\">".wpautop($quote_array[$quote_key])."</div>";
+		echo "<div class=\"widget_random_quote_signature\">".wpautop($signature_array[$quote_key])."</div>";
+		echo "</div>";
+
+		
+		echo $after_widget;
 	}
  
 	function update($new_instance, $old_instance) {
@@ -89,7 +96,7 @@ class UFCOM_random_quotes extends WP_Widget {
 		$quote_3 = format_to_edit($instance['quote_3']);
 		$signature_3 = format_to_edit($instance['signature_3']);
 
-		$unique_page_id = $instance['unique_page_id'];
+		$unique_page_id = ( isset($instance['unique_page_id']) )? $instance['unique_page_id']:null;
 ?>
 
 			<p><label for="<?php echo $this->get_field_id('title'); ?>">Overall Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
@@ -128,7 +135,7 @@ class UFCOM_random_quotes extends WP_Widget {
 						$title = $pagg->post_title;
 						$option = '<option ';
 						$option .= 'value="'.htmlspecialchars($title).'" ';
-						if ($title == $instance['unique_page_id']) {
+						if ($title == $unique_page_id) {
 							$option .= ' selected="selected" >';
 						} else {
 							$option .= ' >';

@@ -39,6 +39,7 @@ include( get_template_directory() . '/header.php'); ?>
 			<article id="main-content" class="span-<?php echo $article_width; ?>" role="main">
 
 		<?php 
+			// Checks string of authorized users - see UF CLAS - Teaching Center plugin
 			if ( ufclas_check_authorized_user( $post->ID, 'users', ufclas_athletics_get_access() ) ) { // check if logged in/valid shib user required ?>
 
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
