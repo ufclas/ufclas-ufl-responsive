@@ -99,12 +99,14 @@ article .widget_body h4 {
   margin-bottom: 0px; }
 
 #secondary .widget {
-  background: transparent url(images/bg-secondary-widget.png) right 0 repeat-x;
   margin-top: 15px;
   padding: 15px;
   min-width: 0;
   padding-bottom: 500em;
   margin-bottom: -500em; }
+
+#secondary .widget-first {
+  background: transparent url(images/bg-secondary-widget.png) right 0 repeat-x; }
 
 #secondary ul {
   padding-left: 0; }
@@ -580,5 +582,3 @@ article .widget_body h3 {
 #captcha-wrap input {
   display: block;
   width: 146px; }
-
-/*# sourceMappingURL=widgets.css.map */

@@ -37,8 +37,8 @@ echo "<div id='slideshow-wrap'>";
     if(have_posts()) :
         while(have_posts()) : the_post();
             $custom_meta = get_post_custom($post->ID);
-            $disabled_caption = $custom_meta['custom_meta_featured_content_disable_captions'];
-			$image_type = $custom_meta['custom_meta_image_type'];
+            $disabled_caption = isset($custom_meta['custom_meta_featured_content_disable_captions'])? $custom_meta['custom_meta_featured_content_disable_captions']:NULL;
+			$image_type = isset($custom_meta['custom_meta_image_type'])? $custom_meta['custom_meta_image_type']:NULL;
  ?>
 <?php if(isset($image_type)): ?>
 	<!-- Full-Size Image Output -->

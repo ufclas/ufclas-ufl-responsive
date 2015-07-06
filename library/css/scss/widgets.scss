@@ -118,12 +118,15 @@ article .widget_body h4 {
 }
 
 #secondary .widget {
-  background: transparent url(images/bg-secondary-widget.png) right 0 repeat-x;
   margin-top: 15px;
   padding: 15px;
   min-width: 0;
   padding-bottom: 500em;
   margin-bottom: -500em;
+}
+
+#secondary .widget-first {
+  background: transparent url(images/bg-secondary-widget.png) right 0 repeat-x;
 }
 
 #secondary ul {

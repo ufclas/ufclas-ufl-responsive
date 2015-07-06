@@ -3,10 +3,10 @@
 Theme Name: UF CLAS Responsive
 Theme URI: http://it.clas.ufl.edu/
 Description: The official responsive WordPress template for The University of Florida. Modified for CLAS.
-Version: 1.5 (0.5.2)
+Version: 1.5 (0.5.3)
 Author: CLAS IT, UF Web Services
 Author URI: http://it.clas.ufl.edu/
-Build Date: 20150612
+Build Date: 20150706
 */
 /* import reset.css */
 /* --------------------------------------------------------------
@@ -826,7 +826,9 @@ li#utility-tabs:hover { background-color: transparent; }
 /* Remove bottom margin from time when there is no summary. */
 #secondary .margin_bottom_none { margin-bottom: 0px; }
 
-#secondary .widget { background: transparent url(images/bg-secondary-widget.png) right 0 repeat-x; margin-top: 15px; padding: 15px; min-width: 0; padding-bottom: 500em; margin-bottom: -500em; }
+#secondary .widget { margin-top: 15px; padding: 15px; min-width: 0; padding-bottom: 500em; margin-bottom: -500em; }
+
+#secondary .widget-first { background: transparent url(images/bg-secondary-widget.png) right 0 repeat-x; }
 
 #secondary ul { padding-left: 0; }
 

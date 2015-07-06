@@ -216,10 +216,11 @@ EndColorStr='#000')";
 }
 .flexslider{
     margin-bottom:0px;
-}
-
-.flexslider a:link{ 
-	-webkit-tap-highlight-color: transparent;
+	
+	a, a:link, a:visited {
+		-webkit-tap-highlight-color: transparent;
+		color: #fff;
+	}
 }
 
 .flex-caption h3:hover{

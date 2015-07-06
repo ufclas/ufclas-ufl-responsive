@@ -1,8 +1,8 @@
 <!-- begin responsive menu -->
    <nav id="responsive-menu">
 <?php // orange header action item box
-			$actionitem_text = of_get_option(opt_actionitem_text);
-			$actionitem_url = of_get_option(opt_actionitem_url);
+			$actionitem_text = of_get_option('opt_actionitem_text');
+			$actionitem_url = of_get_option('opt_actionitem_url');
 		
 			if (!empty($actionitem_text)) {
 				echo "<a id='header-actionitem' href='".$actionitem_url."'>".$actionitem_text."</a>";
