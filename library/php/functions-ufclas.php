@@ -79,3 +79,38 @@ function ufclas_show_custom_sizes( $sizes ) {
     ) );
 }
 add_filter( 'image_size_names_choose', 'ufclas_show_custom_sizes' );
+
+/**
+ * Adds Widgets in Homepage Feature Area
+ **/
+function ufclas_responsive_featured_widget_area() {
+		
+		$ufclas_responsive_home_featured_widgets = of_get_option("opt_home_featured_widgets");
+		
+		if($ufclas_responsive_home_featured_widgets){
+			echo '<div id="featured-widget-right">';
+		
+			get_sidebar('home_featured_right');
+		
+			echo "</div><!-- end #featured-widget-right -->";
+		}
+}
+
+// Homepage Featured Widget
+function ufclas_responsive_widgets_init() {
+    
+	$ufclas_responsive_home_featured_widgets = of_get_option("opt_home_featured_widgets");
+	
+	if ($ufclas_responsive_home_featured_widgets) {
+		register_sidebar (array(
+			'name' => 'Home Featured Right',
+			'id' => 'home_featured_right',
+			'description' => 'Widgets in this area will be shown in the Header Featured area.',
+			'before_widget' => '<div class="widget home_widget">',
+			'after_widget' => '</div>',
+			'before_title' => '<h3>',
+			'after_title' => '</h3>',
+		));
+	}
+}
+add_action( 'widgets_init', 'ufclas_responsive_widgets_init' );

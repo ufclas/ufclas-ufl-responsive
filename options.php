@@ -245,6 +245,13 @@ function optionsframework_options() {
 			"id" => "opt_story_stacker_disable_dates",
 			"std" => "0",
 			"type" => "checkbox");
+			
+	// Adding option to use a widget in the featured area on the homepage
+	$options[] = array( "name" => "Widgets in Feature Area",
+           "desc" => "Enables a 'Home Featured Right' widget to appear in the feature area. This disables the story stacker and full width image options.",
+           "id" => "opt_home_featured_widgets",
+           "std" => "0",
+           "type" => "checkbox");
 
 	$options[] = array( "name" => "Homepage Layout",
 			"desc" => "These options modify the layout of the homepage widget areas.",

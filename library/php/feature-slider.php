@@ -9,6 +9,9 @@
   $slider_speed = of_get_option("opt_featured_speed");
   $slider_disable_link = of_get_option("opt_featured_disable_link");
   
+   // Whether a widget should appear in right side of featured area
+  $ufclas_responsive_home_featured_widgets = of_get_option("opt_home_featured_widgets");
+  
   // Checks if user has chosen a selection (theme options) that exceeds number of available posts
   // in the featured category -- if so, falls back valid number.
    
@@ -19,7 +22,13 @@
   $slider_feature_posts = new WP_Query();
   $slider_feature_posts->query("showposts=". $slider_number_of_posts . "&cat=" . $featured_category_id . "");
   $slider_feature_counter = 1;
-?>
+
+  	// Adds home featured widget tags 
+	if($ufclas_responsive_home_featured_widgets) { ?>
+	<div id="featured-widgets">
+	<div id="featured-widget-left">
+	<?php } ?>
+    
 <script type="text/javascript">var sliderSpeed = <?php echo (empty($slider_speed) ? 7000 : esc_html($slider_speed)); ?></script> 
 <div id="slideshow-wrap">
 <div id="slideshow">
@@ -125,3 +134,10 @@
 
 </div><!-- end #slideshow -->
 </div><!-- end #slideshow-wrap -->
+<?php 
+	// Adds home featured widget area and sidebar 
+	if($ufclas_responsive_home_featured_widgets) { ?>
+</div><!-- end #featured-widget-left -->
+	<?php ufclas_responsive_featured_widget_area(); ?>
+</div><!-- end #featured-widgets -->
+<?php } ?>
