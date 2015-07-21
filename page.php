@@ -53,18 +53,8 @@
 				<?php } ?>
 			
 		<?php } else { // users are not logged in display error or login button ?>
-
-					<h2>Protected</h2>
 				
-					<p>This content can only be seen by authorized users. Please login by clicking the button below.</p>
-
-					<?php 
-					if ( ufl_check_page_visitor_level($post->ID) == '2' ) {
-						ufl_shibboleth_login_button();
-					} else {
-						?><p><a href="<?php echo wp_login_url(); ?>" class="button" title="Login">WordPress Login</a></p><?php
-					}
-					?>
+				<?php get_template_part('content','restricted'); ?>
 					
 		<?php } ?>
 
