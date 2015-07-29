@@ -8,7 +8,7 @@ if ( ufl_check_page_visitor_level($post->ID) > 0 ) {
 	if( !ufl_shibboleth_valid_user() ){
 		// User has not logged in
 		?>
-		<h2>Protected</h2>
+		<h2><?php echo get_the_title($post->ID); ?></h2>
 		<p>This content can only be seen by authorized users. Please login by clicking the button below.</p>
 		<?php
 	}

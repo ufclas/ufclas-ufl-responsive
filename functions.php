@@ -264,7 +264,7 @@ add_action('wp_enqueue_scripts', 'ufandshands_footer_common_scripts');
 
 // load single scripts only on single pages
 function ufandshands_single_scripts() {
-  if(is_singular()  && !is_admin()) {
+  if(is_singular('post')  && !is_admin()) {
     wp_enqueue_script('comment-reply'); // loads the javascript required for threaded comments 
     wp_enqueue_script('plusone', "https://apis.google.com/js/plusone.js");
     wp_enqueue_script('facebook', "https://connect.facebook.net/en_US/all.js#xfbml=1");

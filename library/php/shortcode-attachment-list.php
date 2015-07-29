@@ -37,7 +37,15 @@ function ufl_display_attached_items_list($atts, $content = null) {
 			// Build UL to return if items were found.
 			$out = '<ul class="attachment-list attachment-list-'.$filetype.'">';
 			foreach ( $attachments as $attachment ) {
-				if ( $showasdates == 'true' && is_numeric( substr( $attachment->post_title, -8 ) ) ) { $link_text = date( $dateformat, strtotime( substr( $attachment->post_title, -8 ) ) ); }
+				// If the last 8 characters in the attachment title are a timestamp (e.g. filename-20120927), 
+				if ( $showasdates == 'true' && is_numeric( substr( $attachment->post_title, -8 ) ) ) { 
+					// Use the date as the link text instead of the title
+					$link_text = date( $dateformat, strtotime( substr( $attachment->post_title, -8 ) ) ); 
+				}
+				else {
+					// Use the default link text, which is the attachment title
+					$link_text = false;	
+				}
 				$out .= '<li>' . wp_get_attachment_link( $attachment->ID , false, false, false, $link_text ) . ' <span>(' . strtoupper( array_search( get_post_mime_type( $attachment->ID ), $mime_types ) ) . ', ' . size_format( filesize( get_attached_file( $attachment->ID ) ) ) . ')</span>';
 				if ($showdesc == 'true') { $out .= '<br><p>'.$attachment->post_content.'</p>'; }
 				$out .= '</li>';

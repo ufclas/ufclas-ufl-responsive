@@ -78,13 +78,6 @@
 				  <div class="excerpt">
 					<h3><?php if(!$slider_disable_link): ?><a href="<?php the_permalink(); ?>"><?php endif; ?><?php the_title(); ?><?php if(!$slider_disable_link): ?></a><?php endif; ?></h3>
 					<?php the_excerpt(); ?>
-					<?php if (!empty($custom_button_text)): ?>
-						<div class="custom-button-wrap">
-							<a class="custom-button" href="<?php echo get_permalink(); ?>">
-							  <?php echo $custom_button_text; ?><span></span>
-							</a>
-						</div>
-					<?php endif; ?>
 				  </div><!-- end .excerpt -->
           </div><!-- end .slide -->
         <?php endif; ?>
