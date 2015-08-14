@@ -36,10 +36,10 @@
         <?php while ($slider_feature_posts->have_posts()) : $slider_feature_posts->the_post(); ?>
         <?php        
 			$custom_meta = get_post_custom($post->ID);
-			$image_type = ( isset($custom_meta['custom_meta_image_type']) )? $custom_meta['custom_meta_image_type']:null;
-			$image_effect_disabled = ( isset($custom_meta['custom_meta_image_effect_disabled']) )? $custom_meta['custom_meta_image_effect_disabled']:null;
-			$custom_button_text = ( isset($custom_meta['custom_meta_featured_content_button_text']) )? $custom_meta['custom_meta_featured_content_button_text'][0]:null; 
-			$disabled_caption = ( isset($custom_meta['custom_meta_featured_content_disable_captions']) )? $custom_meta['custom_meta_featured_content_disable_captions']:null;
+			$image_type = ( isset($custom_meta['custom_meta_image_type']) )? $custom_meta['custom_meta_image_type']:NULL;
+			$image_effect_disabled = ( isset($custom_meta['custom_meta_image_effect_disabled']) )? $custom_meta['custom_meta_image_effect_disabled']:NULL;
+			$custom_button_text = ( isset($custom_meta['custom_meta_featured_content_button_text']) )? $custom_meta['custom_meta_featured_content_button_text'][0]:NULL; 
+			$disabled_caption = ( isset($custom_meta['custom_meta_featured_content_disable_captions']) )? $custom_meta['custom_meta_featured_content_disable_captions']:NULL;
 			$disable_timeline = of_get_option("opt_featured_content_disable_timeline");
         ?>
         
@@ -56,7 +56,7 @@
 				    <div class="excerpt">
 					<?php if(!$slider_disable_link): ?><a href="<?php the_permalink(); ?>"><?php endif; ?>
 					  <h3><?php the_title(); ?></h3>
-					  <?php the_excerpt(); ?>
+					  <p><?php the_excerpt(); ?></p>
 					  <?php if(!$slider_disable_link): ?><img src="<?php bloginfo('stylesheet_directory'); ?>/images/feature-arrow.png" class="featured-arrow" alt="" /><?php endif; ?>
 					<?php if (!empty($custom_button_text)): ?>
 					  <a class="read-more" href="<?php echo get_permalink(); ?>"><?php echo $custom_button_text; ?></a>

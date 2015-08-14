@@ -100,28 +100,35 @@ function optionsframework_options() {
 			"type" => "heading");
 
 	$options[] = array( "name" => "Facebook",
-			"super-admin-only" => "1",
+			"super-admin-only" => "0",
 			"desc" => "Enter the url of your organization's Facebook page (e.g. http://facebook.com/uflorida)",
 			"id" => "opt_facebook_url",
 			"std" => "",
 			"type" => "text");
 			
 	$options[] = array( "name" => "Twitter",
-			"super-admin-only" => "1",
+			"super-admin-only" => "0",
 			"desc" => "Enter the url of your organization's Twitter page (e.g. http://www.twitter.com/uflorida)",
 			"id" => "opt_twitter_url",
 			"std" => "",
 			"type" => "text");
 	
 	$options[] = array( "name" => "Youtube",
-			"super-admin-only" => "1",
+			"super-admin-only" => "0",
 			"desc" => "Enter the url of your organization's Youtube page (e.g. http://www.youtube.com/universityofflorida)",
 			"id" => "opt_youtube_url",
 			"std" => "",
 			"type" => "text");
+			
+	$options[] = array( "name" => "Blog",
+			"super-admin-only" => "0",
+			"desc" => "Enter the url of your organization's Blog page (e.g. http://...)",
+			"id" => "opt_siteblog_url",
+			"std" => "",
+			"type" => "text");
 		
 	$options[] = array( "name" => "Facebook Insights ID",
-			"super-admin-only" => "1",
+			"super-admin-only" => "0",
 			"desc" => "Enter the unique number ID for fb:admins, e.g., <meta property=\"fb:admins\" content=\"1138099648\", would be \"1138099648\" />",
 			"id" => "opt_facebook_insights",
 			"std" => "",

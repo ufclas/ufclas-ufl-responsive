@@ -237,8 +237,8 @@ if ( function_exists ('register_sidebar')) {
 			'name' => 'Footer',
 			'id' => 'site_footer',
 			'description' => 'Widgets in this area will be shown in the FOOTER.',
-			'before_widget' => '<div class="widget footer_widget"><div class="box">',
-			'after_widget' => '</div></div>',
+			'before_widget' => '<div class="widget footer_widget">',
+			'after_widget' => '</div>',
 			'before_title' => '<h3>',
 			'after_title' => '</h3>',
 		)); 

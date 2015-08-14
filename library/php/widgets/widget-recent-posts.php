@@ -77,18 +77,18 @@ class UFCOM_recent_posts extends WP_Widget {
 	}
  
 	function update($new_instance, $old_instance) {
-		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['numberofposts'] = strip_tags($new_instance['numberofposts']);
-		$instance['showexcerpt'] = $new_instance['showexcerpt'];
-		$instance['showthumbnails'] = $new_instance['showthumbnails'];
-		$instance['showdate'] = $new_instance['showdate'];
-		$instance['showrssicon'] = $new_instance['showrssicon'];
-
-		$instance['unique_page_id'] = $new_instance['unique_page_id'];
-
-		$instance['specific_category_id'] = $new_instance['specific_category_id'];
-
+		$instance = array_merge( $old_instance, $new_instance );
+		
+		$strip_tags = array('title', 'numberofposts');
+		
+		foreach( $instance as $key => $value ){
+			if( ! array_key_exists($key, $new_instance) ){
+				$instance[$key] = "";
+			}
+			elseif( in_array( $key, $strip_tags) ){
+				$instance[$key] = strip_tags($value);
+			}
+		}
 		return $instance;
 	}
  

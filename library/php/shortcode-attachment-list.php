@@ -46,14 +46,14 @@ function ufl_display_attached_items_list($atts, $content = null) {
 					// Use the default link text, which is the attachment title
 					$link_text = false;	
 				}
-				$out .= '<li>' . wp_get_attachment_link( $attachment->ID , false, false, false, $link_text ) . ' <span>(' . strtoupper( array_search( get_post_mime_type( $attachment->ID ), $mime_types ) ) . ', ' . size_format( filesize( get_attached_file( $attachment->ID ) ) ) . ')</span>';
+				$out .= '<li>' . wp_get_attachment_link( $attachment->ID , false, false, false, $link_text ) . ' <span>(' . strtoupper( array_search( get_post_mime_type( $attachment->ID ), $mime_types ) ) . ')</span>';
 				if ($showdesc == 'true') { $out .= '<br><p>'.$attachment->post_content.'</p>'; }
 				$out .= '</li>';
 			}
 			$out .= '</ul>';
 		} elseif ( $outputtype == 'single' && $limit == '1' ) {
 			foreach ( $attachments as $attachment ) {
-				$out = wp_get_attachment_link( $attachment->ID , false, false, false, $link_text ) . ' <span>(' . strtoupper( array_search( get_post_mime_type( $attachment->ID ), $mime_types ) ) . ', ' . size_format( filesize( get_attached_file( $attachment->ID ) ) ) . ')</span>';
+				$out = wp_get_attachment_link( $attachment->ID , false, false, false, $link_text ) . ' <span>(' . strtoupper( array_search( get_post_mime_type( $attachment->ID ), $mime_types ) ) . ')</span>';
 			}
 		}
 	} else {

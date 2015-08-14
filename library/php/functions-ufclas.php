@@ -9,6 +9,7 @@ function ufclas_get_site_socialnetworks() {
 		'facebook' => 'Facebook',
 		'twitter' => 'Twitter',
 		'youtube' => 'YouTube',
+		'siteblog' => 'Blog',
 	);
 	
 	foreach( $social_networks as $name => $title ){
@@ -41,7 +42,7 @@ function ufclas_teaser_excerpt( $excerpt ){
 	$has_teaser = (strpos($post->post_content, '<!--more') !== false);
 	if ($has_teaser){
 		// Remove extra formatting from the content
-		return strip_tags( get_the_content(), '<a><br>' );
+		return strip_tags( get_the_content(), '<a><br><br/>' );
 	}
 	else {
 		return $excerpt;	

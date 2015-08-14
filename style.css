@@ -3,10 +3,10 @@
 Theme Name: UF CLAS Responsive
 Theme URI: http://it.clas.ufl.edu/
 Description: The official responsive WordPress template for The University of Florida. Modified for CLAS.
-Version: 1.5 (0.7.2)
+Version: 1.5 (0.7.4)
 Author: CLAS IT, UF Web Services
 Author URI: http://it.clas.ufl.edu/
-Build Date: 20150729
+Build Date: 20150813
 */
 /* import reset.css */
 /* --------------------------------------------------------------
@@ -658,7 +658,7 @@ li#utility-tabs:hover { background-color: transparent; }
 
 #slideshow #floater { float: left; height: 50%; margin-bottom: -140px; width: 420px; }
 
-#slideshow .half-image-feature .excerpt { height: 280px; padding: 50px 0 0 40px; position: relative; width: 370px; top: 5%; }
+#slideshow .half-image-feature .excerpt { height: 280px; padding: 50px 0 0 40px; position: relative; width: 370px; }
 
 #slideshow .half-image-feature p { color: #243778; font-size: 1.1em; }
 
@@ -672,7 +672,7 @@ li#utility-tabs:hover { background-color: transparent; }
 
 #slideshow .half-image-feature span, #main-content a.custom-button span { background: transparent url(images/bg-sprite-transparent.png) -10px -369px no-repeat; width: 13px; height: 22px; position: absolute; right: 10px; top: 7px; display: block; }
 
-#slideshow p, .flex-caption p { font-size: .9em; line-height: 1.3em; margin-bottom: .5em; }
+#slideshow p, .flex-caption p { font-size: .9em; line-height: 1.3em; margin-bottom: .5em; padding-right: 40px; }
 
 #slideshow h3, .flex-caption h3 { font-size: 1.6em; margin-bottom: .4em; }
 
@@ -810,6 +810,8 @@ li#utility-tabs:hover { background-color: transparent; }
 #secondary .item { padding-bottom: 3px; overflow: hidden; padding-right: 15px; }
 
 #secondary a:link, #secondary a:visited, #secondary a:hover, #secondary a:active { color: #FFF; }
+
+#secondary .news-announcements a.read-more:link, #secondary .news-announcements a.read-more:visited { color: #B0BBE6; font-size: 0.9em; }
 
 #secondary h4, .footer_widget h4, article .widget_body h4 { font-family: Arial, Helvetica, sans-serif; font-size: .9em; font-weight: bold; color: #FFF; margin-bottom: 0; margin-top: 0; padding-top: 4px; }
 
@@ -1236,7 +1238,7 @@ body.home header #header-title h2, header #header-title h3.not-front { margin: 0
 /* default mouse cursor for site title on homepage */
 body.home #header-title a:hover, body.home #header-title a:hover h1, body.home #header-title a:hover h2, body.home #header-title a:hover h3 { cursor: default; text-decoration: none; }
 
-#utility-links { float: left; margin: 0; padding: 0; font-size: .85em; overflow: hidden; height: 20px; }
+#utility-links { float: right; margin: 0; padding: 0; font-size: .85em; overflow: hidden; height: 20px; }
 
 #utility-links .first { margin-left: 0; }
 
@@ -1246,25 +1248,29 @@ body.home #header-title a:hover, body.home #header-title a:hover h1, body.home #
 
 #utility-links li:last-child { margin-right: 0; }
 
-#header-search-wrap { height: 80px; position: relative; top: 30px; float: right; }
+#utility-links.span-7half { width: 254px; }
 
-#searchform-wrap { height: 49px; width: 278px; background: transparent url(images/bg-sprite-transparent.png) -114px -20px no-repeat; position: relative; left: 0; margin-top: 27px; }
+#header-search-wrap { height: 80px; position: relative; top: 30px; overflow: visible; }
 
-#header-search-field { -moz-border-radius: 2px; -moz-box-shadow: 0px 0px 2px #A5A5A5; -webkit-border-radius: 2px; -webkit-box-shadow: 0px 0px 2px #000; border-radius: 2px; border: 1px solid #BFBFBF; /* 75% Black */ box-shadow: 0px 0px 2px #BFBFBF; /* 75% Black */ color: #7E7E7E; /* 50% Black */ font-family: Georgia, serif; font-size: 1em; font-style: italic; height: 15px; left: 13px; margin: 0; padding: 7px; position: absolute; top: 10px; width: 237px; }
+#searchform-wrap { height: 49px; width: 254px; background: transparent url(images/bg-sprite-transparent.png) -114px -20px no-repeat; position: relative; left: 0; margin-top: 27px; float: right; }
+
+#header-search-field { -moz-border-radius: 2px; -moz-box-shadow: 0px 0px 2px #A5A5A5; -webkit-border-radius: 2px; -webkit-box-shadow: 0px 0px 2px #000; border-radius: 2px; border: 1px solid #BFBFBF; /* 75% Black */ box-shadow: 0px 0px 2px #BFBFBF; /* 75% Black */ color: #7E7E7E; /* 50% Black */ font-family: Georgia, serif; font-size: 1em; font-style: italic; height: 15px; left: 13px; margin: 0; padding: 7px; position: absolute; top: 10px; width: 213px; }
 
 #header-search-btn { position: absolute; right: 14px; top: 12px; }
 
 #header-social { float: right; margin: 70px 5px 0 0; padding-left: 5px; }
 
-#header-social li { float: left; background-position: center center; background-repeat: none; margin-left: 5px; }
+#header-social li { float: left; background-position: center center; background-repeat: no-repeat; margin-left: 5px; }
 
-#header-social li a { height: 24px; width: 24px; background-position: center center; background-repeat: none; }
+#header-social li a { height: 24px; width: 24px; background-position: center center; background-repeat: no-repeat; }
 
 #header-social .facebook { background: transparent url(images/bg-sprite-transparent.png) -497px -21px no-repeat; }
 
 #header-social .twitter { background: transparent url(images/bg-sprite-transparent.png) -550px -21px no-repeat; }
 
 #header-social .youtube { background: transparent url(images/bg-sprite-transparent.png) -525px -21px no-repeat; }
+
+#header-social .siteblog { background: transparent url(images/bg-sprite-transparent.png) -471px -21px no-repeat; }
 
 #header-actionitem { bottom: 0; position: absolute; right: 25px; border: 1px solid #DD8A26; border-bottom: none; border-top: none; -moz-box-shadow: inset 0 1px 0 0 #D28321; -webkit-box-shadow: inset 0 1px 0 0 #D28321; box-shadow: inset 0 1px 0 0 #D28321; color: white; font-family: helvetica, arial, sans-serif; font-size: 14px; font-weight: bold; padding: 7px 15px 5px 15px; text-decoration: none; text-align: center; text-shadow: 0 1px 1px #D28321; background: transparent url(images/bg-custom-button.jpg) 0 0 repeat-x; width: auto; }
 
@@ -1623,7 +1629,7 @@ footer .append-bottom { font-size: 1em; overflow: hidden; position: relative; }
 
 .append-bottom #footer_top .widget-last { background: none; }
 
-.append-bottom .box { padding: 0 20px 10px; }
+.append-bottom .box, .append-bottom .footer_widget > * { padding: 0 20px 10px; }
 
 #footer_top { padding-top: 0; }
 
