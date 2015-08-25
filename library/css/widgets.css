@@ -395,7 +395,9 @@ aside .sidebar_widget h3 {
 .news-announcements img.alignleft,
 .news-announcements a img.alignleft {
   float: left;
-  margin: 0px 15px 10px 0px; }
+  margin: 0px 15px 10px 0px;
+  width: 110px;
+  height: 110px; }
 
 /*----- Google Calendar Events -----*/
 #events .event-date, .gce-widget-list .event-date {
@@ -588,7 +590,7 @@ article .widget_body h3 {
   display: block;
   width: 146px; }
 
-/*--- UFCLAS Styles for rhe Home Right Widget ---*/
+/*--- UFCLAS Styles for the Home Right Widget ---*/
 #main-content a.custom-button span {
   display: none; }
 
@@ -651,17 +653,21 @@ article .widget_body h3 {
     #featured-widget-left #slideshow .half-image-feature img {
       float: left;
       margin-left: 0px;
-      width: 325px;
-      height: 244px; }
+      width: auto;
+      max-width: 325px;
+      max-height: 244px; }
     #featured-widget-left #slideshow .half-image-feature .excerpt {
       float: left;
       padding: 0px;
-      width: 220px; }
+      width: 250px;
+      padding: 50px 0px 0px; }
     #featured-widget-left #slideshow .half-image-feature h3 {
-      font-size: 2.2em; }
+      font-size: 2.2em;
+      margin-top: -30px; }
     #featured-widget-left #slideshow .half-image-feature p {
       border-left: none;
       padding-left: 5px;
+      padding-right: 20px;
       color: #444; }
     #featured-widget-left #slideshow .half-image-feature p a {
       font-weight: bold; }

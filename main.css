@@ -405,7 +405,9 @@ body.home #header-title a:hover h3 {
 #header-social {
   float: right;
   margin: 70px 5px 0 0;
-  padding-left: 5px; }
+  padding-left: 5px;
+  position: relative;
+  z-index: 9999; }
 
 #header-social li {
   float: left;

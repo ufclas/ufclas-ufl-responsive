@@ -3,10 +3,10 @@
 Theme Name: UF CLAS Responsive
 Theme URI: http://it.clas.ufl.edu/
 Description: The official responsive WordPress template for The University of Florida. Modified for CLAS.
-Version: 1.5 (0.7.4)
+Version: 1.5 (0.7.5)
 Author: CLAS IT, UF Web Services
 Author URI: http://it.clas.ufl.edu/
-Build Date: 20150813
+Build Date: 20150825
 */
 /* import reset.css */
 /* --------------------------------------------------------------
@@ -954,7 +954,7 @@ aside .sidebar_widget h3 { font-size: 1.5em; }
 #sidebar-post { background-color: #D7DEF0; border: 1px solid #B0BBE6; }
 
 /*----- Recent Posts -----*/
-.news-announcements img.alignleft, .news-announcements a img.alignleft { float: left; margin: 0px 15px 10px 0px; }
+.news-announcements img.alignleft, .news-announcements a img.alignleft { float: left; margin: 0px 15px 10px 0px; width: 110px; height: 110px; }
 
 /*----- Google Calendar Events -----*/
 #events .event-date, .gce-widget-list .event-date { float: left; height: 50px; width: 42px; background: transparent url(images/bg-sprite-transparent.png) -750px -99px no-repeat; margin-right: 10px; }
@@ -1032,7 +1032,7 @@ article .widget_body h2, article .widget_body h3 { margin-bottom: 0px; padding-b
 
 #captcha-wrap input { display: block; width: 146px; }
 
-/*--- UFCLAS Styles for rhe Home Right Widget ---*/
+/*--- UFCLAS Styles for the Home Right Widget ---*/
 #main-content a.custom-button span { display: none; }
 
 #featured-widgets { background: url("images/bg-feature-slideshow.png") no-repeat scroll 0 0 transparent; overflow: auto; margin: 15px 0; padding: 15px 0; }
@@ -1046,10 +1046,10 @@ article .widget_body h2, article .widget_body h3 { margin-bottom: 0px; padding-b
 #featured-widget-left #slideshow .half-image-feature .custom-button-wrap { padding: 0px; position: relative; border: none; margin: 0 0 0 5px; float: none; background: none; box-shadow: none; bottom: auto; }
 #featured-widget-left #slideshow .half-image-feature .custom-button { border: none; font-family: helvetica, arial, sans-serif; font-size: 14px; font-weight: bold; padding-left: 0; position: relative; text-decoration: none; text-align: left; text-shadow: none; width: auto; height: auto; display: inline; background: none; box-shadow: none; color: #243778; }
 .ie7 #featured-widget-left #slideshow .half-image-feature .custom-button, .ie8 #featured-widget-left #slideshow .half-image-feature .custom-button { border: none; }
-#featured-widget-left #slideshow .half-image-feature img { float: left; margin-left: 0px; width: 325px; height: 244px; }
-#featured-widget-left #slideshow .half-image-feature .excerpt { float: left; padding: 0px; width: 220px; }
-#featured-widget-left #slideshow .half-image-feature h3 { font-size: 2.2em; }
-#featured-widget-left #slideshow .half-image-feature p { border-left: none; padding-left: 5px; color: #444; }
+#featured-widget-left #slideshow .half-image-feature img { float: left; margin-left: 0px; width: auto; max-width: 325px; max-height: 244px; }
+#featured-widget-left #slideshow .half-image-feature .excerpt { float: left; padding: 0px; width: 250px; padding: 50px 0px 0px; }
+#featured-widget-left #slideshow .half-image-feature h3 { font-size: 2.2em; margin-top: -30px; }
+#featured-widget-left #slideshow .half-image-feature p { border-left: none; padding-left: 5px; padding-right: 20px; color: #444; }
 #featured-widget-left #slideshow .half-image-feature p a { font-weight: bold; }
 #featured-widget-left #slideshow .half-image-feature span { display: none; }
 #featured-widget-left #slideshow-reel { height: 270px; }
@@ -1258,7 +1258,7 @@ body.home #header-title a:hover, body.home #header-title a:hover h1, body.home #
 
 #header-search-btn { position: absolute; right: 14px; top: 12px; }
 
-#header-social { float: right; margin: 70px 5px 0 0; padding-left: 5px; }
+#header-social { float: right; margin: 70px 5px 0 0; padding-left: 5px; position: relative; z-index: 9999; }
 
 #header-social li { float: left; background-position: center center; background-repeat: no-repeat; margin-left: 5px; }
 
