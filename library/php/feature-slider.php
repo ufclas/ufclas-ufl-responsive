@@ -9,6 +9,9 @@
   $slider_speed = of_get_option("opt_featured_speed");
   $slider_disable_link = of_get_option("opt_featured_disable_link");
   
+   // Whether a widget should appear in right side of featured area
+  $ufclas_responsive_home_featured_widgets = of_get_option("opt_home_featured_widgets");
+  
   // Checks if user has chosen a selection (theme options) that exceeds number of available posts
   // in the featured category -- if so, falls back valid number.
    
@@ -19,7 +22,13 @@
   $slider_feature_posts = new WP_Query();
   $slider_feature_posts->query("showposts=". $slider_number_of_posts . "&cat=" . $featured_category_id . "");
   $slider_feature_counter = 1;
-?>
+
+  	// Adds home featured widget tags 
+	if($ufclas_responsive_home_featured_widgets) { ?>
+	<div id="featured-widgets">
+	<div id="featured-widget-left">
+	<?php } ?>
+    
 <script type="text/javascript">var sliderSpeed = <?php echo (empty($slider_speed) ? 7000 : esc_html($slider_speed)); ?></script> 
 <div id="slideshow-wrap">
 <div id="slideshow">
@@ -27,10 +36,10 @@
         <?php while ($slider_feature_posts->have_posts()) : $slider_feature_posts->the_post(); ?>
         <?php        
 			$custom_meta = get_post_custom($post->ID);
-			$image_type = ( isset($custom_meta['custom_meta_image_type']) )? $custom_meta['custom_meta_image_type']:null;
-			$image_effect_disabled = ( isset($custom_meta['custom_meta_image_effect_disabled']) )? $custom_meta['custom_meta_image_effect_disabled']:null;
-			$custom_button_text = ( isset($custom_meta['custom_meta_featured_content_button_text']) )? $custom_meta['custom_meta_featured_content_button_text'][0]:null; 
-			$disabled_caption = ( isset($custom_meta['custom_meta_featured_content_disable_captions']) )? $custom_meta['custom_meta_featured_content_disable_captions']:null;
+			$image_type = ( isset($custom_meta['custom_meta_image_type']) )? $custom_meta['custom_meta_image_type']:NULL;
+			$image_effect_disabled = ( isset($custom_meta['custom_meta_image_effect_disabled']) )? $custom_meta['custom_meta_image_effect_disabled']:NULL;
+			$custom_button_text = ( isset($custom_meta['custom_meta_featured_content_button_text']) )? $custom_meta['custom_meta_featured_content_button_text'][0]:NULL; 
+			$disabled_caption = ( isset($custom_meta['custom_meta_featured_content_disable_captions']) )? $custom_meta['custom_meta_featured_content_disable_captions']:NULL;
 			$disable_timeline = of_get_option("opt_featured_content_disable_timeline");
         ?>
         
@@ -47,7 +56,7 @@
 				    <div class="excerpt">
 					<?php if(!$slider_disable_link): ?><a href="<?php the_permalink(); ?>"><?php endif; ?>
 					  <h3><?php the_title(); ?></h3>
-					  <?php the_excerpt(); ?>
+					  <p><?php the_excerpt(); ?></p>
 					  <?php if(!$slider_disable_link): ?><img src="<?php bloginfo('stylesheet_directory'); ?>/images/feature-arrow.png" class="featured-arrow" alt="" /><?php endif; ?>
 					<?php if (!empty($custom_button_text)): ?>
 					  <a class="read-more" href="<?php echo get_permalink(); ?>"><?php echo $custom_button_text; ?></a>
@@ -69,13 +78,6 @@
 				  <div class="excerpt">
 					<h3><?php if(!$slider_disable_link): ?><a href="<?php the_permalink(); ?>"><?php endif; ?><?php the_title(); ?><?php if(!$slider_disable_link): ?></a><?php endif; ?></h3>
 					<?php the_excerpt(); ?>
-					<?php if (!empty($custom_button_text)): ?>
-						<div class="custom-button-wrap">
-							<a class="custom-button" href="<?php echo get_permalink(); ?>">
-							  <?php echo $custom_button_text; ?><span></span>
-							</a>
-						</div>
-					<?php endif; ?>
 				  </div><!-- end .excerpt -->
           </div><!-- end .slide -->
         <?php endif; ?>
@@ -125,3 +127,10 @@
 
 </div><!-- end #slideshow -->
 </div><!-- end #slideshow-wrap -->
+<?php 
+	// Adds home featured widget area and sidebar 
+	if($ufclas_responsive_home_featured_widgets) { ?>
+</div><!-- end #featured-widget-left -->
+	<?php ufclas_responsive_featured_widget_area(); ?>
+</div><!-- end #featured-widgets -->
+<?php } ?>

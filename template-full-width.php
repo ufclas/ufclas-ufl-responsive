@@ -3,7 +3,7 @@
 Template Name: Full Width Page (no sidebars or widgets)
 */
 ?>
-<?php if ( ufl_check_page_visitor_level( $post->ID ) > 0 ) { define( 'DONOTCACHEPAGE', 1 ); } ?>
+<?php //if ( ufl_check_page_visitor_level( $post->ID ) > 0 ) { define( 'DONOTCACHEPAGE', 1 ); } ?>
 <?php include("header.php"); ?>
 
 	<?php ufandshands_breadcrumbs(); ?>
@@ -12,18 +12,13 @@ Template Name: Full Width Page (no sidebars or widgets)
 	  <div id="content-shadow">
 		<div id="content" class="container">
 
-			<?php if ( ufl_check_authorized_user( $post->ID ) ) { // check if logged in/valid shib user required ?>
-		
-      <?php
+		<?php if ( ufl_check_authorized_user( $post->ID ) ) { // check if logged in/valid shib user required
     
-        $page_right_sidebar = ufandshands_sidebar_detector('page_right',false);
-       
-        $article_width = '23 box';
 		$content_width = 900; 
        
       ?>
       
-			<article id="main-content" class="span-<?php echo $article_width; ?>" role="main">
+			<article id="main-content" class="span-23 box" role="main">
         
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			
@@ -47,17 +42,7 @@ Template Name: Full Width Page (no sidebars or widgets)
 				<!-- Non-Members -->
 				<article name ="content" id="main-content" class="span-23 box" role="main">
 
-					<h2>Protected</h2>
-					
-					<p>This content can only be seen by authorized users. Please login by clicking the button below.</p>
-
-					<?php 
-					if ( ufl_check_page_visitor_level($post->ID) == '2' ) {
-						ufl_shibboleth_login_button();
-					} else {
-						?><a href="<?php echo wp_login_url(); ?>" class="button" title="Login">WordPress Login</a><?php
-					}
-					?>
+					<?php get_template_part('content','restricted'); ?>
 					
 				</article>
 		

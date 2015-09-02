@@ -334,7 +334,7 @@ body.home #header-title a:hover h3 {
   text-decoration: none; }
 
 #utility-links {
-  float: left;
+  float: right;
   margin: 0;
   padding: 0;
   font-size: .85em;
@@ -356,19 +356,23 @@ body.home #header-title a:hover h3 {
 #utility-links li:last-child {
   margin-right: 0; }
 
+#utility-links.span-7half {
+  width: 254px; }
+
 #header-search-wrap {
   height: 80px;
   position: relative;
   top: 30px;
-  float: right; }
+  overflow: visible; }
 
 #searchform-wrap {
   height: 49px;
-  width: 278px;
+  width: 254px;
   background: transparent url(images/bg-sprite-transparent.png) -114px -20px no-repeat;
   position: relative;
   left: 0;
-  margin-top: 27px; }
+  margin-top: 27px;
+  float: right; }
 
 #header-search-field {
   -moz-border-radius: 2px;
@@ -391,7 +395,7 @@ body.home #header-title a:hover h3 {
   padding: 7px;
   position: absolute;
   top: 10px;
-  width: 237px; }
+  width: 213px; }
 
 #header-search-btn {
   position: absolute;
@@ -401,19 +405,21 @@ body.home #header-title a:hover h3 {
 #header-social {
   float: right;
   margin: 70px 5px 0 0;
-  padding-left: 5px; }
+  padding-left: 5px;
+  position: relative;
+  z-index: 9999; }
 
 #header-social li {
   float: left;
   background-position: center center;
-  background-repeat: none;
+  background-repeat: no-repeat;
   margin-left: 5px; }
 
 #header-social li a {
   height: 24px;
   width: 24px;
   background-position: center center;
-  background-repeat: none; }
+  background-repeat: no-repeat; }
 
 #header-social .facebook {
   background: transparent url(images/bg-sprite-transparent.png) -497px -21px no-repeat; }
@@ -423,6 +429,9 @@ body.home #header-title a:hover h3 {
 
 #header-social .youtube {
   background: transparent url(images/bg-sprite-transparent.png) -525px -21px no-repeat; }
+
+#header-social .siteblog {
+  background: transparent url(images/bg-sprite-transparent.png) -471px -21px no-repeat; }
 
 #header-actionitem {
   bottom: 0;
@@ -1345,7 +1354,7 @@ footer .append-bottom {
 .append-bottom #footer_top .widget-last {
   background: none; }
 
-.append-bottom .box {
+.append-bottom .box, .append-bottom .footer_widget > * {
   padding: 0 20px 10px; }
 
 #footer_top {

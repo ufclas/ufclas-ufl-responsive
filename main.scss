@@ -352,7 +352,7 @@ body.home #header-title a:hover h3 {
 }
 
 #utility-links {
-  float: left;
+  float: right;
   margin: 0;
   padding: 0;
   font-size: .85em;
@@ -379,20 +379,26 @@ body.home #header-title a:hover h3 {
   margin-right: 0;
 }
 
+#utility-links.span-7half {
+  width: 254px;
+}
+
 #header-search-wrap {
   height: 80px;
   position: relative;
   top: 30px;
-  float: right;
+  //margin-left: 24px;
+  overflow: visible;
 }
 
 #searchform-wrap {
   height: 49px;
-  width: 278px;
+  width: 254px;
   background: transparent url(images/bg-sprite-transparent.png) -114px -20px no-repeat;
   position: relative;
   left: 0;
   margin-top: 27px;
+  float: right;
 }
 
 #header-search-field {
@@ -413,7 +419,7 @@ body.home #header-title a:hover h3 {
   padding: 7px;
   position: absolute;
   top: 10px;
-  width: 237px;
+  width: 213px;
 }
 
 #header-search-btn {
@@ -426,12 +432,14 @@ body.home #header-title a:hover h3 {
   float: right;
   margin: 70px 5px 0 0;
   padding-left: 5px;
+  position: relative;
+  z-index: 9999;
 }
 
 #header-social li  {
   float: left;
   background-position: center center;
-  background-repeat: none;
+  background-repeat: no-repeat;
   margin-left: 5px;
 }
 
@@ -439,7 +447,7 @@ body.home #header-title a:hover h3 {
   height: 24px;
   width: 24px;
   background-position: center center;
-  background-repeat: none;
+  background-repeat: no-repeat;
 }
 
 #header-social .facebook {
@@ -452,6 +460,10 @@ body.home #header-title a:hover h3 {
 
 #header-social .youtube {
   background: transparent url(images/bg-sprite-transparent.png) -525px -21px no-repeat;
+}
+
+#header-social .siteblog {
+  background: transparent url(images/bg-sprite-transparent.png) -471px -21px no-repeat;
 }
 
 #header-actionitem {
@@ -1530,7 +1542,7 @@ footer .append-bottom {
   background: none;
 }
 
-.append-bottom .box {
+.append-bottom .box, .append-bottom .footer_widget > * {
   padding: 0 20px 10px;
 }
 

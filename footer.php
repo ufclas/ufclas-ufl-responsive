@@ -1,14 +1,13 @@
-<?php $sidebarContent = ufandshands_sidebar_detector('site_footer',false); 
+<?php 
 $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility"); ?>
 <footer role="contentinfo">
 	<?php if ( ( $opt_footer_widgets_visibility === 'all_pages' ) || ( $opt_footer_widgets_visibility === 'homepage_only' && is_front_page() ) || ( $opt_footer_widgets_visibility === 'subpages_only' && !is_front_page() ) ) : ?>
-		<?php if($sidebarContent) : ?>
+		<?php if( is_active_sidebar('site_footer') ) : ?>
 			<div class="container append-bottom">
 			
 				<div id="footer_top" class="footer_count_<?php ufandshands_sidebar_detector('site_footer',false,true) ?>">
-							
-					<?php echo $sidebarContent; ?>
-	        <div class="clear"></div>
+					<?php dynamic_sidebar( 'site_footer' ); ?>
+	        		<div class="clear"></div>
 				</div>
 			</div>
 		<?php endif ?>
@@ -19,7 +18,7 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 
 		<div id="footer-links" class="span-24 black-25">
 			
-    	<?php if (!of_get_option('opt_responsive')): ?>
+    	<?php if ( !$detect_mobile ): ?>
 			<div class="footer_logo">
 				<a href="http://www.ufl.edu/"><img src="<?php bloginfo('template_url'); ?>/images/uf_logo_full.png" alt="University of Florida" /></a>
 			</div>

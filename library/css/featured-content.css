@@ -89,8 +89,7 @@
   height: 280px;
   padding: 50px 0 0 40px;
   position: relative;
-  width: 370px;
-  top: 5%; }
+  width: 370px; }
 
 #slideshow .half-image-feature p {
   color: #243778;
@@ -150,7 +149,8 @@
 #slideshow p, .flex-caption p {
   font-size: .9em;
   line-height: 1.3em;
-  margin-bottom: .5em; }
+  margin-bottom: .5em;
+  padding-right: 40px; }
 
 #slideshow h3, .flex-caption h3 {
   font-size: 1.6em;
