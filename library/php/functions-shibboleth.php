@@ -159,6 +159,9 @@ function ufclas_check_server_auth_value( $var ){
 	elseif( isset($_SERVER['REDIRECT_'.$var]) ) {
 		return $_SERVER['REDIRECT_'.$var];
 	}
+	elseif( isset($_SERVER['HTTP_'. strtoupper($var)]) ) {
+		return $_SERVER['HTTP_'. strtoupper($var)];
+	}
 	else{
 		return '';	
 	}
