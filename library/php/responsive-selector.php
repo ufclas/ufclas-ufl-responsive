@@ -1,10 +1,9 @@
 <script>
-<?php $actual_link = "'http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]'; \n"; ?>
-currentLocation = <?php echo $actual_link; ?>
+currentLocation = '<?php echo "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"; ?>';
 function ajaxGetMobile(){
 $.ajax({
       type: 'GET',
-      url: <?php echo "'" .  get_bloginfo('template_url') . "/library/php/SetCookieMobile.php', \n";?>
+      url: '<?php echo get_template_directory_uri() . '/library/php/SetCookieMobile.php'; ?>',
       timeout: 2000,
       success: function(data) {
       // location.reload();
@@ -18,7 +17,7 @@ $.ajax({
 function ajaxGetFull(){
  $.ajax({
         type: 'GET',
-        url: <?php echo "'" .  get_bloginfo('template_url') . "/library/php/SetCookieFull.php', \n";?>
+        url:'<?php echo get_template_directory_uri() . '/library/php/SetCookieFull.php'; ?>',
         timeout: 2000,
         success: function(data) {
 	window.location.href = "?mobile=no";
@@ -46,7 +45,7 @@ $mobileLink = ("<li class='mobile-icon' id='mobile-link'><Switch to mobile</li>"
 if (isset($_COOKIE["UFLmobileMobile"]) ||  isset($_COOKIE["UFLmobileFull"])){
   echo "hideModal(); \n";
 }
-if ($detect ->isMobile() && !isset($_COOKIE["UFLmobileFull"])){
+if ($detect_mobile && !isset($_COOKIE["UFLmobileFull"])){
   echo "$('#sidebar-nav').appendTo('#main-content'); \n";
   echo "responsiveEmbed(); \n";
   echo '$("#primary-nav .container").append("' . $fullLink . '");' . "\n";
@@ -56,7 +55,7 @@ if (isset($_COOKIE["UFLmobileFull"]) && of_get_option("opt_responsive")){
   echo '$("#primary-nav .container").append("' . $mobileLink . '");' . "\n";
 }
 //hide popup if on desktop
-if (!$detect ->isMobile()) { 
+if (!$detect_mobile) { 
     echo "hideModal() \n";
 }
 
