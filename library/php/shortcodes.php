@@ -128,14 +128,12 @@ add_shortcode('flv', 'ufandshands_flow_func');
 function ufandshands_shortcode_float_left($atts, $content = null) {
 	extract(shortcode_atts(array(
                 'autop' => '1',
-		'foo' => 'something',
-		'bar' => 'something else',
 	), $atts));
 
 	$content = do_shortcode($content);
 
 	$left_float = "<div class='shortcode_alignleft'>";
-        if ($replacelinebreaks=='1')
+        if ($autop=='1')
             $left_float .= wpautop($content);
         else
             $left_float .= $content;
@@ -149,13 +147,11 @@ add_shortcode('left', 'ufandshands_shortcode_float_left');
 function ufandshands_shortcode_float_right($atts, $content = null) {
 	extract(shortcode_atts(array(
                 'autop' => '1',
-		'foo' => 'something',
-		'bar' => 'something else',
 	), $atts));
 	$content = do_shortcode($content);
 
 	$right_float = "<div class='shortcode_alignright'>";
-        if ($replacelinebreaks=='1')
+        if ($autop=='1')
             $right_float .= wpautop($content);
         else
             $right_float .= $content;
@@ -172,7 +168,6 @@ function ufandshands_shortcode_mobile_only($atts, $content = null) {
 	extract(shortcode_atts(array(
                 'autop' => '1',
 		'fullonly' => '',
-		'bar' => 'something else',
 	), $atts));
 	$content = do_shortcode($content);
 
@@ -181,7 +176,7 @@ function ufandshands_shortcode_mobile_only($atts, $content = null) {
     }else{ 
 		$mobile_only = "<div class='shortcode_mobileonly'>";
 	}
-	if ($replacelinebreaks=='1')
+	if ($autop=='1')
             $mobile_only .= wpautop($content);
         else
             $mobile_only .= $content;
@@ -546,7 +541,7 @@ function wp_mcTagMap_renderTags($options) {
 		$i = 0;
 		foreach ($tags as $tag) {
 		    $url = get_term_link( intval($tag->term_id), $tag->taxonomy );
-		    //$url = attribute_escape(get_tag_link($tag->term_id));
+		    //$url = esc_attr(get_tag_link($tag->term_id));
 		    $name = apply_filters('the_title', $tag->name);
 		    //	$name = ucfirst($name);
 		    $i++;

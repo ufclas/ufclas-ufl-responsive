@@ -1,9 +1,9 @@
 <?php
 
 class UFCOM_recent_posts extends WP_Widget {
-	function UFCOM_recent_posts() {
+	function __construct() {
 		$widget_ops = array('classname' => 'widget_ufcom_recent_posts sidebar_widget', 'description' => 'Your most recent posts' );
-		$this->WP_Widget('UFCOM_recent_posts', 'Recent Posts', $widget_ops);
+		parent::__construct('UFCOM_recent_posts', 'Recent Posts', $widget_ops);
 	}
  
 	function widget($args, $instance) {
@@ -107,9 +107,9 @@ class UFCOM_recent_posts extends WP_Widget {
 	
 ?>
 
-			<p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></label></p>
 
-			<p><label for="<?php echo $this->get_field_id('numberofposts'); ?>">Number of posts: <input class="widefat" id="<?php echo $this->get_field_id('numberofposts'); ?>" name="<?php echo $this->get_field_name('numberofposts'); ?>" type="text" value="<?php echo attribute_escape($numberofposts); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('numberofposts'); ?>">Number of posts: <input class="widefat" id="<?php echo $this->get_field_id('numberofposts'); ?>" name="<?php echo $this->get_field_name('numberofposts'); ?>" type="text" value="<?php echo esc_attr($numberofposts); ?>" /></label></p>
 			
 			<p><input class="checkbox" type="checkbox" <?php checked( $instance['showdate'], 'on' ); ?> id="<?php echo $this->get_field_id( 'showdate' ); ?>" name="<?php echo $this->get_field_name( 'showdate' ); ?>" /> &nbsp; <label for="<?php echo $this->get_field_id( 'showdate' ); ?>">Show post dates?</label></p>
 
@@ -123,7 +123,7 @@ class UFCOM_recent_posts extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'specific_category_id' ); ?>">From the category:</label>
 				<select id="<?php echo $this->get_field_id( 'specific_category_id' ); ?>" name="<?php echo $this->get_field_name( 'specific_category_id' ); ?>" class="widefat" style="width:100%;">
 					<option value="">
-					<?php echo attribute_escape(__('All categories')); ?></option> 
+					<?php echo esc_attr__('All categories'); ?></option> 
 					<?php 
 					$categories = get_categories('hide_empty=0&orderby=name');
 					foreach ($categories as $category_specific) {
@@ -149,7 +149,7 @@ class UFCOM_recent_posts extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'unique_page_id' ); ?>">Display only on page:</label>
 				<select id="<?php echo $this->get_field_id( 'unique_page_id' ); ?>" name="<?php echo $this->get_field_name( 'unique_page_id' ); ?>" class="widefat" style="width:100%;">
 					<option value="">
-					<?php echo attribute_escape(__('All pages')); ?></option> 
+					<?php echo esc_attr__('All pages'); ?></option> 
 					<?php 
 					$pages = get_pages(); 
 					foreach ($pages as $pagg) {

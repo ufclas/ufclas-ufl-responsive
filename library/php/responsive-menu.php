@@ -34,7 +34,7 @@
                           <?php } else { ?>
                           <form method="get" id="responsive-searchform" action="http://search.ufl.edu/search" role="search">                                  <input type="hidden" name="source" id="source" value="web">
                                   <?php $opt_site_specific_search = of_get_option("opt_site_specific_search"); if(!empty($opt_site_specific_search)) { ?>
-                                  <input type="hidden" name="site" id="site" value="<?php $parsed_url = parse_url( home_url() ); echo $parsed_url['host']; if ( $parsed_url['path'] ) { echo $parsed_url['path']; } ?>">
+                                  <input type="hidden" name="site" id="site" value="<?php $parsed_url = parse_url( home_url() ); echo $parsed_url['host']; if ( isset($parsed_url['path']) ) { echo $parsed_url['path']; } ?>">
                                   <?php } ?>
                                   <input type="text" value="<?php if (!empty($opt_search_box_text)) { echo $opt_search_box_text; } else { echo 'Search UF Web'; } ?>" id="responsive-header-search-field" name="query" />
 								<input type="image"  src="<?php bloginfo('template_url'); ?>/images/responsive/base_transparency.gif" id="responsive-header-search-btn"  alt="Search Button" name="sa" /> 

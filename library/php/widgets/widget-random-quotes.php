@@ -1,9 +1,9 @@
 <?php 
 
 class UFCOM_random_quotes extends WP_Widget {
-	function UFCOM_random_quotes() {
+	function __construct() {
 		$widget_ops = array('classname' => 'widget_ufcom_random_quotes', 'description' => 'Insert 3 random quotes or testimonials' );
-		$this->WP_Widget('UFCOM_random_quotes', 'Random Quotes or Testimonials', $widget_ops);
+		parent::__construct('UFCOM_random_quotes', 'Random Quotes or Testimonials', $widget_ops);
 	}
  
 	function widget($args, $instance) {
@@ -99,7 +99,7 @@ class UFCOM_random_quotes extends WP_Widget {
 		$unique_page_id = ( isset($instance['unique_page_id']) )? $instance['unique_page_id']:null;
 ?>
 
-			<p><label for="<?php echo $this->get_field_id('title'); ?>">Overall Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('title'); ?>">Overall Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></label></p>
 			
 			<label for="<?php echo $this->get_field_id('quote_1'); ?>">Quote #1:</label>
 			<textarea class="widefat" rows="3" cols="20" id="<?php echo $this->get_field_id('quote_1'); ?>" name="<?php echo $this->get_field_name('quote_1'); ?>"><?php echo $quote_1; ?></textarea>
@@ -128,7 +128,7 @@ class UFCOM_random_quotes extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'unique_page_id' ); ?>">Display only on page:</label>
 				<select id="<?php echo $this->get_field_id( 'unique_page_id' ); ?>" name="<?php echo $this->get_field_name( 'unique_page_id' ); ?>" class="widefat" style="width:100%;">
 					<option value="">
-					<?php echo attribute_escape(__('All pages')); ?></option> 
+					<?php echo esc_attr__('All pages'); ?></option> 
 					<?php 
 					$pages = get_pages(); 
 					foreach ($pages as $pagg) {
