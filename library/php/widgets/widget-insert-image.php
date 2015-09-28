@@ -1,9 +1,9 @@
 <?php
 
 class UFCOM_image extends WP_Widget {
-	function UFCOM_image() {
+	function __construct() {
 		$widget_ops = array('classname' => 'widget_ufcom_image', 'description' => 'Insert an image' );
-		$this->WP_Widget('UFCOM_image', 'Image', $widget_ops);
+		parent::__construct('UFCOM_image', 'Image', $widget_ops);
 	}
  
 	function widget($args, $instance) {
@@ -47,17 +47,17 @@ class UFCOM_image extends WP_Widget {
 		$unique_page_id = $instance['unique_page_id'];
 ?>
 
-			<p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></label></p>
 
-			<p><label for="<?php echo $this->get_field_id('imgurl'); ?>">Location (URL) of Image: <input class="widefat" id="<?php echo $this->get_field_id('imgurl'); ?>" name="<?php echo $this->get_field_name('imgurl'); ?>" type="text" value="<?php echo attribute_escape($imgurl); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('imgurl'); ?>">Location (URL) of Image: <input class="widefat" id="<?php echo $this->get_field_id('imgurl'); ?>" name="<?php echo $this->get_field_name('imgurl'); ?>" type="text" value="<?php echo esc_attr($imgurl); ?>" /></label></p>
 
-			<p><label for="<?php echo $this->get_field_id('imglink'); ?>">Link (URL) when you click: <input class="widefat" id="<?php echo $this->get_field_id('imglink'); ?>" name="<?php echo $this->get_field_name('imglink'); ?>" type="text" value="<?php echo attribute_escape($imglink); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('imglink'); ?>">Link (URL) when you click: <input class="widefat" id="<?php echo $this->get_field_id('imglink'); ?>" name="<?php echo $this->get_field_name('imglink'); ?>" type="text" value="<?php echo esc_attr($imglink); ?>" /></label></p>
 
 			<p>
 				<label for="<?php echo $this->get_field_id( 'unique_page_id' ); ?>">Display only on page:</label>
 				<select id="<?php echo $this->get_field_id( 'unique_page_id' ); ?>" name="<?php echo $this->get_field_name( 'unique_page_id' ); ?>" class="widefat" style="width:100%;">
 					<option value="">
-					<?php echo attribute_escape(__('All pages')); ?></option> 
+					<?php echo esc_attr__('All pages'); ?></option> 
 					<?php 
 					$pages = get_pages(); 
 					foreach ($pages as $pagg) {

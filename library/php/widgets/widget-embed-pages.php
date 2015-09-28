@@ -1,9 +1,9 @@
 <?php
 
 class UFCOM_embed_pages extends WP_Widget {
-	function UFCOM_embed_pages() {
+	function __construct() {
 		$widget_ops = array('classname' => 'widget_ufcom_embed_pages', 'description' => 'Insert a page\'s content into your widget' );
-		$this->WP_Widget('UFCOM_embed_pages', 'Insert Page Content', $widget_ops);
+		parent::__construct('UFCOM_embed_pages', 'Insert Page Content', $widget_ops);
 	}
  
 	function widget($args, $instance) {
@@ -57,13 +57,13 @@ class UFCOM_embed_pages extends WP_Widget {
 
 ?>
 
-			<p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></label></p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'page_id' ); ?>">Page:</label>
 			<select id="<?php echo $this->get_field_id( 'page_id' ); ?>" name="<?php echo $this->get_field_name( 'page_id' ); ?>" class="widefat" style="width:100%;">
 				<option value="">
-				<?php echo attribute_escape(__('Select page')); ?></option> 
+				<?php echo esc_attr__('Select page'); ?></option> 
 				 <?php 
 				  $pages = get_pages(); 
 				  foreach ($pages as $pagg) {
@@ -86,7 +86,7 @@ class UFCOM_embed_pages extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'unique_page_id' ); ?>">Display only on page:</label>
 				<select id="<?php echo $this->get_field_id( 'unique_page_id' ); ?>" name="<?php echo $this->get_field_name( 'unique_page_id' ); ?>" class="widefat" style="width:100%;">
 					<option value="">
-					<?php echo attribute_escape(__('All pages')); ?></option> 
+					<?php echo esc_attr__('All pages'); ?></option> 
 					<?php 
 					$pages = get_pages(); 
 					foreach ($pages as $pagg) {

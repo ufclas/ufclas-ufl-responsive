@@ -2,9 +2,9 @@
 
 class UFandShands_WP_Widget_RSS extends WP_Widget {
 
-    function UFandShands_WP_Widget_RSS() {
+    function __construct() {
         $widget_ops = array('classname' => 'rss', 'description' => 'Insert an RSS feed from another website');
-        $this->WP_Widget('rss', 'RSS v2.0', $widget_ops);
+        parent::__construct('rss', 'RSS v2.0', $widget_ops);
     }
 
     function widget($args, $instance) {
@@ -34,7 +34,7 @@ class UFandShands_WP_Widget_RSS extends WP_Widget {
 		$show_date = isset($instance['show_date']) ? $instance['show_date'] : false;
 		$rss_icon = isset($instance['rss_icon']) ? $instance['rss_icon'] : false;
 		$rss_order_alphabetically = isset($instance['rss_order_alphabetically']) ? $instance['rss_order_alphabetically'] : false;
-		
+		$showrssiconimage = '';
 		
 		// if both rss url and alternate url is empty then exit
 		if (empty($url) && empty($rss_alt_url))
@@ -195,13 +195,13 @@ class UFandShands_WP_Widget_RSS extends WP_Widget {
         $unique_page_id = $instance['unique_page_id'];
         ?>
 
-        <p><label for="<?php echo $this->get_field_id('url'); ?>">URL to RSS feed: <input class="widefat" id="<?php echo $this->get_field_id('url'); ?>" name="<?php echo $this->get_field_name('url'); ?>" type="text" value="<?php echo attribute_escape($url); ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('url'); ?>">URL to RSS feed: <input class="widefat" id="<?php echo $this->get_field_id('url'); ?>" name="<?php echo $this->get_field_name('url'); ?>" type="text" value="<?php echo esc_attr($url); ?>" /></label></p>
 
-        <p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></label></p>
 
-        <p><label for="<?php echo $this->get_field_id('rss_alt_url'); ?>">Alternate URL for clickable Title: <input class="widefat" id="<?php echo $this->get_field_id('rss_alt_url'); ?>" name="<?php echo $this->get_field_name('rss_alt_url'); ?>" type="text" value="<?php echo attribute_escape($rss_alt_url); ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('rss_alt_url'); ?>">Alternate URL for clickable Title: <input class="widefat" id="<?php echo $this->get_field_id('rss_alt_url'); ?>" name="<?php echo $this->get_field_name('rss_alt_url'); ?>" type="text" value="<?php echo esc_attr($rss_alt_url); ?>" /></label></p>
 
-        <p><label for="<?php echo $this->get_field_id('items'); ?>">Amount of posts to display <input class="widefat" id="<?php echo $this->get_field_id('items'); ?>" name="<?php echo $this->get_field_name('items'); ?>" type="text" value="<?php echo attribute_escape($items); ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('items'); ?>">Amount of posts to display <input class="widefat" id="<?php echo $this->get_field_id('items'); ?>" name="<?php echo $this->get_field_name('items'); ?>" type="text" value="<?php echo esc_attr($items); ?>" /></label></p>
 
         <p><input class="checkbox" type="checkbox" <?php checked($instance['rss_showimage'], 'on'); ?> id="<?php echo $this->get_field_id('rss_showimage'); ?>" name="<?php echo $this->get_field_name('rss_showimage'); ?>" /> &nbsp; <label for="<?php echo $this->get_field_id('rss_showimage'); ?>">Show post thumbnails?</label></p>
 
@@ -217,7 +217,7 @@ class UFandShands_WP_Widget_RSS extends WP_Widget {
             <label for="<?php echo $this->get_field_id('unique_page_id'); ?>">Display only on page:</label>
             <select id="<?php echo $this->get_field_id('unique_page_id'); ?>" name="<?php echo $this->get_field_name('unique_page_id'); ?>" class="widefat" style="width:100%;">
                 <option value="">
-                <?php echo attribute_escape(__('All pages')); ?></option> 
+                <?php echo esc_attr__('All pages'); ?></option> 
                 <?php
                 $pages = get_pages();
                 foreach ($pages as $pagg) {
