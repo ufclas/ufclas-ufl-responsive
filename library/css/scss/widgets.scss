@@ -104,7 +104,6 @@ article .widget_body h4 {
 }
 
 #secondary .time,
-.gce-widget-list .time,
 #secondary .rss-date,
 .news-announcements .dateline,
 .widget_body .time,
@@ -154,14 +153,7 @@ h3 a.rsswidget {
   display: none;
 }
 
-#events, .gce-widget-list {
-  padding-bottom: 10px; 
-}
 
-#events .time, #secondary .gce-widget-list .time {
-  margin-left: 52px;
-  margin-bottom: 0;
-}
 
 #secondary .news-announcements {
   padding-bottom: 5px;
@@ -228,10 +220,6 @@ article .widget_body img {
 
 #secondary.homepage_layout_white .item {
   padding-bottom: 0;
-}
-
-#secondary.homepage_layout_white #events .event-date, #secondary.homepage_layout_white .gce-widget-list .event-date {
-  background: transparent url(images/bg-sprite-transparent.png) -812px -98px no-repeat;
 }
 
 #secondary.homepage_layout_white .rss-icon {
@@ -485,44 +473,79 @@ aside .sidebar_widget h3 {
   height: 110px;
 }
 
-/*----- Google Calendar Events -----*/
+/*----- Simple Calendar (formerly Google Calendar Events) -----*/
 
-#events .event-date, .gce-widget-list  .event-date {
-  float: left;
-  height: 50px;
-  width: 42px;
-  background: transparent url(images/bg-sprite-transparent.png) -750px -99px no-repeat;
-  margin-right: 10px;
+#events, .gce-widget-list, .simcal-calendar-list {
+    padding-bottom: 10px;
+    
+    .time {
+        margin-left: 52px;
+        margin-bottom: 0;    
+    }
+    .event-date {
+        float: left;
+        height: 50px;
+        width: 42px;
+        background: transparent url(images/bg-sprite-transparent.png) -750px -99px no-repeat;
+        margin-right: 10px;
+        
+        #secondary.homepage_layout_white & {
+            background: transparent url(images/bg-sprite-transparent.png) -812px -98px no-repeat;
+        }
+    }
+    .month, .day {
+        position: absolute;
+        width: 41px;
+        text-align: center;
+    }
+    .month {
+        font-size: .8em;
+        top: 6px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+    .day {
+        font-size: 1.5em;
+        top: 19px;
+        color: #1F2E63;
+        font-weight: bold;
+    }
+    strong {
+        font-size: .8em;
+        padding-top: 3px;
+        display: block;
+        margin-bottom: 3px;
+    }
+}
+.simcal-calendar-list {
+    margin-top: -10px;
+    
+    .simcal-events-list-container {
+        margin: 0;
+    }
+    .simcal-day-label {
+        display: none;
+    }
+    #secondary & ul {
+        padding: 0;
+        margin: 0;    
+    }
+    #secondary & ul li {
+        padding: 0;
+        margin: 0;
+        background: none;
+        font-size: 13px;
+    }
+    .simcal-event-details {
+        font-size: 1em;
+        
+        h4 + p, .time + p {
+            display: none; 
+        }
+    }
 }
 
-#events .month, .gce-widget-list .month,
-#events .day, .gce-widget-list .day {
-  position: absolute;
-	width: 41px;
-	text-align: center;
-}
-
-#events .month, .gce-widget-list .month {
-  font-size: .8em;
-  top: 6px;
-  font-weight: bold;
-	text-transform: uppercase;
-	color: #ffffff;
-}
-
-#events .day, .gce-widget-list .day {
-  font-size: 1.5em;
-  top: 19px;
-  color: #1F2E63;
-  font-weight: bold;
-}
-
-#events strong, .gce-widget-list strong {
-  font-size: .8em;
-  padding-top: 3px;
-  display: block;
-  margin-bottom: 3px;
-}
 
 /*----- HHS MyHealthFinder -----*/
 

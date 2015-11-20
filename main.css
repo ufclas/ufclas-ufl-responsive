@@ -2071,14 +2071,14 @@ input[type="checkbox"] {
 .shortcode_fullonly {
   display: block; }
 
-/*----- Google Calendar Events Grid -----*/
+/*----- Simple Calendar Grid (formerly Google Calendar Events) -----*/
 .gce-page-grid .gce-calendar {
   box-shadow: none; }
   .gce-page-grid .gce-calendar tbody, .gce-page-grid .gce-calendar thead {
     border: none; }
   .gce-page-grid .gce-calendar .gce-month-title {
     font-size: 1.8em;
-    font-family: 'ufshands',ΓÇïArial,ΓÇïsans-serif;
+    font-family: 'ufshands', Arial, sans-serif;
     color: #243778;
     margin-bottom: 0.5em; }
   .gce-page-grid .gce-calendar .gce-day-future {
@@ -2095,18 +2095,45 @@ input[type="checkbox"] {
     padding: 1em 0;
     white-space: nowrap; }
 
+.simcal-calendar-grid {
+  box-shadow: none; }
+  .simcal-calendar-grid thead {
+    border: none; }
+  .simcal-calendar-grid .simcal-day {
+    background-color: #fff; }
+    .simcal-calendar-grid .simcal-day.simcal-day-void {
+      border: none; }
+  .simcal-calendar-grid .simcal-week-day {
+    background-color: #666;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+    color: #fff;
+    padding: 1em 0;
+    white-space: nowrap; }
+  .simcal-calendar-grid .simcal-current h3 {
+    font-size: 1.8em; }
+  .simcal-calendar-grid .simcal-nav-button {
+    text-shadow: none; }
+  .simcal-calendar-grid .simcal-events {
+    font-size: 1em; }
+    .simcal-calendar-grid .simcal-events .simcal-event {
+      background: none;
+      border-bottom: 1px dotted rgba(0, 0, 0, 0.5); }
+
 .qtip-light {
   border-color: #ccc; }
 
-.qtip .gce-event-info .event {
-  font-size: 1.1em; }
-  .qtip .gce-event-info .event .event-date, .qtip .gce-event-info .event .eventdate {
-    border-bottom: 2px solid #3D58AF;
-    padding-bottom: 2px; }
-    .qtip .gce-event-info .event .event-date .month, .qtip .gce-event-info .event .event-date .day, .qtip .gce-event-info .event .eventdate .month, .qtip .gce-event-info .event .eventdate .day {
-      display: inline-block;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: bold;
-      color: #3D58AF; }
-  .qtip .gce-event-info .event .eventtitle h4 {
-    margin-top: 0.9em; }
+.qtip {
+  box-shadow: 0px 10px 40px 5px rgba(0, 0, 0, 0.2); }
+  .qtip .gce-event-info .event {
+    font-size: 1.1em; }
+    .qtip .gce-event-info .event .event-date, .qtip .gce-event-info .event .eventdate {
+      border-bottom: 2px solid #3D58AF;
+      padding-bottom: 2px; }
+      .qtip .gce-event-info .event .event-date .month, .qtip .gce-event-info .event .event-date .day, .qtip .gce-event-info .event .eventdate .month, .qtip .gce-event-info .event .eventdate .day {
+        display: inline-block;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: #3D58AF; }
+    .qtip .gce-event-info .event .eventtitle h4 {
+      margin-top: 0.9em; }
