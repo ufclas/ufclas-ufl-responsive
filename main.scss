@@ -2272,7 +2272,7 @@ only screen and (min-device-pixel-ratio: 2) {
 .simcal-calendar-grid {
     box-shadow: none;
     
-    thead {
+    .simcal-calendar-head {
         border: none;   
     }
     .simcal-day {
@@ -2305,6 +2305,58 @@ only screen and (min-device-pixel-ratio: 2) {
             border-bottom: 1px dotted rgba(0,0,0,0.5);
         }
     }
+	#secondary &, #sidebar-nav & {
+		.simcal-calendar-head {
+			.simcal-current {
+				background-color: transparent;
+				border-top-color: transparent;
+				border-bottom-color: transparent;
+			}
+			h3 {
+				background-color: transparent;
+				margin: 0 0 10px;
+				border-top: none;
+			}
+			.simcal-week-day {
+				background-color: rgba(0, 0, 0, 0.7);
+				border-bottom: none;
+			}
+		}
+		.simcal-month {
+			border: none;
+			background-color: rgba(0, 0, 0, 0.5);
+			
+			.simcal-day {
+				background-color: transparent;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+				
+				.simcal-day-number {
+					color: rgba(255, 255, 255, 0.5) !important;
+					font-size: 11px;
+				}				
+				&:hover {
+					background-color: rgba(0, 0, 0, 0.5);
+					color: #fff !important;
+					
+					.simcal-day-number {
+						color: #fff !important;
+					}
+				}
+				&.simcal-today {
+					& > div {
+						border: none !important;
+					}
+					.simcal-day-number {
+						color: #fff !important;
+						border-bottom: 1px solid rgba(255, 255, 255, 0.7) !important;
+					}
+				}
+			}
+			.simcal-day-label {
+				background-color: rgba(0, 0, 0, 0.3) !important;
+			}
+		}
+	}
 }
 .qtip-light {
 	border-color: #ccc;

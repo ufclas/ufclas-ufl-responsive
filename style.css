@@ -3,10 +3,10 @@
 Theme Name: UF CLAS Responsive
 Theme URI: http://it.clas.ufl.edu/
 Description: The official responsive WordPress template for The University of Florida. Modified for CLAS.
-Version: 1.5 (0.7.8)
+Version: 1.5 (0.8.0)
 Author: CLAS IT, UF Web Services
 Author URI: http://it.clas.ufl.edu/
-Build Date: 20151119
+Build Date: 20151204
 */
 /* import reset.css */
 /* --------------------------------------------------------------
@@ -1906,7 +1906,7 @@ input[type="checkbox"] { vertical-align: middle; margin-right: 7px; }
 .gce-page-grid .gce-calendar th { background-color: #666; border-left: 1px solid #666; border-right: 1px solid #666; color: #fff; padding: 1em 0; white-space: nowrap; }
 
 .simcal-calendar-grid { box-shadow: none; }
-.simcal-calendar-grid thead { border: none; }
+.simcal-calendar-grid .simcal-calendar-head { border: none; }
 .simcal-calendar-grid .simcal-day { background-color: #fff; }
 .simcal-calendar-grid .simcal-day.simcal-day-void { border: none; }
 .simcal-calendar-grid .simcal-week-day { background-color: #666; border-top: 1px solid #666; border-bottom: 1px solid #666; color: #fff; padding: 1em 0; white-space: nowrap; }
@@ -1914,6 +1914,17 @@ input[type="checkbox"] { vertical-align: middle; margin-right: 7px; }
 .simcal-calendar-grid .simcal-nav-button { text-shadow: none; }
 .simcal-calendar-grid .simcal-events { font-size: 1em; }
 .simcal-calendar-grid .simcal-events .simcal-event { background: none; border-bottom: 1px dotted rgba(0, 0, 0, 0.5); }
+#secondary .simcal-calendar-grid .simcal-calendar-head .simcal-current, #sidebar-nav .simcal-calendar-grid .simcal-calendar-head .simcal-current { background-color: transparent; border-top-color: transparent; border-bottom-color: transparent; }
+#secondary .simcal-calendar-grid .simcal-calendar-head h3, #sidebar-nav .simcal-calendar-grid .simcal-calendar-head h3 { background-color: transparent; margin: 0 0 10px; border-top: none; }
+#secondary .simcal-calendar-grid .simcal-calendar-head .simcal-week-day, #sidebar-nav .simcal-calendar-grid .simcal-calendar-head .simcal-week-day { background-color: rgba(0, 0, 0, 0.7); border-bottom: none; }
+#secondary .simcal-calendar-grid .simcal-month, #sidebar-nav .simcal-calendar-grid .simcal-month { border: none; background-color: rgba(0, 0, 0, 0.5); }
+#secondary .simcal-calendar-grid .simcal-month .simcal-day, #sidebar-nav .simcal-calendar-grid .simcal-month .simcal-day { background-color: transparent; border: 1px solid rgba(0, 0, 0, 0.1); }
+#secondary .simcal-calendar-grid .simcal-month .simcal-day .simcal-day-number, #sidebar-nav .simcal-calendar-grid .simcal-month .simcal-day .simcal-day-number { color: rgba(255, 255, 255, 0.5) !important; font-size: 11px; }
+#secondary .simcal-calendar-grid .simcal-month .simcal-day:hover, #sidebar-nav .simcal-calendar-grid .simcal-month .simcal-day:hover { background-color: rgba(0, 0, 0, 0.5); color: #fff !important; }
+#secondary .simcal-calendar-grid .simcal-month .simcal-day:hover .simcal-day-number, #sidebar-nav .simcal-calendar-grid .simcal-month .simcal-day:hover .simcal-day-number { color: #fff !important; }
+#secondary .simcal-calendar-grid .simcal-month .simcal-day.simcal-today > div, #sidebar-nav .simcal-calendar-grid .simcal-month .simcal-day.simcal-today > div { border: none !important; }
+#secondary .simcal-calendar-grid .simcal-month .simcal-day.simcal-today .simcal-day-number, #sidebar-nav .simcal-calendar-grid .simcal-month .simcal-day.simcal-today .simcal-day-number { color: #fff !important; border-bottom: 1px solid rgba(255, 255, 255, 0.7) !important; }
+#secondary .simcal-calendar-grid .simcal-month .simcal-day-label, #sidebar-nav .simcal-calendar-grid .simcal-month .simcal-day-label { background-color: rgba(0, 0, 0, 0.3) !important; }
 
 .qtip-light { border-color: #ccc; }
 
