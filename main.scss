@@ -1521,6 +1521,8 @@ footer .append-bottom {
   font-size: 1em;
   overflow: hidden;
   position: relative;
+  margin-bottom: 0;
+  padding-bottom: 1.5em;
 }
 
 #footer_top {
@@ -2307,7 +2309,7 @@ only screen and (min-device-pixel-ratio: 2) {
     }
 	#secondary &, #sidebar-nav & {
 		.simcal-calendar-head {
-			.simcal-current {
+			.simcal-nav {
 				background-color: transparent;
 				border-top-color: transparent;
 				border-bottom-color: transparent;
@@ -2318,20 +2320,20 @@ only screen and (min-device-pixel-ratio: 2) {
 				border-top: none;
 			}
 			.simcal-week-day {
-				background-color: rgba(0, 0, 0, 0.7);
+				background-color: rgba(0, 0, 0, 0.5);
 				border-bottom: none;
 			}
 		}
 		.simcal-month {
 			border: none;
-			background-color: rgba(0, 0, 0, 0.5);
+			background-color: rgba(0, 0, 0, 0.3);
 			
 			.simcal-day {
 				background-color: transparent;
-				border: 1px solid rgba(0, 0, 0, 0.1);
+				border: 1px solid rgba(0, 0, 0, 0.2);
 				
 				.simcal-day-number {
-					color: rgba(255, 255, 255, 0.5) !important;
+					color: rgba(255, 255, 255, 0.9) !important;
 					font-size: 11px;
 				}				
 				&:hover {
@@ -2345,10 +2347,11 @@ only screen and (min-device-pixel-ratio: 2) {
 				&.simcal-today {
 					& > div {
 						border: none !important;
+						background-color: rgba(0, 0, 0, 0.5);
+						color: #fff !important;
 					}
 					.simcal-day-number {
 						color: #fff !important;
-						border-bottom: 1px solid rgba(255, 255, 255, 0.7) !important;
 					}
 				}
 			}

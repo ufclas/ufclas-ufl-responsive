@@ -363,7 +363,13 @@ function optionsframework_options() {
 			"id" => "opt_alternative_site_logo_width",
 			"class" => "mini",
 			"std" => "",
-			"type" => "text"); 
+			"type" => "text");
+	$options[] = array( "name" => "Disable Global Elements",
+			"super-admin-only" => "1",
+			"desc" => "Disable the global header, footer, and social media icons from appearing",
+			"id" => "opt_disable_global_elements",
+			"std" => "0",
+			"type" => "checkbox");
 
 	return $options;
 }
