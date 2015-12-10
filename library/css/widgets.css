@@ -86,7 +86,6 @@ article .widget_body h4 {
   height: 9px; }
 
 #secondary .time,
-.gce-widget-list .time,
 #secondary .rss-date,
 .news-announcements .dateline,
 .widget_body .time,
@@ -127,13 +126,6 @@ h3 a.rsswidget {
 
 .rsswidget img {
   display: none; }
-
-#events, .gce-widget-list {
-  padding-bottom: 10px; }
-
-#events .time, #secondary .gce-widget-list .time {
-  margin-left: 52px;
-  margin-bottom: 0; }
 
 #secondary .news-announcements {
   padding-bottom: 5px;
@@ -190,9 +182,6 @@ article .widget_body img {
 
 #secondary.homepage_layout_white .item {
   padding-bottom: 0; }
-
-#secondary.homepage_layout_white #events .event-date, #secondary.homepage_layout_white .gce-widget-list .event-date {
-  background: transparent url(images/bg-sprite-transparent.png) -812px -98px no-repeat; }
 
 #secondary.homepage_layout_white .rss-icon {
   padding: 0 0 0 5px;
@@ -399,38 +388,59 @@ aside .sidebar_widget h3 {
   width: 110px;
   height: 110px; }
 
-/*----- Google Calendar Events -----*/
-#events .event-date, .gce-widget-list .event-date {
-  float: left;
-  height: 50px;
-  width: 42px;
-  background: transparent url(images/bg-sprite-transparent.png) -750px -99px no-repeat;
-  margin-right: 10px; }
+/*----- Simple Calendar (formerly Google Calendar Events) -----*/
+#events, .gce-widget-list, .simcal-calendar-list {
+  padding-bottom: 10px; }
+  #events .time, .gce-widget-list .time, .simcal-calendar-list .time {
+    margin-left: 52px;
+    margin-bottom: 0; }
+  #events .event-date, .gce-widget-list .event-date, .simcal-calendar-list .event-date {
+    float: left;
+    height: 50px;
+    width: 42px;
+    background: transparent url(images/bg-sprite-transparent.png) -750px -99px no-repeat;
+    margin-right: 10px; }
+    #secondary.homepage_layout_white #events .event-date, #secondary.homepage_layout_white .gce-widget-list .event-date, #secondary.homepage_layout_white .simcal-calendar-list .event-date {
+      background: transparent url(images/bg-sprite-transparent.png) -812px -98px no-repeat; }
+  #events .month, #events .day, .gce-widget-list .month, .gce-widget-list .day, .simcal-calendar-list .month, .simcal-calendar-list .day {
+    position: absolute;
+    width: 41px;
+    text-align: center; }
+  #events .month, .gce-widget-list .month, .simcal-calendar-list .month {
+    font-size: .8em;
+    top: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff; }
+  #events .day, .gce-widget-list .day, .simcal-calendar-list .day {
+    font-size: 1.5em;
+    top: 19px;
+    color: #1F2E63;
+    font-weight: bold; }
+  #events strong, .gce-widget-list strong, .simcal-calendar-list strong {
+    font-size: .8em;
+    padding-top: 3px;
+    display: block;
+    margin-bottom: 3px; }
 
-#events .month, .gce-widget-list .month,
-#events .day, .gce-widget-list .day {
-  position: absolute;
-  width: 41px;
-  text-align: center; }
-
-#events .month, .gce-widget-list .month {
-  font-size: .8em;
-  top: 6px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #ffffff; }
-
-#events .day, .gce-widget-list .day {
-  font-size: 1.5em;
-  top: 19px;
-  color: #1F2E63;
-  font-weight: bold; }
-
-#events strong, .gce-widget-list strong {
-  font-size: .8em;
-  padding-top: 3px;
-  display: block;
-  margin-bottom: 3px; }
+.simcal-calendar-list {
+  margin-top: -10px; }
+  .simcal-calendar-list .simcal-events-list-container {
+    margin: 0; }
+  .simcal-calendar-list .simcal-day-label {
+    display: none; }
+  #secondary .simcal-calendar-list ul {
+    padding: 0;
+    margin: 0; }
+  #secondary .simcal-calendar-list ul li {
+    padding: 0;
+    margin: 0;
+    background: none;
+    font-size: 13px; }
+  .simcal-calendar-list .simcal-event-details {
+    font-size: 1em; }
+    .simcal-calendar-list .simcal-event-details h4 + p, .simcal-calendar-list .simcal-event-details .time + p {
+      display: none; }
 
 /*----- HHS MyHealthFinder -----*/
 .home_widget #widget_myhealthfinder img,

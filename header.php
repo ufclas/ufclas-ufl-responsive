@@ -16,8 +16,8 @@ if (of_get_option('opt_responsive') && $detect_mobile && !isset($_COOKIE["UFLmob
 
 <?php
 $custom_responsive_css = of_get_option('opt_responsive_css');
- if(!empty($custom_responsive_css) && $detect_mobile) {
-	if(!isset($_COOKIE["UFLmobileFull"])){
+ if (!empty($custom_responsive_css) && $detect_mobile) {
+	if (!isset($_COOKIE["UFLmobileFull"])){
     	echo '<style type="text/css">' . $custom_responsive_css . '</style>'."\n";
 	}
   }?>
@@ -51,13 +51,16 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 		</ul>
 	
   <?php
-	if($opt_responsive && $detect_mobile) {
-		if (isset($_COOKIE["UFLmobileFull"])){
-	 		include('library/php/uf-institutional-nav.php'); 
+	$disabled_global_elements = of_get_option('opt_disable_global_elements');
+	if (!$disabled_global_elements):	
+		if ($opt_responsive && $detect_mobile) {
+			if (isset($_COOKIE["UFLmobileFull"])){
+				include('library/php/uf-institutional-nav.php'); 
+			}
+		}else{
+			include('library/php/uf-institutional-nav.php'); 
 		}
-	}else{
-	 	include('library/php/uf-institutional-nav.php'); 
-	}
+	endif;
    ?>
 
 	<header role="banner">
@@ -66,12 +69,14 @@ $custom_responsive_css = of_get_option('opt_responsive_css');
 		<!-- begin website title logic -->
 			<?php ufandshands_site_title(); ?>
 		<!-- end website title logic -->
-	
+		
+        <?php if (!$disabled_global_elements): ?>
 		<ul id="header-social">
 			<?php ufclas_get_site_socialnetworks(); ?>
 		</ul>
+        <?php endif; ?>
 		<div id="header-search-wrap">
-			<?php if(has_nav_menu('header_links')) { //detects if the header_links menu is being used ?>
+			<?php if (has_nav_menu('header_links')) { //detects if the header_links menu is being used ?>
 			  <nav id="utility-links" class="span-7half" role="navigation">
 				<ul><?php wp_nav_menu( array('theme_location' => 'header_links', 'container' => false )); ?></ul>
 			  </nav>

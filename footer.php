@@ -2,7 +2,7 @@
 $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility"); ?>
 <footer role="contentinfo">
 	<?php if ( ( $opt_footer_widgets_visibility === 'all_pages' ) || ( $opt_footer_widgets_visibility === 'homepage_only' && is_front_page() ) || ( $opt_footer_widgets_visibility === 'subpages_only' && !is_front_page() ) ) : ?>
-		<?php if( is_active_sidebar('site_footer') ) : ?>
+		<?php if ( is_active_sidebar('site_footer') ): ?>
 			<div class="container append-bottom">
 			
 				<div id="footer_top" class="footer_count_<?php ufandshands_sidebar_detector('site_footer',false,true) ?>">
@@ -10,9 +10,10 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 	        		<div class="clear"></div>
 				</div>
 			</div>
-		<?php endif ?>
-	<?php endif ?>
+		<?php endif; ?>
+	<?php endif; ?>
 	
+    <?php if (!$disabled_global_elements): ?>
 	<div id="institutional-footer">
 	  <div class="container"><span class="uf-monogram"></span>
 
@@ -22,7 +23,7 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 			<div class="footer_logo">
 				<a href="http://www.ufl.edu/"><img src="<?php bloginfo('template_url'); ?>/images/uf_logo_full.png" alt="University of Florida" /></a>
 			</div>
-		<?php endif ?>
+		<?php endif; ?>
 		  
 			<ul>
 				<li><a href="https://webmail.ufl.edu/">WebMail</a></li>
@@ -73,6 +74,17 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 		  </div><!-- end #footer-links -->
 		</div><!-- end footer container -->
 	</div><!-- end institutional footer container -->
+    <?php else:  ?>
+        <!-- Global footer disabled -->
+		<?php if( is_active_sidebar('site_footer_custom') ): ?>
+			<div id="footer-custom" class="container append-bottom">
+				<div id="footer_top" class="footer_count_<?php ufandshands_sidebar_detector('site_footer_custom', true, true) ?>">
+					<?php ufandshands_sidebar_detector('site_footer_custom'); ?>
+	        		<div class="clear"></div>
+				</div>
+			</div><!-- end #footer-custom -->
+        <?php endif; ?>
+    <?php endif; ?>
 </footer>
 	
 <?php 
@@ -87,6 +99,6 @@ if(!empty($custom_js)) {
 <script> DD_belatedPNG.fix('img, .png_bg'); </script>
 <![endif]-->
 <?php wp_footer(); ?>
-<?php include 'library/php/responsive-selector.php' ?>
+<?php include 'library/php/responsive-selector.php'; ?>
 </body>
 </html>

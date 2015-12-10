@@ -166,6 +166,7 @@ function ufandshands_sidebar_widget_count($sidebar) {
 /* ----------------------------------------------------------------------------------- */
 
 $homepage_layout = of_get_option("opt_homepage_layout");
+$disabled_global_elements = of_get_option("opt_disable_global_elements");
 
 if ( function_exists ('register_sidebar')) { 
 		
@@ -241,7 +242,19 @@ if ( function_exists ('register_sidebar')) {
 			'after_widget' => '</div>',
 			'before_title' => '<h3>',
 			'after_title' => '</h3>',
-		)); 
+		));
+		
+		if ($disabled_global_elements) {
+		register_sidebar (array(
+			'name' => 'Site Custom Footer',
+			'id' => 'site_footer_custom',
+			'description' => 'Widgets in this area will be shown in custom FOOTER.',
+			'before_widget' => '<div class="widget footer_widget"><div class="box">',
+			'after_widget' => '</div></div>',
+			'before_title' => '<h3>',
+			'after_title' => '</h3>',
+		));
+		}
 } 
 
 	

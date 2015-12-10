@@ -1521,6 +1521,8 @@ footer .append-bottom {
   font-size: 1em;
   overflow: hidden;
   position: relative;
+  margin-bottom: 0;
+  padding-bottom: 1.5em;
 }
 
 #footer_top {
@@ -2237,7 +2239,7 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 
-/*----- Google Calendar Events Grid -----*/
+/*----- Simple Calendar Grid (formerly Google Calendar Events) -----*/
 
 .gce-page-grid .gce-calendar {
 	box-shadow: none;
@@ -2247,7 +2249,7 @@ only screen and (min-device-pixel-ratio: 2) {
 	}
 	.gce-month-title {
 		font-size: 1.8em;
-		font-family: 'ufshands',​Arial,​sans-serif;
+		font-family: 'ufshands', Arial, sans-serif;
 		color: #243778;
 		margin-bottom: 0.5em;
 	}
@@ -2269,26 +2271,120 @@ only screen and (min-device-pixel-ratio: 2) {
 		white-space: nowrap;
 	}
 }
+.simcal-calendar-grid {
+    box-shadow: none;
+    
+    .simcal-calendar-head {
+        border: none;   
+    }
+    .simcal-day {
+        background-color: #fff;
+        //border: 1px solid #ddd;
+        
+        &.simcal-day-void {
+            border: none;   
+        }
+    }
+    .simcal-week-day {
+		background-color: #666;
+		border-top: 1px solid #666;
+		border-bottom: 1px solid #666;
+		color: #fff;
+		padding: 1em 0;
+		white-space: nowrap;
+	}
+    .simcal-current h3 {
+        font-size: 1.8em; 
+    }
+    .simcal-nav-button {
+        text-shadow: none;   
+    }
+    .simcal-events {
+        font-size: 1em;
+        
+        .simcal-event {
+            background: none;
+            border-bottom: 1px dotted rgba(0,0,0,0.5);
+        }
+    }
+	#secondary &, #sidebar-nav & {
+		.simcal-calendar-head {
+			.simcal-nav {
+				background-color: transparent;
+				border-top-color: transparent;
+				border-bottom-color: transparent;
+			}
+			h3 {
+				background-color: transparent;
+				margin: 0 0 10px;
+				border-top: none;
+			}
+			.simcal-week-day {
+				background-color: rgba(0, 0, 0, 0.5);
+				border-bottom: none;
+			}
+		}
+		.simcal-month {
+			border: none;
+			background-color: rgba(0, 0, 0, 0.3);
+			
+			.simcal-day {
+				background-color: transparent;
+				border: 1px solid rgba(0, 0, 0, 0.2);
+				
+				.simcal-day-number {
+					color: rgba(255, 255, 255, 0.9) !important;
+					font-size: 11px;
+				}				
+				&:hover {
+					background-color: rgba(0, 0, 0, 0.5);
+					color: #fff !important;
+					
+					.simcal-day-number {
+						color: #fff !important;
+					}
+				}
+				&.simcal-today {
+					& > div {
+						border: none !important;
+						background-color: rgba(0, 0, 0, 0.5);
+						color: #fff !important;
+					}
+					.simcal-day-number {
+						color: #fff !important;
+					}
+				}
+			}
+			.simcal-day-label {
+				background-color: rgba(0, 0, 0, 0.3) !important;
+			}
+		}
+	}
+}
 .qtip-light {
 	border-color: #ccc;
 }
-.qtip .gce-event-info {
-	.event {
-		font-size: 1.1em;
-	
-		.event-date, .eventdate {
-			border-bottom: 2px solid #3D58AF;
-			padding-bottom: 2px;
-			
-			.month, .day {
-				display: inline-block;
-				font-family: Arial, Helvetica, sans-serif;
-				font-weight: bold;
-				color: #3D58AF;
-			}
-		}
-		.eventtitle h4 {
-			margin-top: 0.9em;
-		}
-	}
+.qtip {
+    box-shadow: 0px 10px 40px 5px rgba(0,0,0,0.2);
+    
+    .gce-event-info {
+        .event {
+            font-size: 1.1em;
+
+            .event-date, .eventdate {
+                border-bottom: 2px solid #3D58AF;
+                padding-bottom: 2px;
+
+                .month, .day {
+                    display: inline-block;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: bold;
+                    color: #3D58AF;
+                }
+            }
+            .eventtitle h4 {
+                margin-top: 0.9em;
+            }
+        }
+    }
 }
