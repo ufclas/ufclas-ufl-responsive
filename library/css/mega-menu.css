@@ -61,8 +61,7 @@
 	display: none;
 	font-size: .8em;
 	text-align: left;
-/*	background-color: #6377B2;*/
-  background-color: transparent;
+  	background-color: inherit; /* IE Compatibility */
 	margin: 0;
 	padding: 0;
 	/*-moz-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);

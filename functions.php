@@ -161,7 +161,7 @@ function ufandshands_header_adder() {
   
   // Print styles
   echo "<link rel='stylesheet' type='text/css' media='print' href='" . $bloginfo_url . "/library/css/print.css'>\n"; 
-  echo "<link rel='stylesheet' href='" . $bloginfo_url . "/style.css?20151204'>\n";
+  echo "<link rel='stylesheet' href='" . $bloginfo_url . "/style.css?20160203'>\n";
 
   if (of_get_option('opt_collapse_sidebar_nav')) {
     echo "<link rel='stylesheet' href='" . $bloginfo_url . "/library/css/sidebar-nav-collapse.css'>\n";
