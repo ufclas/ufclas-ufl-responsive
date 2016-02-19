@@ -28,7 +28,7 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 			<ul>
 				<li><a href="https://webmail.ufl.edu/">WebMail</a></li>
 				<li><a href="https://lss.at.ufl.edu/">e-Learning</a></li>
-				<li><a href="http://www.isis.ufl.edu/">ISIS</a></li>
+				<li><a href="https://one.uf.edu/">ONE.UF</a></li>
 				<li><a href="https://my.ufl.edu/ps/signon.html">MyUFL</a></li>
 				<li><a href="http://campusmap.ufl.edu/">Campus Map</a></li>
 				<li><a href="http://news.ufl.edu/">News</a></li>

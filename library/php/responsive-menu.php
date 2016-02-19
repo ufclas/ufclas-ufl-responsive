@@ -12,7 +12,7 @@
             <div id="responsive-menu-toggle" class="closed"><a title="responsive menu toggle" class="ir">Responsive Menu Toggle</a></div>
 			<div id="institutional-nav-min">
 			<div id="inst-nav">
-<div id="inst-nav-toggle">links</div><div id="inst-links"><a class="directory" href="https://directory.ufl.edu/">Directory</a><a class="e-learning" href="https://lss.at.ufl.edu/">e-Learning</a><a class="webmail" href="https://webmail.ufl.edu/">Webmail</a><a class="isis" href="http://www.isis.ufl.edu/">ISIS</a><a class="myufl" href="https://my.ufl.edu/ps/signon.html">myUFL</a><a class="campus-map" href="http://campusmap.ufl.edu/">Campus Map</a></div></div></div>
+<div id="inst-nav-toggle">links</div><div id="inst-links"><a class="directory" href="https://directory.ufl.edu/">Directory</a><a class="e-learning" href="https://lss.at.ufl.edu/">e-Learning</a><a class="webmail" href="https://webmail.ufl.edu/">Webmail</a><a class="isis" href="https://one.uf.edu/">ONE.UF</a><a class="myufl" href="https://my.ufl.edu/ps/signon.html">myUFL</a><a class="campus-map" href="http://campusmap.ufl.edu/">Campus Map</a></div></div></div>
     			<script>
 				$('#inst-nav-toggle').click(function() {
 					$('#inst-nav').toggleClass('toggle');
