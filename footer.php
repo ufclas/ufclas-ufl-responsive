@@ -13,7 +13,10 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 		<?php endif; ?>
 	<?php endif; ?>
 	
-    <?php if (!$disabled_global_elements): ?>
+    <?php 
+		global $disabled_global_elements;
+		if (!$disabled_global_elements): 
+	?>
 	<div id="institutional-footer">
 	  <div class="container"><span class="uf-monogram"></span>
 

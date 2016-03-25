@@ -14,7 +14,7 @@ class UFandShands_WP_Widget_RSS extends WP_Widget {
 		 * Check whether the widget should only be shown on a certain page
 		 */
 		global $wp_query;
-		$current_page = $wp_query->post->ID;
+		$current_page = ( isset( $wp_query->post ) )? $wp_query->post->ID:null;
 		$unique_page_id = ( isset($instance['unique_page_id']) )? $instance['unique_page_id']:null;
 		
 		if( !empty($unique_page_id) && is_page( $current_page ) ){

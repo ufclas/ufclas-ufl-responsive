@@ -11,7 +11,7 @@
       		
 			//Checks if any posts are assigned to the chosen Featured Content Category in Theme Options
 			$cat_posts = get_categories("include=" . $featured_content_category);
-			$cat_count = $cat_posts[0]->category_count; 
+			$cat_count = ( !empty($cat_posts) )? $cat_posts[0]->category_count:0; 
 			if($cat_count > 0) {
 	?>
 		<div id="feature-wrap" class="<?php if ($story_stacker) {echo "stacker";} ?>">
