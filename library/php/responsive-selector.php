@@ -40,6 +40,7 @@ function hideModal(){$('#mobile-modal').hide();}
 function responsiveEmbed(){$('iframe').wrap("<div class='responsive-embed'></div>")}
 $('#mobile-modal-close').click(function(){hideModal();});
 <?php
+global $detect_mobile;
 $fullLink = ("<li><p id='full-link' alt='change from mobile theme'>View Full Site</p></li>"); 
 $mobileLink = ("<li class='mobile-icon' id='mobile-link'><Switch to mobile</li>");
 if (isset($_COOKIE["UFLmobileMobile"]) ||  isset($_COOKIE["UFLmobileFull"])){

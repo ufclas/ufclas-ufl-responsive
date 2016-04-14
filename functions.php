@@ -23,6 +23,7 @@ include 'library/php/Mobile_Detect.php';
 $detect = new Mobile_Detect();
 $detect_mobile = $detect->isMobile();
 $opt_responsive = of_get_option('opt_responsive');
+$disabled_global_elements = of_get_option('opt_disable_global_elements');
 
 /* ----------------------------------------------------------------------------------- */
 /* Sharepoint Calendar integration
@@ -135,11 +136,9 @@ function ufandshands_header_adder() {
   global $detect_mobile;
   global $post;
   
-  $bloginfo_url = get_bloginfo('template_url');
+  $bloginfo_url = get_stylesheet_directory_uri();
   $bloginfo_name = get_bloginfo('name');
   $parent_org = of_get_option('opt_parent_colleges_institutes');
-  $custom_css = of_get_option('opt_custom_css');
-  $custom_responsive_css = of_get_option('opt_responsive_css');
 
   // Site <title> logic
   echo "<title>";
@@ -154,39 +153,6 @@ function ufandshands_header_adder() {
     echo " &raquo; " . $parent_org . " &raquo; University of Florida";
   }
   echo "</title>\n";
-
-
-  // A whole series of misc. CSS included without logic
-  // MOVED to scss  imports look back in svn to see indviduals
-  
-  // Print styles
-  echo "<link rel='stylesheet' type='text/css' media='print' href='" . $bloginfo_url . "/library/css/print.css'>\n"; 
-  echo "<link rel='stylesheet' href='" . $bloginfo_url . "/style.css?20160203'>\n";
-
-  if (of_get_option('opt_collapse_sidebar_nav')) {
-    echo "<link rel='stylesheet' href='" . $bloginfo_url . "/library/css/sidebar-nav-collapse.css'>\n";
-  }
-  if (function_exists('wpmega_init') && !is_admin())  {
-    echo "<link rel='stylesheet' href='" . $bloginfo_url . "/library/css/uber-menu.css'>\n";
-  } elseif (of_get_option('opt_ufl_menu') && !is_admin()) {
-	echo "<link rel='stylesheet' href='" . $bloginfo_url . "/library/css/ufl-menu.css'>\n";
-  } elseif (of_get_option('opt_mega_menu') && !is_admin()) {
-	echo "<link rel='stylesheet' href='" . $bloginfo_url . "/library/css/mega-menu.css'>\n";
-  } elseif(!is_admin()) {
-    echo "<link rel='stylesheet' href='" . $bloginfo_url . "/library/css/navigation.css'>\n";
-  }
-  if ($detect_mobile == false) {
-    echo "<link rel='stylesheet' href='" . $bloginfo_url . "/library/css/prettyPhoto.css'>\n";
-  }  
-  //Custom CSS
-  if(!empty($custom_css)) {
-    echo '<style type="text/css">' . $custom_css . '</style>'."\n";
-  }
-  // Alternate color for Call to Action item used for warnings and emergency alerts.
-  $actionitem_alternate = of_get_option('opt_actionitem_altcolor');
-  if ($actionitem_alternate) {
-  echo "<link rel='stylesheet' href='" . $bloginfo_url . "/library/css/actionitem-alternate.css'>";
-  }
 
   echo "<link rel='apple-touch-icon' href='" . $bloginfo_url . "/apple-touch-icon.png'>\n";
   
@@ -212,113 +178,19 @@ function ufandshands_header_adder() {
     }
   }
   
-  
-  // Facebook Insights fb:admins code allows you to enable this site to be analyzed by Facebook Insights
-  // http://www.virante.com/blog/2011/02/03/how-to-track-shares-from-facebook-pages/
-  $facebookinsights = of_get_option('opt_facebook_insights');
-  if ($facebookinsights) {
+	// Facebook Insights fb:admins code allows you to enable this site to be analyzed by Facebook Insights
+	// http://www.virante.com/blog/2011/02/03/how-to-track-shares-from-facebook-pages/
+	$facebookinsights = of_get_option('opt_facebook_insights');
+	if ($facebookinsights) {
 	echo "<meta property=\"fb:admins\" content=\"".$facebookinsights."\" />";  
-  }
-  
-  if ($detect_mobile == false) {
-        // Only initialize prettyPhoto for non-mobile version
-		echo '<script type="text/javascript">jQuery(function($){ $("a[rel^=\'prettyPhoto\']").prettyPhoto(); });</script>';
-  }
-  else {
-		// For mobile, set a cookie so that pages from mobile browsers will not be cached
-		if (of_get_option('opt_responsive') && !isset($_COOKIE["UFLmobileFull"])) {
-			setcookie("UFLmobileMobile", "enabled", time()+2592000, "/");
-		}
-  }
+	}
+	
+	// For mobile, set a cookie so that pages from mobile browsers will not be cached
+	if ( $detect_mobile && of_get_option('opt_responsive') && !isset($_COOKIE["UFLmobileFull"])) {
+		setcookie("UFLmobileMobile", "enabled", time()+2592000, "/");
+	}
 }
 add_action('wp_head', 'ufandshands_header_adder');
-
-//load common header scripts
-function ufandshands_header_common_scripts() {
-  if (!is_admin()) {
-    wp_deregister_script('jquery'); //remove the built-in one first.
-    wp_enqueue_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
-    wp_enqueue_script('modernizr', get_bloginfo('template_url') . '/library/js/modernizr-1.7.min.js');
-  }
-}
-add_action('wp_enqueue_scripts', 'ufandshands_header_common_scripts');
-
-//load common footer scripts
-function ufandshands_footer_common_scripts() {
-  global $detect_mobile;
-  if (!is_admin()) {
-    wp_enqueue_script('cycle', get_bloginfo('template_url') . '/library/js/jquery.cycle.min.js', array('jquery'), false, true);
-    //wp_enqueue_script('autoclear', get_bloginfo('template_url') . '/library/js/autoclear.js', false, false, true);
-    wp_enqueue_script('hoverintent', get_bloginfo('template_url') . '/library/js/jquery.hoverIntent.minified.js', array('jquery'), false, true);
-    wp_enqueue_script('institutional-nav', get_bloginfo('template_url') . '/library/js/institutional-nav.js', array('jquery', 'hoverintent'), false, true);
-    if ($detect_mobile == false) {
-        wp_enqueue_script('pretty-photo', get_bloginfo('template_url') . '/library/js/jquery.prettyPhoto.js', array('jquery'), false, true);
-    }    
-    wp_enqueue_script('common-script', get_bloginfo('template_url') . '/library/js/script.js', array('jquery'), false, true);
-    if (of_get_option('opt_responsive')) {
-        wp_enqueue_script('responsive-script', get_bloginfo('template_url') . '/library/js/responsive.js', array('jquery'), false, true);
-    }
-  }
-}
-add_action('wp_enqueue_scripts', 'ufandshands_footer_common_scripts');
-
-// load single scripts only on single pages
-function ufandshands_single_scripts() {
-  if(is_singular('post')  && !is_admin()) {
-    wp_enqueue_script('comment-reply'); // loads the javascript required for threaded comments 
-    wp_enqueue_script('plusone', "https://apis.google.com/js/plusone.js");
-    wp_enqueue_script('facebook', "https://connect.facebook.net/en_US/all.js#xfbml=1");
-    wp_enqueue_script('twitter', "https://platform.twitter.com/widgets.js");
-  }
-}
-add_action('wp_print_scripts', 'ufandshands_single_scripts');
-
-// load mega-menu script
-function ufandshands_mega_menu() {
-  if(of_get_option('opt_mega_menu') && !is_admin()) {
-    wp_enqueue_script('megamenu', get_bloginfo('template_url') . '/library/js/mega-menu.js', array('jquery', 'hoverintent'), false, true);
-  } 
-}
-add_action('wp_enqueue_scripts', 'ufandshands_mega_menu');
-
-// load default menu script
-function ufandshands_default_menu()  {
-  if(!of_get_option('opt_ufl_menu') && !of_get_option('opt_mega_menu') && !is_admin()) {
-    if (!of_get_option('opt_responsive')) {
-      wp_enqueue_script('defaultmenu', get_bloginfo('template_url') . '/library/js/default-menu.js', array('jquery', 'hoverintent'), false, true);}
-    else  {
-      wp_enqueue_script('responsivemenu', get_bloginfo('template_url') . '/library/js/responsive-menu.js', false, true);}
-  }
-}
-add_action('wp_enqueue_scripts', 'ufandshands_default_menu');
-
-
-//load scripts only if not mobile
-if (!$detect_mobile || isset($_COOKIE["UFLmobileFull"])){
-	// load story-stacker script
-	function ufandshands_story_stacker() {
-	  if(of_get_option('opt_story_stacker') && !is_admin()) {
-	    wp_enqueue_script('storystacker', get_bloginfo('template_url') . '/library/js/story-stacker.js', array('jquery'), false, true);
-	  }
-	}
-	add_action('wp_enqueue_scripts', 'ufandshands_story_stacker');
-	
-	function ufandshands_feature_slider() {
-	  // load autoclear	
-    wp_enqueue_script('autoclear', get_bloginfo('template_url') . '/library/js/autoclear.js', false, false, true);
-	  
-	  // load slider script
-	  if((of_get_option('opt_number_of_posts_to_show') > '1') && !(of_get_option('opt_story_stacker')) && !is_admin()) {
-	    wp_enqueue_script('featureslider', get_bloginfo('template_url') . '/library/js/feature-slider.js', array('jquery'), false, true);
-	  }
-	}
-	add_action('wp_enqueue_scripts', 'ufandshands_feature_slider');
-}
-
-
-
-
-
 
 /* ----------------------------------------------------------------------------------- */
 /* 	Small Misc. Unrelated Directives
@@ -381,20 +253,6 @@ function remove_featured_image_field() {
 /* ----------------------------------------------------------------------------------- */
 /* 	Gravity Forms custom code section
 /* ----------------------------------------------------------------------------------- */
-
-/*
-// Gravity forms required inclusions
-
-if (!is_admin()) {
-  wp_enqueue_script("gforms_ui_datepicker", plugins_url("gravityforms/js/jquery-ui/ui.datepicker.js"), array("jquery"), "1.3.9", true);
-  wp_enqueue_script("gforms_datepicker", plugins_url("gravityforms/js/datepicker.js"), array("gforms_ui_datepicker"), "1.3.9", true);
-  wp_enqueue_script("gforms_conditional_logic_lib", plugins_url("gravityforms/js/conditional_logic.js"), array("gforms_ui_datepicker"), "1.3.9", true);
-  wp_enqueue_style("gforms_css", plugins_url("gravityforms/css/forms.css"));
-}
-
-// Gravity Forms tabindex fix
-add_filter("gform_tabindex", create_function("", "return 15;"));
-*/
 
 
 /* ----------------------------------------------------------------------------------- */
@@ -721,28 +579,20 @@ function ufandshands_get_socialnetwork_url($type) {
 
 function ufandshands_sidebar_navigation($post) {
   $sidebar_nav_walker = new ufandshands_sidebar_nav_walker;
-
-  $children = wp_list_pages(array(
-      'walker' => $sidebar_nav_walker,
-      'title_li' => '',
-      'child_of' => $post->ID,
-      'echo' => 0
-          ));
-
   $post_ancestors = get_post_ancestors($post);
-  
-  if (count($post_ancestors)) {
+
+  if ( count($post_ancestors) ) {
     $top_page = array_pop($post_ancestors);
     
     $children = wp_list_pages(array(
         'walker' => $sidebar_nav_walker,
         'title_li' => '',
         'child_of' => $top_page,
-        'echo' => 0
+        'echo' => false
             ));
   } elseif (is_page()) {
     $children = wp_list_pages(array(
-        'walker' => new ufandshands_sidebar_nav_walker,
+        'walker' => $sidebar_nav_walker,
         'title_li' => '',
         'child_of' => $post->ID,
         'echo' => false,
@@ -750,11 +600,17 @@ function ufandshands_sidebar_navigation($post) {
             ));
     $sect_title = the_title('', '', false);
   }
+  else {
+	 $children = wp_list_pages(array(
+      'walker' => $sidebar_nav_walker,
+      'title_li' => '',
+      'child_of' => $post->ID,
+      'echo' => false
+          )); 
+  }
+  
   if ($children || is_active_sidebar('page_sidebar')) {
-
-    if ($children) {
       return $children;
-    }
   }
 }
 
@@ -825,65 +681,57 @@ function ufandshands_content_title() {
 /* Title (<title></title> Functions
 /* ----------------------------------------------------------------------------------- */
 
-// Title and tagline font size function
-
-$site_title_size = of_get_option("opt_title_size");
-$site_title_padding = of_get_option("opt_title_pad");
-$site_tagline_size = of_get_option("opt_tagline_size");
-
-if (!empty($site_title_size) || !empty($site_title_padding) || !empty($site_tagline_size)) {
-
-  function ufandshands_site_title_size() {
-    global $site_title_size;
-    global $site_title_padding;
-    global $site_tagline_size;
-
-    $site_title_embedded_css = "<style type='text/css'>";
-    if (!empty($site_title_size)) {
-      $site_title_embedded_css .= "#header-title h1#header-title-text, #header-title h2#header-title-text { font-size: " . $site_title_size . "em !important; }";
-    }
-    if (!empty($site_title_padding)) {
-      //DISABLED - padding on wrong side of the street $site_title_embedded_css .= "header #header-title h1#header-title-text, #header-title h2#header-title-text { padding-bottom: " . $site_title_padding . "px !important; }";
-	  $site_title_embedded_css .= "header #header-title h2#header-title-tagline, #header-title h3#header-title-tagline { padding-top: " . $site_title_padding . "px !important; }";
-    }
-    if (!empty($site_tagline_size)) {
-      $site_title_embedded_css .= "header #header-title h2#header-title-tagline, #header-title h3#header-title-tagline { font-size: " . $site_tagline_size . "em !important; }";
-    }
-    $site_title_embedded_css .= "</style>";
-
-    echo $site_title_embedded_css;
-  }
-
-  add_action('wp_head', 'ufandshands_site_title_size');
+function ufandshands_site_title_size() {
+    $site_title_size = of_get_option("opt_title_size");
+	$site_title_padding = of_get_option("opt_title_pad");
+	$site_tagline_size = of_get_option("opt_tagline_size");
+	
+	if (!empty($site_title_size) || !empty($site_title_padding) || !empty($site_tagline_size)) {
+		$site_title_embedded_css = "<style type='text/css'>";
+		if (!empty($site_title_size)) {
+		  $site_title_embedded_css .= "#header-title h1#header-title-text, #header-title h2#header-title-text { font-size: " . $site_title_size . "em !important; }";
+		}
+		if (!empty($site_title_padding)) {
+		  //DISABLED - padding on wrong side of the street $site_title_embedded_css .= "header #header-title h1#header-title-text, #header-title h2#header-title-text { padding-bottom: " . $site_title_padding . "px !important; }";
+		  $site_title_embedded_css .= "header #header-title h2#header-title-tagline, #header-title h3#header-title-tagline { padding-top: " . $site_title_padding . "px !important; }";
+		}
+		if (!empty($site_tagline_size)) {
+		  $site_title_embedded_css .= "header #header-title h2#header-title-tagline, #header-title h3#header-title-tagline { font-size: " . $site_tagline_size . "em !important; }";
+		}
+		$site_title_embedded_css .= "</style>";
+	
+		echo $site_title_embedded_css;
+	}
 }
+add_action('wp_head', 'ufandshands_site_title_size');
 
 // Alternate Logo
 // Logic has to run outside of primary title function because function gets called AFTER wp_head is processsed
-$ufandshands_alternate_logo = of_get_option("opt_alternative_site_logo");
-if (!empty($ufandshands_alternate_logo)) {
-
-  function ufandshands_alternate_logo() {
-    global $ufandshands_alternate_logo;
-    $alternative_site_logo_height = of_get_option("opt_alternative_site_logo_height");
-    $alternative_site_logo_width = of_get_option("opt_alternative_site_logo_width");
-    $alternate_logo_css = "<style type='text/css'>";
-    $alternate_logo_css .= "header #header-title #header-parent-organization-logo.none, header #header-title #header-parent-organization-logo.alt {
-													display: block !important;
-													float: left;
-													background-color: transparent;
-													background-image: url(" . $ufandshands_alternate_logo . ");
-													background-repeat: no-repeat;
-													background-attachment: scroll;
-													height: " . $alternative_site_logo_height . "px;
-													width: " . $alternative_site_logo_width . "px;
-													margin-right: 10px;	}";
-    $alternate_logo_css .= "</style>";
-
-    echo $alternate_logo_css;
+function ufandshands_alternate_logo() {
+    $ufandshands_alternate_logo = of_get_option("opt_alternative_site_logo");
+	
+	if (!empty($ufandshands_alternate_logo)) {
+	
+		$alternative_site_logo_height = of_get_option("opt_alternative_site_logo_height");
+		$alternative_site_logo_width = of_get_option("opt_alternative_site_logo_width");
+		$alternate_logo_css = "<style type='text/css'>";
+		$alternate_logo_css .= "header #header-title #header-parent-organization-logo.none, header #header-title #header-parent-organization-logo.alt {
+									display: block !important;
+									float: left;
+									background-color: transparent;
+									background-image: url(" . $ufandshands_alternate_logo . ");
+									background-repeat: no-repeat;
+									background-attachment: scroll;
+									height: " . $alternative_site_logo_height . "px;
+									width: " . $alternative_site_logo_width . "px;
+									margin-right: 10px;	}";
+		$alternate_logo_css .= "</style>";
+	
+		echo $alternate_logo_css;
   }
-
-  add_action('wp_head', 'ufandshands_alternate_logo');
 }
+add_action('wp_head', 'ufandshands_alternate_logo');
+
 
 // Title and tagline generation function
 function ufandshands_site_title() {
@@ -991,7 +839,7 @@ function ufl_check_email_address($email) {
 
 // WordPress decided to remove the oEmbed width from settings so we have to change it here now.
 // This is the default (single post size), overwritten where needed. 
-if ( ! isset( $content_width ) ) $content_width = 621;
+if ( ! isset( $content_width ) ) {$content_width = 621;}
 
 // Disables all core updates (Removed to manage updates in wp-config or plugin file instead) 
 // define( 'WP_AUTO_UPDATE_CORE', false ); 
@@ -1003,22 +851,7 @@ if ( ! isset( $content_width ) ) $content_width = 621;
 include_once( 'library/php/functions-shibboleth.php' );
 
 // Include site specific functions. This file is normally blank unless overlaid.
-@include_once ( 'overlay-functions.php' );
-
-// a conditional statement to add flexible slider if responsive theme is active
-if (of_get_option('opt_responsive') && $detect_mobile) {
-    function my_add_scripts() {
-        wp_enqueue_script('flexslider', get_bloginfo('stylesheet_directory').'/library/js/jquery.flexslider-min.js', array('jquery'));
-    	wp_enqueue_script('autoclear_reponsive', get_bloginfo('template_url') . '/library/js/autoclear-responsive.js', false, false, true);
-    }
-add_action('wp_enqueue_scripts', 'my_add_scripts');
-}
-if (of_get_option('opt_responsive') && $detect_mobile) {
-    function my_add_styles() {
-            wp_enqueue_style('flexslider', get_bloginfo('stylesheet_directory').'/library/css/flexslider.css');
-    }
-add_action('wp_enqueue_scripts', 'my_add_styles');
-}
+include_once ( 'overlay-functions.php' );
 
 // Include UF CLAS functions
 include_once( 'library/php/functions-ufclas.php' );

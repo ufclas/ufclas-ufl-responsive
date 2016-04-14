@@ -7,11 +7,11 @@
 		$featured_content_category = of_get_option("opt_featured_category");
 		$story_stacker = of_get_option("opt_story_stacker");
 	    
-		if( !empty($featured_content_category) && !($featured_content_category=="Choose a Category") ) {  
+		if( !empty($featured_content_category) && ($featured_content_category != "Choose a Category") ) {  
       		
 			//Checks if any posts are assigned to the chosen Featured Content Category in Theme Options
 			$cat_posts = get_categories("include=" . $featured_content_category);
-			$cat_count = ( !empty($cat_posts) )? $cat_posts[0]->category_count:0; 
+			$cat_count = ( !empty( $cat_posts ) )? $cat_posts[0]->category_count:0; 
 			if($cat_count > 0) {
 	?>
 		<div id="feature-wrap" class="<?php if ($story_stacker) {echo "stacker";} ?>">

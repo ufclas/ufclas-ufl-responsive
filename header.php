@@ -6,35 +6,12 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-		<?php wp_head(); ?>
+		
 <?php
-if (of_get_option('opt_responsive') && $detect_mobile && !isset($_COOKIE["UFLmobileFull"])) {
-        echo "<link rel='stylesheet' href='" . get_stylesheet_directory_uri() . "/library/css/responsive.css'>\n";
-    	echo "<meta name='viewport' content='width=device-width, initial-scale=1'>\n";	
-}
+global $detect_mobile;
+global $opt_responsive;
 ?>
-
-<?php
-$custom_responsive_css = of_get_option('opt_responsive_css');
- if (!empty($custom_responsive_css) && $detect_mobile) {
-	if (!isset($_COOKIE["UFLmobileFull"])){
-    	echo '<style type="text/css">' . $custom_responsive_css . '</style>'."\n";
-	}
-  }?>
-
-<?php if (current_user_can( 'manage_options' )): ?>	
-<style>
-#institutional-nav-min{
-	top:83px;
-}
-#responsive-header-search-wrap{
-	top:118px;
-}
-#responsive-menu-toggle{
-	top:89px;
-}
-</style>
-<?php endif;  ?>
+<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>

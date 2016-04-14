@@ -1,5 +1,8 @@
 <?php 
-$opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility"); ?>
+global $disabled_global_elements;
+global $detect_mobile;
+$opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
+?>
 <footer role="contentinfo">
 	<?php if ( ( $opt_footer_widgets_visibility === 'all_pages' ) || ( $opt_footer_widgets_visibility === 'homepage_only' && is_front_page() ) || ( $opt_footer_widgets_visibility === 'subpages_only' && !is_front_page() ) ) : ?>
 		<?php if ( is_active_sidebar('site_footer') ): ?>
@@ -14,7 +17,7 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
 	<?php endif; ?>
 	
     <?php 
-		global $disabled_global_elements;
+		
 		if (!$disabled_global_elements): 
 	?>
 	<div id="institutional-footer">

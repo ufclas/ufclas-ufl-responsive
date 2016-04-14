@@ -32,8 +32,9 @@
             <h1 class="page-title medium-blue">Archive for <span class="light-blue">&ldquo;</span><strong class="dark-blue"><?php wp_title('', true, 'right'); ?></strong><span class="light-blue">&rdquo;</span> <a title="Subscribe to <?php wp_title('', true, 'right'); ?> RSS Feed" href="feed/"><img class="rss-icon" src="<?php bloginfo('template_directory'); ?>/images/rss.png" alt="Subscribe to RSS Feed" /></a></h1>
 
           <?php /* If this is an author archive */
-          } elseif (is_author()) { ?>
-            <h1 class="page-title medium-blue">All Posts by <span class="light-blue">&ldquo;</span><strong class="dark-blue"><?php echo $curauth->display_name; ?></strong><span class="light-blue">&rdquo;</span> <a title="Subscribe to <?php echo $curauth->display_name; ?> RSS Feed" href="feed/"><img class="rss-icon" src="<?php bloginfo('template_directory'); ?>/images/rss.png" alt="Subscribe to RSS Feed" /></a></h1>
+          } elseif (is_author()) { 
+		  ?>
+            <h1 class="page-title medium-blue">All Posts by <span class="light-blue">&ldquo;</span><strong class="dark-blue"><?php echo get_the_author(); ?></strong><span class="light-blue">&rdquo;</span> <a title="Subscribe to <?php echo get_the_author(); ?> RSS Feed" href="feed/"><img class="rss-icon" src="<?php bloginfo('template_directory'); ?>/images/rss.png" alt="Subscribe to RSS Feed" /></a></h1>
 
           <?php /* If this is a paged archive */
           } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) { ?>

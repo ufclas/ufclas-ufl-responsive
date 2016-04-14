@@ -115,3 +115,158 @@ function ufclas_responsive_widgets_init() {
 	}
 }
 add_action( 'widgets_init', 'ufclas_responsive_widgets_init' );
+
+/**
+ * Add styles and scripts using wp_enqueue_scripts instead of wp_head
+ * @since 0.8.4
+ */
+function ufclas_responsive_styles_scripts(){
+	global $detect_mobile;
+	$opt_responsive = of_get_option('opt_responsive');
+	$actionitem_alternate = of_get_option('opt_actionitem_altcolor');
+	$collapse_sidebar_nav = of_get_option('opt_collapse_sidebar_nav');
+	$ufl_menu = of_get_option('opt_ufl_menu');
+	$mega_menu = of_get_option('opt_mega_menu');
+	$story_stacker = of_get_option('opt_story_stacker');
+	$opt_number_posts = of_get_option('opt_number_of_posts_to_show');
+	
+	/**
+	 * Add Stylesheets
+	 */
+
+	wp_enqueue_style( 'ufl-responsive-print', get_stylesheet_directory_uri() . '/library/css/print.css', array(), NULL, 'print' );
+	wp_enqueue_style( 'ufl-reponsive', get_stylesheet_uri(), array(), '0.8.4', 'all' );
+	
+	if ( $collapse_sidebar_nav ) {
+		wp_enqueue_style( 'ufl-responsive-sidebar-nav', get_stylesheet_directory_uri() . '/library/css/sidebar-nav-collapse.css', array(), NULL, 'all' );
+  	}
+	
+	// Menu styles
+	if ( function_exists('wpmega_init') ) {
+		wp_enqueue_style( 'ufl-responsive-uber-menu', get_stylesheet_directory_uri() . '/library/css/uber-menu.css', array(), NULL, 'all' );
+	} elseif ( $ufl_menu ){
+		wp_enqueue_style( 'ufl-responsive-ufl-menu', get_stylesheet_directory_uri() . '/library/css/ufl-menu.css', array(), NULL, 'all' );
+	} elseif ( $mega_menu ){
+		wp_enqueue_style( 'ufl-responsive-mega-menu', get_stylesheet_directory_uri() . '/library/css/mega-menu.css', array(), NULL, 'all' );
+	} else {
+		wp_enqueue_style( 'ufl-responsive-navigation', get_stylesheet_directory_uri() . '/library/css/navigation.css', array(), NULL, 'all' );
+	}
+	
+	// PrettyPhoto
+	if ( !$detect_mobile ){
+		wp_enqueue_style( 'ufl-responsive-prettyPhoto', get_stylesheet_directory_uri() . '/library/css/prettyPhoto.css', array(), NULL, 'screen' );
+  	}  
+
+	// Alternate color for Call to Action item used for warnings and emergency alerts.
+	if ($actionitem_alternate){
+		wp_enqueue_style( 'ufl-responsive-actionitem', get_stylesheet_directory_uri() . '/library/css/actionitem-alternate.css', array(), NULL, 'screen' );
+	}
+	
+	// Responsive
+	if ($opt_responsive && $detect_mobile && !isset($_COOKIE["UFLmobileFull"])){
+		wp_enqueue_style('ufl-responsive', get_stylesheet_directory_uri() . '/library/css/responsive.css');
+	}
+	
+	/**
+	 * Add Scripts
+	 */
+	 
+	// Header Scripts
+	wp_deregister_script('jquery'); //remove the built-in one first.
+	wp_enqueue_script('jquery', "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js", array(), NULL, false);
+	wp_enqueue_script('modernizr', get_stylesheet_directory_uri() . '/library/js/modernizr-1.7.min.js', array('jquery'), NULL, false);
+	
+	// Footer Scripts
+	wp_enqueue_script('cycle', get_stylesheet_directory_uri() . '/library/js/jquery.cycle.min.js', array('jquery'), NULL, true);
+	wp_enqueue_script('hoverintent', get_stylesheet_directory_uri() . '/library/js/jquery.hoverIntent.minified.js', array('jquery'), NULL, true);
+	wp_enqueue_script('institutional-nav', get_stylesheet_directory_uri() . '/library/js/institutional-nav.js', array('jquery', 'hoverintent'), NULL, true);
+    
+	if ( !$detect_mobile ){
+        wp_enqueue_script('pretty-photo', get_stylesheet_directory_uri() . '/library/js/jquery.prettyPhoto.js', array('institutional-nav'), NULL, true);
+    }
+  	wp_enqueue_script('common-script', get_stylesheet_directory_uri() . '/library/js/script.js', array('institutional-nav'), NULL, true);
+	
+	if ($opt_responsive){
+        wp_enqueue_script('responsive-script', get_stylesheet_directory_uri() . '/library/js/responsive.js', array('common-script'), NULL, true);
+    }
+	wp_enqueue_script('autoclear', get_stylesheet_directory_uri() . '/library/js/autoclear.js', array(), NULL, true);
+	
+	if (is_singular('post')){
+		wp_enqueue_script('comment-reply'); // loads the javascript required for threaded comments 
+		wp_enqueue_script('plusone', "https://apis.google.com/js/plusone.js");
+		wp_enqueue_script('facebook', "https://connect.facebook.net/en_US/all.js#xfbml=1");
+		wp_enqueue_script('twitter', "https://platform.twitter.com/widgets.js");
+	}
+	
+	// load mega-menu script
+	if ( $mega_menu ){
+    	wp_enqueue_script('megamenu', get_stylesheet_directory_uri() . '/library/js/mega-menu.js', array('jquery', 'hoverintent'), NULL, true);
+  	}
+	
+	// load default menu script
+	if(!$ufl_menu && !$mega_menu) {
+		if (!$opt_responsive) {
+		  wp_enqueue_script('defaultmenu', get_stylesheet_directory_uri() . '/library/js/default-menu.js', array('jquery', 'hoverintent'), NULL, true);
+		  }
+		else  {
+		  wp_enqueue_script('responsivemenu', get_stylesheet_directory_uri() . '/library/js/responsive-menu.js', array(), NULL, true);
+		  }
+	}
+	
+	if (!$detect_mobile || isset($_COOKIE["UFLmobileFull"])){
+		// load story-stacker script
+		if($story_stacker) {
+			wp_enqueue_script('storystacker', get_stylesheet_directory_uri() . '/library/js/story-stacker.js', array('jquery'), NULL, true);
+		}
+	  
+	  	// load slider script
+		if(($opt_number_posts > '1') && !($story_stacker)) {
+			wp_enqueue_script('featureslider', get_stylesheet_directory_uri() . '/library/js/feature-slider.js', array('jquery'), NULL, true);
+		}
+	}
+	// a conditional statement to add flexible slider if responsive theme is active		
+	if ($opt_responsive && $detect_mobile) {
+		wp_enqueue_style('flexslider', get_stylesheet_directory_uri() .'/library/css/flexslider.css');
+		wp_enqueue_script('flexslider', get_stylesheet_directory_uri().'/library/js/jquery.flexslider-min.js', array('jquery'));
+		wp_enqueue_script('autoclear_reponsive', get_stylesheet_directory_uri() . '/library/js/autoclear-responsive.js', false, NULL, true);
+	}
+
+	// Remove plugin styles
+	if ( is_home() || is_front_page() ){
+		wp_dequeue_style('jquery-issuem-flexslider');
+		wp_dequeue_style('tablepress-default');
+		wp_dequeue_script('jquery-issuem-flexslider');
+	}
+}
+add_action('wp_enqueue_scripts', 'ufclas_responsive_styles_scripts', 20);
+
+/**
+ * Inline scripts and head content
+ * @since 0.8.4
+ */
+function ufclas_responsive_inline_head(){
+	global $detect_mobile, $opt_responsive;
+	$custom_css = of_get_option('opt_custom_css');
+  	$custom_responsive_css = of_get_option('opt_responsive_css');
+	
+	if ($opt_responsive && $detect_mobile && !isset($_COOKIE["UFLmobileFull"])) {
+			echo '<meta name="viewport" content="width=device-width, initial-scale=1">' . "\n";	
+	}
+	
+	//Custom CSS
+	if(!empty($custom_css)) {
+		echo '<style type="text/css">' . $custom_css . '</style>'."\n";
+	}
+	
+	//Custom Responsive CSS
+	if (!empty($custom_responsive_css) && $detect_mobile) {
+		if (!isset($_COOKIE["UFLmobileFull"])){
+			echo '<style type="text/css">' . $custom_responsive_css . '</style>' . "\n";
+		}
+	}
+	
+	if (current_user_can( 'manage_options' )) {	
+		echo '<style>#institutional-nav-min {top:83px;} #responsive-header-search-wrap{top:118px;} #responsive-menu-toggle{top:89px;}</style>';
+	}
+}
+add_action('wp_head', 'ufclas_responsive_inline_head');
