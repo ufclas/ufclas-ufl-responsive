@@ -29,7 +29,7 @@ function ufandshands_widget_shortcode($atts) {
 		'specific_category_id' => ''
     ), $atts));
     
-    $widget_name = wp_specialchars($widget_name);
+    $widget_name = esc_html($widget_name);
     
     if (!is_a($wp_widget_factory->widgets[$widget_name], 'WP_Widget')):
 	

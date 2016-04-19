@@ -92,18 +92,7 @@ $opt_footer_widgets_visibility = of_get_option("opt_footer_widgets_visibility");
         <?php endif; ?>
     <?php endif; ?>
 </footer>
-	
-<?php 
-//Custom JS
-$custom_js = of_get_option('opt_custom_js');
-if(!empty($custom_js)) {
-	echo '<script type="text/javascript">' . $custom_js . '</script>'."\n";
-}
-?>
-<!--[if lt IE 7 ]>
-<script src="<?php bloginfo('template_url'); ?>/library/js/dd_belatedpng.js"></script>
-<script> DD_belatedPNG.fix('img, .png_bg'); </script>
-<![endif]-->
+
 <?php wp_footer(); ?>
 <?php include 'library/php/responsive-selector.php'; ?>
 </body>

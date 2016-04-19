@@ -129,6 +129,7 @@ function ufclas_responsive_styles_scripts(){
 	$mega_menu = of_get_option('opt_mega_menu');
 	$story_stacker = of_get_option('opt_story_stacker');
 	$opt_number_posts = of_get_option('opt_number_of_posts_to_show');
+	$custom_js = of_get_option('opt_custom_js');
 	
 	/**
 	 * Add Stylesheets
@@ -139,7 +140,7 @@ function ufclas_responsive_styles_scripts(){
 	
 	if ( $collapse_sidebar_nav ) {
 		$custom_css  = '#sidebar-nav .children,#sidebar-nav ul ul{display:none;list-style-type:none}#sidebar-nav .current_page_ancestor .children,#sidebar-nav .current_page_item .children,#sidebar-nav .current_page_parent .children,#sidebar-nav .current_page_parent ul{display:block}';
-		wp_add_inline_style('ufl-responsive-sidbar-collapse', $custom_css);
+		wp_add_inline_style('ufl-responsive', $custom_css);
   	}
 	
 	// Menu styles
@@ -161,12 +162,12 @@ function ufclas_responsive_styles_scripts(){
 	// Alternate color for Call to Action item used for warnings and emergency alerts.
 	if ($actionitem_alternate){
 		$custom_css  = '#header-actionitem{bottom:0;position:absolute;right:25px;border:1px solid #b50101;border-bottom:none;border-top:none;-moz-box-shadow:inset 0 1px 0 0 #f80101;-webkit-box-shadow:inset 0 1px 0 0 #f80101;box-shadow:inset 0 1px 0 0 #f80101;color:#fff;font-family:helvetica,arial,sans-serif;font-size:14px;font-weight:700;padding:7px 15px 5px;text-decoration:none;text-align:center;text-shadow:0 1px 1px #f80101;background:transparent url(' . get_stylesheet_directory_uri() . '/images/bg-custom-button-red.png) 0 0 repeat-x;width:auto}';
-		wp_add_inline_style('ufl-responsive-actionitem', $custom_css);
+		wp_add_inline_style('ufl-responsive', $custom_css);
 	}
 	
 	// Responsive
 	if ($opt_responsive && $detect_mobile && !isset($_COOKIE["UFLmobileFull"])){
-		wp_enqueue_style('ufl-responsive', get_stylesheet_directory_uri() . '/library/css/responsive.min.css');
+		wp_enqueue_style('ufl-responsive-mobile', get_stylesheet_directory_uri() . '/library/css/responsive.min.css');
 	}
 	
 	/**
@@ -181,36 +182,42 @@ function ufclas_responsive_styles_scripts(){
 	// Footer Scripts
 	wp_enqueue_script('cycle', get_stylesheet_directory_uri() . '/library/js/jquery.cycle.min.js', array('jquery'), NULL, true);
 	wp_enqueue_script('hoverintent', get_stylesheet_directory_uri() . '/library/js/jquery.hoverIntent.minified.js', array('jquery'), NULL, true);
-	
-	if ( !$detect_mobile ){
-        wp_enqueue_script('pretty-photo', get_stylesheet_directory_uri() . '/library/js/jquery.prettyPhoto.js', array(), NULL, true);
-    }
   	wp_enqueue_script('common-script', get_stylesheet_directory_uri() . '/library/js/script.min.js', array(), NULL, true);
+	
+	// institutional-nav.js, small file minified and added inline to reduce requests
+	$inline_js = "/* institutional-nav.js */ \n";
+	$inline_js .= '$(document).ready(function(){function t(){$(this).find(".sub-mega").stop().fadeTo("fast",1).show()}function i(){$(this).find(".sub-mega").stop().fadeTo("fast",0,function(){$(this).hide()})}var n={sensitivity:1,interval:50,over:t,timeout:500,out:i};$("#institutional-nav .sub-mega").css({opacity:"0"}),$("#institutional-nav li").hoverIntent(n)});';
+	wp_add_inline_script('common-script', $inline_js);
+	
 	
 	if ($opt_responsive){
         wp_enqueue_script('responsive-script', get_stylesheet_directory_uri() . '/library/js/responsive.min.js', array('common-script'), NULL, true);
     }
 	
-	if (is_singular('post')){
-		wp_enqueue_script('comment-reply'); // loads the javascript required for threaded comments 
-		wp_enqueue_script('plusone', "https://apis.google.com/js/plusone.js");
-		wp_enqueue_script('facebook', "https://connect.facebook.net/en_US/all.js#xfbml=1");
-		wp_enqueue_script('twitter', "https://platform.twitter.com/widgets.js");
-	}
-	
-	// load mega-menu script
+	// load menu scripts
 	if ( $mega_menu ){
     	wp_enqueue_script('megamenu', get_stylesheet_directory_uri() . '/library/js/mega-menu.min.js', array('jquery', 'hoverintent'), NULL, true);
   	}
+	elseif ( !$ufl_menu && !$opt_responsive ) {
+		wp_enqueue_script('defaultmenu', get_stylesheet_directory_uri() . '/library/js/default-menu.min.js', array('jquery', 'hoverintent'), NULL, true);
+	}
+	else {
+		wp_enqueue_script('responsivemenu', get_stylesheet_directory_uri() . '/library/js/responsive-menu.min.js', array(), NULL, true);
+	}
 	
-	// load default menu script
-	if(!$ufl_menu && !$mega_menu) {
-		if (!$opt_responsive) {
-		  wp_enqueue_script('defaultmenu', get_stylesheet_directory_uri() . '/library/js/default-menu.min.js', array('jquery', 'hoverintent'), NULL, true);
-		  }
-		else  {
-		  wp_enqueue_script('responsivemenu', get_stylesheet_directory_uri() . '/library/js/responsive-menu.min.js', array(), NULL, true);
-		  }
+	if ( !$detect_mobile ){
+		wp_enqueue_script('pretty-photo', get_stylesheet_directory_uri() . '/library/js/jquery.prettyPhoto.js', array(), NULL, true);
+		
+		// autoclear.js, small file minified and added inline to reduce requests
+		$inline_js = "/* autoclear.js */ \n";
+		$inline_js .= 'function init(){for(var t=jQuery,e=t("input#header-search-field"),i=0;i<e.length;i++)"text"==e[i].type&&(e[i].setAttribute("rel",e[i].defaultValue),e[i].onfocus=function(){return this.value!=this.getAttribute("rel")?!1:void(this.value="")},e[i].onblur=function(){return""!=this.value?!1:void(this.value=this.getAttribute("rel"))},e[i].ondblclick=function(){this.value=this.getAttribute("rel")})}document.childNodes&&(window.onload=init);';
+		wp_add_inline_script('common-script', $inline_js);
+	}
+	else {
+		// a conditional statement to add flexible slider if responsive theme is active		
+		wp_enqueue_style('flexslider', get_stylesheet_directory_uri() .'/library/css/flexslider.css', array(), NULL, 'screen');
+		wp_enqueue_script('flexslider', get_stylesheet_directory_uri().'/library/js/jquery.flexslider-min.js', array('jquery'), NULL, true);
+		wp_enqueue_script('autoclear_reponsive', get_stylesheet_directory_uri() . '/library/js/autoclear-responsive.min.js', false, NULL, true);
 	}
 	
 	if (!$detect_mobile || isset($_COOKIE["UFLmobileFull"])){
@@ -224,11 +231,16 @@ function ufclas_responsive_styles_scripts(){
 			wp_enqueue_script('featureslider', get_stylesheet_directory_uri() . '/library/js/feature-slider.min.js', array('jquery'), NULL, true);
 		}
 	}
-	// a conditional statement to add flexible slider if responsive theme is active		
-	if ($opt_responsive && $detect_mobile) {
-		wp_enqueue_style('flexslider', get_stylesheet_directory_uri() .'/library/css/flexslider.css');
-		wp_enqueue_script('flexslider', get_stylesheet_directory_uri().'/library/js/jquery.flexslider-min.js', array('jquery'));
-		wp_enqueue_script('autoclear_reponsive', get_stylesheet_directory_uri() . '/library/js/autoclear-responsive.min.js', false, NULL, true);
+	
+	if ( !empty($custom_js) ){
+		wp_add_inline_script('common-script', "/* custom js */ \n" . $custom_js);
+	}
+	
+	if (is_singular('post')){
+		wp_enqueue_script('comment-reply'); // loads the javascript required for threaded comments 
+		wp_enqueue_script('plusone', "https://apis.google.com/js/plusone.js");
+		wp_enqueue_script('facebook', "https://connect.facebook.net/en_US/all.js#xfbml=1");
+		wp_enqueue_script('twitter', "https://platform.twitter.com/widgets.js");
 	}
 
 	// Remove plugin styles
@@ -266,28 +278,8 @@ function ufclas_responsive_inline_head(){
 	}
 	
 	if (current_user_can( 'manage_options' )) {	
-		echo '<style>#institutional-nav-min {top:83px;} #responsive-header-search-wrap{top:118px;} #responsive-menu-toggle{top:89px;}</style>';
+		echo '<style type="text/css">#institutional-nav-min {top:83px;} #responsive-header-search-wrap{top:118px;} #responsive-menu-toggle{top:89px;}</style>';
 	}
 }
 add_action('wp_head', 'ufclas_responsive_inline_head');
 
-/**
- * Inline scripts and footer content for small files
- * @since 0.8.5
- */
-function ufclas_responsive_inline_footer(){
-	// institutional-nav
-	if ( wp_script_is('hoverintent', 'done') ){
-		$custom_js = '$(document).ready(function(){function t(){$(this).find(".sub-mega").stop().fadeTo("fast",1).show()}function i(){$(this).find(".sub-mega").stop().fadeTo("fast",0,function(){$(this).hide()})}var n={sensitivity:1,interval:50,over:t,timeout:500,out:i};$("#institutional-nav .sub-mega").css({opacity:"0"}),$("#institutional-nav li").hoverIntent(n)});';
-		echo "<!-- institutional-nav -->\n";
-		echo '<script type="text/javascript">' . $custom_js . "</script>\n";
-	}
-	
-	// autoclear
-	if ( wp_script_is('common-script', 'done') ){
-		$custom_js = 'function init(){for(var t=jQuery,e=t("input#header-search-field"),i=0;i<e.length;i++)"text"==e[i].type&&(e[i].setAttribute("rel",e[i].defaultValue),e[i].onfocus=function(){return this.value!=this.getAttribute("rel")?!1:void(this.value="")},e[i].onblur=function(){return""!=this.value?!1:void(this.value=this.getAttribute("rel"))},e[i].ondblclick=function(){this.value=this.getAttribute("rel")})}document.childNodes&&(window.onload=init);';
-		echo "<!-- autoclear -->\n";
-		echo '<script type="text/javascript">' . $custom_js . "</script>\n";
-	}
-}
-add_action('wp_footer', 'ufclas_responsive_inline_footer', 20);

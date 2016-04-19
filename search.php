@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php include("header.php"); ?>
 
 <?php ufandshands_breadcrumbs(); ?>
 
@@ -13,10 +13,8 @@
 					  
 					<?php
 						// Retrieve search count
-						  $allsearch = &new WP_Query("s=$s&showposts=-1");
-						  $key = wp_specialchars($s, 1);
-						  $count = $allsearch->post_count;
-						  wp_reset_query();
+						  global $wp_query;
+						  $count = $wp_query->found_posts;
 					?>
             
 						<h1 class="title medium-blue">Search Results for <span class="light-blue">&ldquo;</span><strong class="dark-blue"><?php the_search_query(); ?></strong><span class="light-blue">&rdquo;</span></h1>
@@ -38,11 +36,7 @@
 								?>
 								
 								  <!-- Members Only -->
-      							<?php
-                      if (function_exists("ufandshands_post_thumbnail")) {
-                        ufandshands_post_thumbnail('thumbnail', 'alignleft', 130, 100);
-                      }
-                    ?>
+      							
       							<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
       							<p class="published"><span class="black-50">Published: <?php the_time('M jS, Y') ?></span></p>
       							<?php the_excerpt(); ?>
@@ -56,12 +50,7 @@
 								
 								<?php else : ?>
 								
-								<!-- Non Members-Only Templates -->	
-   							<?php
-                  if (function_exists("ufandshands_post_thumbnail")) {
-                   ufandshands_post_thumbnail('thumbnail', 'alignleft', 130, 100);
-                  }
-                ?>
+								<!-- Non Members-Only Templates -->
 
 								<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>  
 								<p class="published"><span class="black-50">Published: <?php the_time('M jS, Y') ?></span></p>
@@ -75,7 +64,7 @@
 						
           <?php
                 if (function_exists("ufandshands_pagination")) {
-                ufandshands_pagination($additional_loop->max_num_pages);
+                ufandshands_pagination($wp_query->max_num_pages);
                 } else { ?>
                   <div class="single-navigation clear">
             				<div class="nav-previous"><?php previous_posts_link('&larr; Newer Entries') ?></div>
