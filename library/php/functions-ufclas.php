@@ -208,6 +208,11 @@ function ufclas_responsive_styles_scripts(){
 	if ( !$detect_mobile ){
 		wp_enqueue_script('pretty-photo', get_stylesheet_directory_uri() . '/library/js/jquery.prettyPhoto.js', array(), NULL, true);
 		
+		// Initialize prettyPhoto
+		$inline_js = "/* prettyPhoto */ \n";
+		$inline_js .= 'jQuery(function($){ $("a[rel^=\'prettyPhoto\']").prettyPhoto(); });';
+		wp_add_inline_script('pretty-photo', $inline_js);
+		
 		// autoclear.js, small file minified and added inline to reduce requests
 		$inline_js = "/* autoclear.js */ \n";
 		$inline_js .= 'function init(){for(var t=jQuery,e=t("input#header-search-field"),i=0;i<e.length;i++)"text"==e[i].type&&(e[i].setAttribute("rel",e[i].defaultValue),e[i].onfocus=function(){return this.value!=this.getAttribute("rel")?!1:void(this.value="")},e[i].onblur=function(){return""!=this.value?!1:void(this.value=this.getAttribute("rel"))},e[i].ondblclick=function(){this.value=this.getAttribute("rel")})}document.childNodes&&(window.onload=init);';
