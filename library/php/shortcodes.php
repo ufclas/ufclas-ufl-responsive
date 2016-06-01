@@ -66,65 +66,11 @@ function ufandshands_widget_shortcode($atts) {
 }
 add_shortcode('widget','ufandshands_widget_shortcode'); 
 
-
-
-
-// flowerplayer&video shortcode -- not using the extra attribute yet, leaving as template
-function ufandshands_flow_func($atts, $content = null) {
-	extract(shortcode_atts(array(
-		'foo' => 'something',
-		'bar' => 'something else',
-	), $atts));
-
-	// iPad plugin wont play nice with multiple players on screen, so use a splash image to trigger default flowplayer ipad/iphone behavior
-	$user_agent = $_SERVER['HTTP_USER_AGENT'];
-	if (preg_match('/ipod/i',$user_agent)>0 || preg_match('/iphone/i',$user_agent)>0 || preg_match('/ipad/i',$user_agent)>0 || preg_match('/android/i',$user_agent)>0 || preg_match('/opera mini/i',$user_agent)>0 ) {
-		$user_agent = "<img src=\"http://med.ufl.edu/video/ufcomsplash.jpg\"";
-	} else { $user_agent = ""; }
-
-	// build flowjava return
-	$flowjava = "<script type=\"text/javascript\" src=\"/flowplayer/flowplayer-3.2.6.min.js\"></script><script type=\"text/javascript\" src=\"/flowplayer/flowplayer.ipad-3.2.2.min.js\"></script>";
-	$flowjava .="	<a  	class=\"player\"
-				href=\"".$content."\"
-				style=\"display:block;width:100%;height:470px;\"  
-				>".$user_agent."
-			</a>";
-	$flowjava .="	<script>
-				flowplayer(\"a.player\", {src: \"/flowplayer/flowplayer-3.2.7.swf\", wmode: 'opaque' }, {
-					clip:  {
-                				autoPlay: false,
-               					autoBuffering: true,
-						scaling: 'orig'
-                			}
-                		}).ipad(\"a.player\");
-			</script>";
-	return $flowjava;
-}
-add_shortcode('video', 'ufandshands_flow_func');
-add_shortcode('flv', 'ufandshands_flow_func');
-
-
+// custom video and flv embed - disabled 6-1-2016 -- use WordPress [video] shortcode instead
 
 // custom vimeo embed -- disabled 6-25-2011 -- WordPress' own oembed function now supports vimeo
-// function orange_and_blue_vimeo_func($atts, $content = null) {
-	// extract(shortcode_atts(array(
-		// 'foo' => 'something',
-		// 'bar' => 'something else',
-	// ), $atts));
-
-	// if (preg_match('~^http://(?:www\.)?vimeo\.com/(?:clip:)?(\d+)~', $content, $match)) {
-    		// $vimeo_id = $match[1];
-	// } else { return "Please use the following format for Vimeo videos: http://vimeo.com/7573098"; }
-
-	// $vimeo_embed = "<object width=\"100%\" height=\"470\"><param name=\"allowfullscreen\" value=\"true\" /><param name=\"allowscriptaccess\" value=\"always\" /><param name=\"movie\" value=\"http://vimeo.com/moogaloop.swf?clip_id=".$vimeo_id."&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=00ADEF&amp;fullscreen=1&amp;autoplay=0&amp;loop=0\" /><embed src=\"http://vimeo.com/moogaloop.swf?clip_id=".$vimeo_id."&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=1&amp;color=00ADEF&amp;fullscreen=1&amp;autoplay=0&amp;loop=0\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" allowscriptaccess=\"always\" width=\"100%\" height=\"470\"></embed></object>";
-
-	// return $vimeo_embed;
-// }
-// add_shortcode('vimeo', 'orange_and_blue_vimeo_func');
-
 
 // split content into two columns
-
 function ufandshands_shortcode_float_left($atts, $content = null) {
 	extract(shortcode_atts(array(
                 'autop' => '1',

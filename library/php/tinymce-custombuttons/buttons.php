@@ -41,18 +41,8 @@ function loadCustomButtons() {
     $button->title = 'Video';
     $button->shortCodeTag = 'video';
     $button->icon = '/images/video.png';
-    $button->enclosing = true;
-    array_push($buttonArr, $button);   
-    
-    
-    $button = new CustomButton();
-    $button->title = 'FLV';
-    $button->shortCodeTag = 'flv';
-    $button->icon = '/images/flv.png';
-    $button->enclosing = true;
-    array_push($buttonArr, $button);   
-    
-    
+    $button->enclosing = false;
+    array_push($buttonArr, $button);
     
     $button = new CustomButton();
     $button->title = 'RSS Feed';
