@@ -21,9 +21,9 @@ if ( !function_exists('is_uf_email') ) {
 // Check if a vaild REMOTE_USER is set.
 function ufl_shibboleth_valid_user() {
 
-	$user = ufclas_check_server_auth_value('REMOTE_USER');
-		
-	if ( is_uf_email( $user ) ) {
+	if ( is_uf_email( ufclas_check_server_auth_value('REMOTE_USER') ) ) {
+		return true;
+	} elseif ( is_uf_email( ufclas_check_server_auth_value('EPPN') ) ){
 		return true;
 	} else {
 		return false;
@@ -161,6 +161,9 @@ function ufclas_check_server_auth_value( $var ){
 	}
 	elseif( isset($_SERVER['HTTP_'. strtoupper($var)]) ) {
 		return $_SERVER['HTTP_'. strtoupper($var)];
+	}
+	elseif( isset($_SERVER['HTTP_UFSHIB_'. strtoupper($var)]) ) {
+		return $_SERVER['HTTP_UFSHIB_'. strtoupper($var)];
 	}
 	else{
 		return '';	
