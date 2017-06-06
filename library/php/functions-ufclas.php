@@ -307,3 +307,22 @@ function ufclas_responsive_facebook_like(){
 	}
 }
 add_action('ufclas_responsive_body_top', 'ufclas_responsive_facebook_like');
+
+/**
+ * Displays Facebook Open graph meta
+ *
+ * @since 0.8.9
+ */
+function ufclas_responsive_facebook_meta(){
+	if ( is_singular('post') || is_page() ): ?>
+		
+		<!-- Facebook Open Graph -->
+		<meta property="og:url"           content="<?php the_permalink(); ?>" />
+		<meta property="og:type"          content="article" />
+		<meta property="og:title"         content="<?php the_title(); ?>" />
+		<meta property="og:description"   content="<?php the_excerpt(); ?>" />
+		<meta property="og:image"         content="<?php the_post_thumbnail_url('medium'); ?>" />
+	<?php
+	endif;
+}
+add_action('wp_head', 'ufclas_responsive_facebook_meta');
