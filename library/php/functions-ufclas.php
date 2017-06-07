@@ -297,6 +297,15 @@ function ufclas_responsive_body_top(){
 }
 
 /**
+ * Template tag used to hook content after the <head> tag
+ *
+ * @since 0.8.9
+ */
+function ufclas_responsive_head_top(){
+	do_action('ufclas_responsive_head_top');
+}
+
+/**
  * Displays Facebook Like/Share button on posts
  *
  * @since 0.8.9
@@ -315,14 +324,12 @@ add_action('ufclas_responsive_body_top', 'ufclas_responsive_facebook_like');
  */
 function ufclas_responsive_facebook_meta(){
 	if ( is_singular('post') || is_page() ): ?>
-		
-		<!-- Facebook Open Graph -->
 		<meta property="og:url"           content="<?php the_permalink(); ?>" />
-		<meta property="og:type"          content="article" />
+		<meta property="og:type"          content="website" />
 		<meta property="og:title"         content="<?php the_title(); ?>" />
 		<meta property="og:description"   content="<?php the_excerpt(); ?>" />
 		<meta property="og:image"         content="<?php the_post_thumbnail_url('medium'); ?>" />
 	<?php
 	endif;
 }
-add_action('wp_head', 'ufclas_responsive_facebook_meta');
+add_action('ufclas_responsive_head_top', 'ufclas_responsive_facebook_meta');

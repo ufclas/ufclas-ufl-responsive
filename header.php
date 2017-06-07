@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-		
+	<?php ufclas_responsive_head_top(); // Custom hook to include content after the head tag ?>
 <?php
 global $detect_mobile;
 global $opt_responsive;
