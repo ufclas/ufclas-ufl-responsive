@@ -2,7 +2,7 @@
 ----------------------------------------------------------------------*/
 
 #primary-nav {
-	background: transparent url(images/bg-primary-nav.jpg) 0 0 repeat-x;
+	background: transparent url(../../images/bg-primary-nav.jpg) 0 0 repeat-x;
   bottom: 0;
 	font-size: 1.5em;
   height: 49px;
@@ -20,7 +20,7 @@
 #primary-nav li {
 	float: left;
 	height: 49px;
-	background: transparent url(images/bg-primary-nav-item.jpg) 0 -147px repeat-x;
+	background: transparent url(../../images/bg-primary-nav-item.jpg) 0 -147px repeat-x;
   position: relative;
 }
 #primary-nav li:hover {
@@ -120,7 +120,7 @@
 }
 
 #primary-nav #home {
-	background-image: url(images/bg-sprite-flat.jpg);
+	background-image: url(../../images/bg-sprite-flat.jpg);
 	background-position: -304px -191px;
 	padding: 0;
 	height: 49px;
@@ -147,11 +147,11 @@
 }
 #primary-nav .parent a {
 	padding-right: 33px;
-	background: transparent url(images/bg-dropdown-icon.png) 92% 16px no-repeat;
+	background: transparent url(../../images/bg-dropdown-icon.png) 92% 16px no-repeat;
 }
 #primary-nav .parent li a {
 	padding-right: 25px;
-  background: transparent url(images/bg-sprite-transparent.png) -1198px -556px no-repeat; 
+  background: transparent url(../../images/bg-sprite-transparent.png) -1198px -556px no-repeat; 
 	margin-top: 0;
 }
 #primary-nav .parent li a:hover {
