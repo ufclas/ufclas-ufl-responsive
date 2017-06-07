@@ -1,0 +1,26 @@
+{
+  "name": "ufclas-ufl-responsive",
+  "version": "0.9.0",
+  "description": "A sassy theme",
+  "main": "index.php",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ufclas/ufclas-ufl-responsive.git"
+  },
+  "keywords": [
+    "sass",
+    "grunt",
+    "wordpress"
+  ],
+  "author": "priscillamc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ufclas/ufclas-ufl-responsive/issues"
+  },
+  "homepage": "https://github.com/ufclas/ufclas-ufl-responsive#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}

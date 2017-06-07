@@ -26,6 +26,13 @@ Documentation
 Changelog
 ---------
 
+###  0.9.x
+
+- Fixes Shibboleth values for sites on shared hosting
+- Fixes call to action button by hiding it on small screens
+- Adds Facebook open graph meta tags to post pages
+- Updates Facebook like/share button code on posts
+
 ###  0.8.8
 Jun. 1, 2016
 
