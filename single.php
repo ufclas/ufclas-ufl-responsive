@@ -36,7 +36,7 @@
 				  <?php the_tags('<p class="tag black-50">Tagged as: ', ', ','</p>'); ?>
 				</div>
 				<div id="social-content">
-					<div><fb:like href="<?php echo get_permalink(); ?>" show_faces="false" layout="button_count" send="true"></fb:like></div>
+					<div class="fb-like" data-href="<?php echo get_permalink(); ?>" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>&nbsp;
 					<div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" >Tweet</a></div>
 					<div><g:plusone size="medium"></g:plusone></div>
 				</div>

@@ -21,9 +21,9 @@ if ( !function_exists('is_uf_email') ) {
 // Check if a vaild REMOTE_USER is set.
 function ufl_shibboleth_valid_user() {
 
-	$user = ufclas_check_server_auth_value('REMOTE_USER');
-		
-	if ( is_uf_email( $user ) ) {
+	if ( is_uf_email( ufclas_check_server_auth_value('REMOTE_USER') ) ) {
+		return true;
+	} elseif ( is_uf_email( ufclas_check_server_auth_value('eppn') ) ){
 		return true;
 	} else {
 		return false;
@@ -153,18 +153,24 @@ function ufl_check_authorized_user($postid) {
  * Check the server values for authenticated users in both the variable and REDIRECT_ variable.
  */
 function ufclas_check_server_auth_value( $var ){
-	if( isset($_SERVER[$var]) ){
-		return $_SERVER[$var];
+	$auth_value = '';
+	
+	$indexes = array( 
+		$var, 
+		'REDIRECT_' . $var,
+		'HTTP_' . strtoupper($var),
+		'REDIRECT_UFShib_' . $var,
+		'HTTP_UFSHIB_' . strtoupper($var)
+	);
+	
+	foreach ( $indexes as $index ){
+		if ( isset( $_SERVER[$index] ) ){
+			$auth_value = $_SERVER[$index];
+			break;
+		}
 	}
-	elseif( isset($_SERVER['REDIRECT_'.$var]) ) {
-		return $_SERVER['REDIRECT_'.$var];
-	}
-	elseif( isset($_SERVER['HTTP_'. strtoupper($var)]) ) {
-		return $_SERVER['HTTP_'. strtoupper($var)];
-	}
-	else{
-		return '';	
-	}
+	
+	return $auth_value;
 }
 
 ?>

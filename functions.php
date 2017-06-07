@@ -803,11 +803,11 @@ function ufl_google_analytics() {
   $analytics_acct = of_get_option( 'opt_analytics_acct' );
 
   if ( !empty( $analytics_acct ) ) {
-    include( 'library/php/google-analytics.php' );
+    include get_template_directory() . '/library/php/google-analytics.php';
   }
 }
 
-add_action( 'wp_head', 'ufl_google_analytics' );
+add_action( 'ufclas_responsive_body_top', 'ufl_google_analytics' );
 
 /* ufl_site_last_updated
 *

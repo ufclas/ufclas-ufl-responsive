@@ -244,7 +244,6 @@ function ufclas_responsive_styles_scripts(){
 	if (is_singular('post')){
 		wp_enqueue_script('comment-reply'); // loads the javascript required for threaded comments 
 		wp_enqueue_script('plusone', "https://apis.google.com/js/plusone.js");
-		wp_enqueue_script('facebook', "https://connect.facebook.net/en_US/all.js#xfbml=1");
 		wp_enqueue_script('twitter', "https://platform.twitter.com/widgets.js");
 	}
 
@@ -288,3 +287,49 @@ function ufclas_responsive_inline_head(){
 }
 add_action('wp_head', 'ufclas_responsive_inline_head');
 
+/**
+ * Template tag used to hook content after the <body> tag
+ *
+ * @since 0.8.9
+ */
+function ufclas_responsive_body_top(){
+	do_action('ufclas_responsive_body_top');
+}
+
+/**
+ * Template tag used to hook content after the <head> tag
+ *
+ * @since 0.8.9
+ */
+function ufclas_responsive_head_top(){
+	do_action('ufclas_responsive_head_top');
+}
+
+/**
+ * Displays Facebook Like/Share button on posts
+ *
+ * @since 0.8.9
+ */
+function ufclas_responsive_facebook_like(){
+	if ( is_singular('post') ){
+		include get_template_directory() . '/library/php/facebook-like-button.php';
+	}
+}
+add_action('ufclas_responsive_body_top', 'ufclas_responsive_facebook_like');
+
+/**
+ * Displays Facebook Open graph meta
+ *
+ * @since 0.8.9
+ */
+function ufclas_responsive_facebook_meta(){
+	if ( is_singular('post') || is_page() ): ?>
+		<meta property="og:url"           content="<?php the_permalink(); ?>" />
+		<meta property="og:type"          content="website" />
+		<meta property="og:title"         content="<?php the_title(); ?>" />
+		<meta property="og:description"   content="<?php the_excerpt(); ?>" />
+		<meta property="og:image"         content="<?php the_post_thumbnail_url('medium'); ?>" />
+	<?php
+	endif;
+}
+add_action('ufclas_responsive_head_top', 'ufclas_responsive_facebook_meta');
