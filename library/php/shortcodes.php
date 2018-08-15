@@ -331,10 +331,11 @@ function ufandshands_html_sitemap_shortcode_handler( $args, $content = null )
 	if( is_feed() )
 		return '';
 
-	$args['echo'] = 0;
-	$args['title_li'] = '';
-	unset($args['link_before']);
-	unset($args['link_after']);
+    if(isset($args['echo'])){$args['echo'] = 0;}
+    if(isset($args['title_li'])){$args['title_li'] = '';}
+    if(isset($args['link_before'])){unset($args['link_before']);}
+    if(isset($args['link_after'])){unset($args['link_after']);}
+
 	if( isset($args['child_of']) && $args['child_of'] == 'CURRENT' )
 		$args['child_of'] = get_the_ID();
 	else if( isset($args['child_of']) && $args['child_of'] == 'PARENT' )
