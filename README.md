@@ -1,7 +1,7 @@
 UFCLAS UFL Responsive
 =====================
 
-Official UF template for Liberal Arts and Sciences departments. Based on the responsive version of the UF 2011 template. Modified and maintained by CLAS IT. 
+Official UF template for Liberal Arts and Sciences departments. Based on the responsive version of the UF 2011 template. Modified and maintained by CLAS IT.
 
 * Theme URI: https://it.clas.ufl.edu/
 
@@ -25,6 +25,13 @@ Documentation
 
 Changelog
 ---------
+
+### 0.9.1
+August 8th, 2018
+
+- Fixes HTML sitemap shortcode
+- Fixes issue with setting cookie after headers are sent.
+- Fixes http error for google map shortcode.
 
 ###  0.9.x
 
@@ -117,7 +124,7 @@ Aug. 14, 2015
 Jul. 29, 2015
 
 - Fixes for protected pages, featured slideshow read more, social sharing scripts, and attachment-list shortcode
-    
+
 ### 0.7.1
 Jul. 20, 2015
 
@@ -148,7 +155,7 @@ Jun. 12, 2015
 - Updating the version of prettyPhoto to 3.1.6.
 
 
-### 0.5.0 
+### 0.5.0
 May. 8, 2015
 
 - Changes content excerpts, recent posts widget, and image crops, fixes debug warnings
@@ -172,7 +179,7 @@ Apr. 20, 2015
 - Changes custom main menu to show only two levels of menu items
 - Replaces institutional nav links and logo with a UF link
 
-### 
+###
 Apr. 10, 2015
 
 - Removes category text from the title of category pages
