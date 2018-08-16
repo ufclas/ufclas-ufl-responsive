@@ -135,7 +135,7 @@ add_theme_support('automatic-feed-links');
 function ufandshands_header_adder() {
   global $detect_mobile;
   global $post;
-  
+
   $bloginfo_url = get_stylesheet_directory_uri();
   $bloginfo_name = get_bloginfo('name');
   $parent_org = of_get_option('opt_parent_colleges_institutes');
@@ -155,7 +155,7 @@ function ufandshands_header_adder() {
   echo "</title>\n";
 
   echo "<link rel='apple-touch-icon' href='" . $bloginfo_url . "/apple-touch-icon.png'>\n";
-  
+
   //custom fav icon based on the parent organization
   //default favicon.ico is the '&'
   switch ($parent_org) {
@@ -169,7 +169,7 @@ function ufandshands_header_adder() {
       echo "<link rel='shortcut icon' href='" . $bloginfo_url . "/favicon.ico' />\n";
   }
 
-  // meta description - display post/page excerpt for SEO 
+  // meta description - display post/page excerpt for SEO
   if (is_page() || is_single()) {
     $current_post = get_post($post->ID);
     $meta_excerpt = $current_post->post_excerpt;
@@ -177,20 +177,29 @@ function ufandshands_header_adder() {
       echo '<meta name="description" content="' . htmlentities( $meta_excerpt ) . '" />'."\n";
     }
   }
-  
+
 	// Facebook Insights fb:admins code allows you to enable this site to be analyzed by Facebook Insights
 	// http://www.virante.com/blog/2011/02/03/how-to-track-shares-from-facebook-pages/
 	$facebookinsights = of_get_option('opt_facebook_insights');
 	if ($facebookinsights) {
-	echo "<meta property=\"fb:admins\" content=\"".$facebookinsights."\" />";  
+	echo "<meta property=\"fb:admins\" content=\"".$facebookinsights."\" />";
 	}
-	
-	// For mobile, set a cookie so that pages from mobile browsers will not be cached
+}
+add_action('wp_head', 'ufandshands_header_adder');
+
+// For mobile, set a cookie so that pages from mobile browsers will not be cached
+//Addressed issue of setting cookie after headers sent. Hooked cookie to 'init' hook
+// below logic taken from ufandshands_header_adder()
+
+function uur_setCookie(){
+  global $detect_mobile;
+  // For mobile, set a cookie so that pages from mobile browsers will not be cached
 	if ( $detect_mobile && of_get_option('opt_responsive') && !isset($_COOKIE["UFLmobileFull"])) {
 		setcookie("UFLmobileMobile", "enabled", time()+2592000, "/");
 	}
 }
-add_action('wp_head', 'ufandshands_header_adder');
+add_action('init', 'uur_setCookie');
+
 
 /* ----------------------------------------------------------------------------------- */
 /* 	Small Misc. Unrelated Directives
@@ -238,7 +247,7 @@ function remove_post_custom_fields() {
   remove_meta_box('commentstatusdiv', 'page', 'normal');
   remove_meta_box('commentsdiv', 'page', 'normal');
   remove_meta_box( 'postimagediv', 'page', 'normal' );
-  // DOES NOT LET YOU RENAME PAGE SLUGS -- BUG   remove_meta_box( 'slugdiv' , 'page' , 'normal' ); 
+  // DOES NOT LET YOU RENAME PAGE SLUGS -- BUG   remove_meta_box( 'slugdiv' , 'page' , 'normal' );
   remove_meta_box('postcustom', 'post', 'normal');
   remove_meta_box('trackbacksdiv', 'post', 'normal');
 }
@@ -342,7 +351,7 @@ function ufandshands_comment($comment, $args, $depth) {
 
     $GLOBALS['comment'] = $comment; ?>
    <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-     
+
      <div id="comment-<?php comment_ID(); ?>">
       <div class="line"></div>
       <?php echo get_avatar($comment, $size='40'); ?>
@@ -355,16 +364,16 @@ function ufandshands_comment($comment, $args, $depth) {
         <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf(__('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a>
         <?php edit_comment_link(__('(Edit)'),'  ','') ?><?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
       </div>
-      
+
       <?php if ($comment->comment_approved == '0') : ?>
          <em class="moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
          <br />
       <?php endif; ?>
-	  
+
       <div class="comment-body">
       <?php comment_text() ?>
 	  </div>
-      
+
      </div>
 
 <?php
@@ -388,7 +397,7 @@ function tz_list_pings($comment, $args, $depth) {
 function ufandshands_post_thumbnail($preset, $alignment, $thumb_w, $thumb_h) {
 
   global $post;
-  
+
   // 1. Check for featured image
 
   if (has_post_thumbnail()) {
@@ -422,7 +431,7 @@ function ufandshands_post_thumbnail($preset, $alignment, $thumb_w, $thumb_h) {
 		  $trimmed_img_matches = trim($img_matches[0], "src=");
 		  $image_file_extension = end(explode(".", $trimmed_img_matches));
 		  $chopend_img_matches = substr($trimmed_img_matches, 0, -12);
-	
+
 		  // Only works on RE-SIZED images
 		  $edited_image_reg_pattern = '/[0-9][0-9][0-9]x[0-9][0-9][0-9]/';
 		  if ($c = preg_match_all($edited_image_reg_pattern, $trimmed_img_matches, $matches)) {
@@ -475,7 +484,7 @@ if (function_exists('add_image_size')) {
   add_image_size('slider-scrubber-thumb', 130, 100, true);
   add_image_size('page_header', 680, 220, array('center', 'top'));
   add_image_size('stacker-thumb', 630, 298, array('center', 'top'));
-  add_image_size('stacker-thumb-small', 67, 67, true); 
+  add_image_size('stacker-thumb-small', 67, 67, true);
   add_image_size('ufl_menu_thumb', 203, 96, true);
   add_image_size('ufl_post_thumb', 600, 210, false);
 }
@@ -524,7 +533,7 @@ function ufandshands_register_menus() {
               'main_menu' => 'Main Menu Override'
           )
   );
-  
+
   if (function_exists('wpmega_init')) { //uber menu, do not enable
     /*register_nav_menus(
           array(
@@ -583,7 +592,7 @@ function ufandshands_sidebar_navigation($post) {
 
   if ( count($post_ancestors) ) {
     $top_page = array_pop($post_ancestors);
-    
+
     $children = wp_list_pages(array(
         'walker' => $sidebar_nav_walker,
         'title_li' => '',
@@ -606,9 +615,9 @@ function ufandshands_sidebar_navigation($post) {
       'title_li' => '',
       'child_of' => $post->ID,
       'echo' => false
-          )); 
+          ));
   }
-  
+
   if ($children || is_active_sidebar('page_sidebar')) {
       return $children;
   }
@@ -651,7 +660,7 @@ include('library/php/walkers.php');
 function ufandshands_content_title() {
 	global $post;
 		$custom_meta = get_post_custom($post->ID);
-    
+
    if(is_page($post->ID)) {
 		$custom_subtitle = ( isset($custom_meta['custom_meta_page_subtitle']) )? $custom_meta['custom_meta_page_subtitle'][0]:null;
     	$custom_title_override = ( isset($custom_meta['custom_meta_page_title_override']) )? $custom_meta['custom_meta_page_title_override'][0]:null;
@@ -671,7 +680,7 @@ function ufandshands_content_title() {
           echo $custom_subtitle;
         echo "</span>";
       endif;
-			
+
 		echo "</h1>";
 
 }
@@ -685,7 +694,7 @@ function ufandshands_site_title_size() {
     $site_title_size = of_get_option("opt_title_size");
 	$site_title_padding = of_get_option("opt_title_pad");
 	$site_tagline_size = of_get_option("opt_tagline_size");
-	
+
 	if (!empty($site_title_size) || !empty($site_title_padding) || !empty($site_tagline_size)) {
 		$site_title_embedded_css = "<style type='text/css'>";
 		if (!empty($site_title_size)) {
@@ -699,7 +708,7 @@ function ufandshands_site_title_size() {
 		  $site_title_embedded_css .= "header #header-title h2#header-title-tagline, #header-title h3#header-title-tagline { font-size: " . $site_tagline_size . "em !important; }";
 		}
 		$site_title_embedded_css .= "</style>";
-	
+
 		echo $site_title_embedded_css;
 	}
 }
@@ -709,9 +718,9 @@ add_action('wp_head', 'ufandshands_site_title_size');
 // Logic has to run outside of primary title function because function gets called AFTER wp_head is processsed
 function ufandshands_alternate_logo() {
     $ufandshands_alternate_logo = of_get_option("opt_alternative_site_logo");
-	
+
 	if (!empty($ufandshands_alternate_logo)) {
-	
+
 		$alternative_site_logo_height = of_get_option("opt_alternative_site_logo_height");
 		$alternative_site_logo_width = of_get_option("opt_alternative_site_logo_width");
 		$alternate_logo_css = "<style type='text/css'>";
@@ -726,7 +735,7 @@ function ufandshands_alternate_logo() {
 									width: " . $alternative_site_logo_width . "px;
 									margin-right: 10px;	}";
 		$alternate_logo_css .= "</style>";
-	
+
 		echo $alternate_logo_css;
   }
 }
@@ -773,11 +782,11 @@ function ufandshands_site_title() {
   $title .= "<div id='header-title-text-right' class='alpha omega " . $header_title_text_right_class_size . " " . $parent_org_logo . "'>"; // logos
 
   if (get_bloginfo('title')=="University of Florida") { // UF custom title begin
-  
+
 		$title .= "<h1 id='uf-title' class='ir' >University of Florida</h1>";
-  
+
   } else {
-  // If we are on the front page, make the site a <h1>, otherwise make it a <h2> (...and description <h2>-><h3>)	
+  // If we are on the front page, make the site a <h1>, otherwise make it a <h2> (...and description <h2>-><h3>)
 	  if (is_front_page()) {
 		$title .= "<h1 id='header-title-text' class='palatino'>" . $site_title . "</h1>";
 		if (!empty($site_description)) {
@@ -789,7 +798,7 @@ function ufandshands_site_title() {
 		  $title .= "<h3 id='header-title-tagline' class='palatino not-front'>" . $site_description . "</h3>";
 		}
 	  }
-  }// end UF custom title 
+  }// end UF custom title
 
   // Close our tags
   $title .= "</div></a></div>";
@@ -833,16 +842,16 @@ function ufl_check_email_address($email) {
 		return false;
 	}
 	else{
-		return true;	
+		return true;
 	}
 }
 
 // WordPress decided to remove the oEmbed width from settings so we have to change it here now.
-// This is the default (single post size), overwritten where needed. 
+// This is the default (single post size), overwritten where needed.
 if ( ! isset( $content_width ) ) {$content_width = 621;}
 
-// Disables all core updates (Removed to manage updates in wp-config or plugin file instead) 
-// define( 'WP_AUTO_UPDATE_CORE', false ); 
+// Disables all core updates (Removed to manage updates in wp-config or plugin file instead)
+// define( 'WP_AUTO_UPDATE_CORE', false );
 
 // Include theme info and update notification related functions. (Removed because file isn't working)
 // include_once( 'library/php/update-notifier.php' );
