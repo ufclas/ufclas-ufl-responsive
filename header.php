@@ -19,6 +19,7 @@
 		ufclas_responsive_head_top(); // Custom hook to include content after the head tag
 		wp_head();
 	?>
+
 </head>
 
 <body <?php body_class(); ?>>

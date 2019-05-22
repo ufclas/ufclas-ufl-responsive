@@ -15,9 +15,9 @@ include_once('shortcode-attachment-list.php');
 /* [widget widget_name="Your_Custom_Widget"]
 /* ----------------------------------------------------------------------------------- */
 function ufandshands_widget_shortcode($atts) {
-    
+
     global $wp_widget_factory;
-    
+
     extract(shortcode_atts(array(
         'widget_name' => FALSE, // specific class name of shortcode
 		'title' => '', // universal to all widgets
@@ -28,20 +28,20 @@ function ufandshands_widget_shortcode($atts) {
 		'showrssicon' => 1, // recent posts
 		'specific_category_id' => ''
     ), $atts));
-    
+
     $widget_name = esc_html($widget_name);
-    
+
     if (!is_a($wp_widget_factory->widgets[$widget_name], 'WP_Widget')):
-	
+
         $wp_class = 'WP_Widget_'.ucwords(strtolower($class));
-        
+
         if (!is_a($wp_widget_factory->widgets[$wp_class], 'WP_Widget')):
             return '<p>'.sprintf(__("%s: Widget class not found. Make sure this widget exists and the class name is correct"),'<strong>'.$class.'</strong>').'</p>';
         else:
             $class = $wp_class;
         endif;
     endif;
-    
+
 	$instance = '&title='.$title;
 	$instance .= '&numberofposts='.$numberofposts;
 	$instance .= '&showexcerpt='.$showexcerpt;
@@ -49,22 +49,22 @@ function ufandshands_widget_shortcode($atts) {
 	$instance .= '&showdate='.$showdate;
 	$instance .= '&showrssicon='.$showrssicon;
 	$instance .= '&specific_category_id='.$specific_category_id;
-		// $instance .= '&='.$;	
-	
+		// $instance .= '&='.$;
+
     ob_start();
 	the_widget($widget_name, $instance, array('widget_id'=>'arbitrary-instance-'.$id,
 		'before_widget' => '<div class="widget_body">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
-				
+
 	));
     $output = ob_get_contents();
     ob_end_clean();
     return $output;
-    
+
 }
-add_shortcode('widget','ufandshands_widget_shortcode'); 
+add_shortcode('widget','ufandshands_widget_shortcode');
 
 // custom video and flv embed - disabled 6-1-2016 -- use WordPress [video] shortcode instead
 
@@ -83,7 +83,7 @@ function ufandshands_shortcode_float_left($atts, $content = null) {
             $left_float .= wpautop($content);
         else
             $left_float .= $content;
-        
+
 	$left_float .= "</div>";
 
 	return $left_float;
@@ -101,7 +101,7 @@ function ufandshands_shortcode_float_right($atts, $content = null) {
             $right_float .= wpautop($content);
         else
             $right_float .= $content;
-            
+
 	$right_float .= "</div>";
 	$right_float .= "<div class='clear'>&nbsp;</div>";
 
@@ -119,14 +119,14 @@ function ufandshands_shortcode_mobile_only($atts, $content = null) {
 
 	if($fullonly == 'yes'){
 		$mobile_only = "<div class='shortcode_fullonly'>";
-    }else{ 
+    }else{
 		$mobile_only = "<div class='shortcode_mobileonly'>";
 	}
 	if ($autop=='1')
             $mobile_only .= wpautop($content);
         else
             $mobile_only .= $content;
-            
+
 	$mobile_only .= "</div>";
 	$mobile_only .= "<div class='clear'>&nbsp;</div>";
 
@@ -138,7 +138,7 @@ add_shortcode('mobile', 'ufandshands_shortcode_mobile_only');
 
 
 
-// google maps shortcode, courtesy of: http://blue-anvil.com/archives/8-fun-useful-shortcode-functions-for-wordpress/ 
+// google maps shortcode, courtesy of: http://blue-anvil.com/archives/8-fun-useful-shortcode-functions-for-wordpress/
 // and courtesy of http://www.developer.com/tech/article.php/3615681/Introducing-Googles-Geocoding-Service.htm
 // example usage: [googlemap zoom="13" center="52.66389056542801, 0.1641082763671875" marker="52.66389056542801, 0.1641082763671875" width="488px"]
 
@@ -150,11 +150,11 @@ function ufandshands_googlemap_shortcode( $atts ) {
 	'address' => '',
         'zoom' => '13'
     ), $atts));
- 
+
     $rand = rand(1,100) * rand(1,100);
- 
+ //Updated  7/31/18 to change Google Maps API script src from http --> https. Http no longer allowed by api.
     return '
-    	<script src="http://maps.google.com/maps?file=api&v=2&sensor=false&key='.$apikey.'" type="text/javascript"></script>
+    	<script src="https://maps.google.com/maps?file=api&v=2&sensor=false&key='.$apikey.'" type="text/javascript"></script>
  	<div id="map_canvas_'.$rand.'" style="width: '.$width.'; height: '.$height.'"></div>
 	    <script type="text/javascript">
 
@@ -215,7 +215,7 @@ function ufandshands_chart_shortcode( $atts ) {
 	    'advanced' => '',
 	    'type' => 'pie'
 	), $atts));
- 
+
 	switch ($type) {
 		case 'line' :
 			$charttype = 'lc'; break;
@@ -237,14 +237,14 @@ function ufandshands_chart_shortcode( $atts ) {
 			$charttype = $type;
 		break;
 	}
- 
+
 	if ($title) $string .= '&chtt='.$title.'';
 	if ($labels) $string .= '&chl='.$labels.'';
 	if ($colors) $string .= '&chco='.$colors.'';
 	$string .= '&chs='.$size.'';
 	$string .= '&chd=t:'.$data.'';
 	$string .= '&chf=bg,s,'.$bg.'';
- 
+
 	return '<img title="'.$title.'" src="http://chart.apis.google.com/chart?cht='.$charttype.''.$string.$advanced.'" alt="'.$title.'" />';
 }
 add_shortcode('chart', 'ufandshands_chart_shortcode');
@@ -267,12 +267,12 @@ function ufandshands_readRss($atts) {
 	// Get a SimplePie feed object from the specified feed source.
 	$rss = fetch_feed($feed);
 
-	if (!is_wp_error( $rss ) ) : // Checks that the object is created correctly 
-		// Figure out how many total items there are, but limit it to num. 
-		$maxitems = $rss->get_item_quantity($num); 
+	if (!is_wp_error( $rss ) ) : // Checks that the object is created correctly
+		// Figure out how many total items there are, but limit it to num.
+		$maxitems = $rss->get_item_quantity($num);
 
 		// Build an array of all the items, starting with element 0 (first element).
-		$rss_items = $rss->get_items(0, $maxitems); 
+		$rss_items = $rss->get_items(0, $maxitems);
 	endif;
 
 	$rss_widget_output = "<ul>";
@@ -281,7 +281,7 @@ function ufandshands_readRss($atts) {
 		$rss_widget_output .= '<li>No items.</li>'; }
 	else {
 		// Loop through each feed item and display each item as a hyperlink.
-		foreach ( $rss_items as $item ) : 
+		foreach ( $rss_items as $item ) :
 		$rss_widget_output .= "<li><a href=\"".$item->get_permalink()."\" title=\"Posted: ".$item->get_date('j F Y | g:i a')."\" >";
 		$rss_widget_output .= $item->get_title();
 		$rss_widget_output .="</a>";
@@ -291,11 +291,11 @@ function ufandshands_readRss($atts) {
 		if($summary=="true") {
 			$rss_widget_output .= "<p>".$item->get_description()."</p>";
 		}
-		
+
 		$rss_widget_output .= "</li>";
-		endforeach; 
+		endforeach;
 	}
-	
+
 	$rss_widget_output .= "</ul>";
 
 	return $rss_widget_output;
@@ -330,11 +330,12 @@ function ufandshands_html_sitemap_shortcode_handler( $args, $content = null )
 {
 	if( is_feed() )
 		return '';
-		
-	$args['echo'] = 0;
-	$args['title_li'] = '';
-	unset($args['link_before']);
-	unset($args['link_after']);
+
+    if(isset($args['echo'])){$args['echo'] = 0;}
+    if(isset($args['title_li'])){$args['title_li'] = '';}
+    if(isset($args['link_before'])){unset($args['link_before']);}
+    if(isset($args['link_after'])){unset($args['link_after']);}
+
 	if( isset($args['child_of']) && $args['child_of'] == 'CURRENT' )
 		$args['child_of'] = get_the_ID();
 	else if( isset($args['child_of']) && $args['child_of'] == 'PARENT' )
@@ -345,7 +346,7 @@ function ufandshands_html_sitemap_shortcode_handler( $args, $content = null )
 		else
 			unset( $args['child_of'] );
 	}
-	
+
 	$html = wp_list_pages($args);
 
 	// Remove the classes added by WordPress
@@ -369,12 +370,12 @@ function ufandshands_tagcloud_shortcode($atts) {
 		), $atts));
 
 	    $order = strtoupper($order);
-	    
+
 	    //ob_start();
 	    $tag_cloud = wp_tag_cloud(apply_filters('shortcode_widget_tag_cloud_args', array('taxonomy' => post_tag, 'echo' => false, 'number' => $num, 'format' => $format, 'smallest' => $smallest, 'largest' => $largest, 'orderby' => $orderby, 'order' => $order, "taxonomy" => $taxonomy) ));
 	    //$tag_cloud = ob_get_contents();
 	    //ob_end_clean();
-	
+
 	    return $tag_cloud;
 	}
 	else { // render the tag in multi-column format
@@ -402,7 +403,7 @@ function wp_mcTagMap_renderTags($options) {
     }
 
 
-    
+
     $list = '<!-- begin list --><div id="mcTagMap">';
     $tags = get_terms($taxonomy, 'order=ASC&hide_empty=' . $show_empty . ''); // new code!
     $groups = array();
@@ -492,7 +493,7 @@ function wp_mcTagMap_renderTags($options) {
 		    //	$name = ucfirst($name);
 		    $i++;
 		    $counti = $i;
-		    
+
 		$list .= '<li><a title="' . $name . '" href="' . $url . '">' . $name . '</a></li>';
 		    $list .="\n";
 		}
@@ -538,7 +539,7 @@ function wp_mcTagMap_renderDivider($count, $rowNum) {
 	$divider .= "\n<div class='holdleft'>\n";
 	$divider .="\n";
     }
-    
+
     return $divider;
 }
 
@@ -585,7 +586,7 @@ function ufandshands_gallery_shortcode($attr) {
 	), $attr));
 
 	//$default_exclude = get_post_thumbnail_id($post->ID);
-	$exclude .= ","; 
+	$exclude .= ",";
 
 	$id = intval($id);
 	if ( 'RAND' == $order )
@@ -648,7 +649,7 @@ function ufandshands_gallery_shortcode($attr) {
 	$size_class = sanitize_html_class( $size );
 	$gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>";
 	$output = apply_filters( 'gallery_style', $gallery_style . "\n\t\t" . $gallery_div );
-	
+
 	$i = 0;
 	foreach ( $attachments as $id => $attachment ) {
 		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, false, false); // changed the first booleans in the wp_get_attachment_link function to 'false'. This forces the gallery to link directly to the full image, and not the 'attachment page'. This avoids an old hack to the wordpress core.
@@ -699,14 +700,14 @@ function ufl_referrer_lift_link($atts, $content = null) {
 		'foo' => 'something',
 		'bar' => 'something else',
 	), $atts));
-	
+
 	$page_name = $_SERVER['HTTP_REFERER'];
-	
+
 	// get title of referring page
 	$doc = new DOMDocument();
 	$loaded = @ $doc->loadHTMLFile($page_name);
 	$text = $doc->saveHTML();
-	
+
 	if ($loaded) {
 		if (preg_match('/<title>(.*?)<\/title>/is',$text,$found)) {
 			$title = $found[1];
@@ -717,8 +718,8 @@ function ufl_referrer_lift_link($atts, $content = null) {
 	} else {
 		$lift_link = 'There was an error determining the referring page. <a href="http://assistive.usablenet.com/tt/http://www.ufl.edu/">Please browse the UF web presence with Lift</a>.';
 	}
-	
-	
+
+
 
 	return wpautop($lift_link);
 }
@@ -730,11 +731,11 @@ function ufl_weather_include($atts, $content = null) {
 	extract(shortcode_atts(array(
 		'feed' => 'http://assets.webadmin.ufl.edu/weather/current.html',
 	), $atts));
-	
+
 	$doc = new DOMDocument();
 	$loaded = @ $doc->loadHTMLFile($feed);
 	$text = $doc->saveHTML();
-	
+
 	if ($loaded) {
 		return $text;
 	} else {
@@ -754,10 +755,10 @@ function ufl_news_rss_include($atts, $content = null) {
 		'showdate' => false,
 		'dateformat' => 'l, F jS, Y'
 	), $atts));
-	
+
 	$rss = @ simplexml_load_file($feed);
 	$feed_title = ($rss->channel->link == 'http://news.ufl.edu' ? '[UF News]' : '');
-	
+
 	if ($rss) {
 		$output = '<ul>';
 		foreach ($rss->channel->item as $feedItem) {
@@ -773,9 +774,9 @@ function ufl_news_rss_include($atts, $content = null) {
 	} else {
 		return 'RSS updates from the <a href="'.$feed.'">specified feed</a> could not be loaded at this time.';
 	}
-	
-	
-	
+
+
+
 }
 add_shortcode('ufl-news-rss', 'ufl_news_rss_include');
 
@@ -803,7 +804,7 @@ function be_display_posts_shortcode($atts) {
 		'tax_term' => false,
 		'tax_operator' => 'IN'
 	), $atts ) );
-	
+
 	// Set up initial query for post
 	$args = array(
 		'post_type' => explode( ',', $post_type ),
@@ -813,24 +814,24 @@ function be_display_posts_shortcode($atts) {
 		'order' => $order,
 		'orderby' => $orderby,
 	);
-	
+
 	// If Post IDs
 	if( $id ) {
 		$posts_in = explode( ',', $id );
 		$args['post__in'] = $posts_in;
 	}
-	
-	
+
+
 	// If taxonomy attributes, create a taxonomy query
 	if ( !empty( $taxonomy ) && !empty( $tax_term ) ) {
-	
+
 		// Term string to array
 		$tax_term = explode( ', ', $tax_term );
-		
+
 		// Validate operator
 		if( !in_array( $tax_operator, array( 'IN', 'NOT IN', 'AND' ) ) )
 			$tax_operator = 'IN';
-					
+
 		$tax_args = array(
 			'tax_query' => array(
 				array(
@@ -843,7 +844,7 @@ function be_display_posts_shortcode($atts) {
 		);
 		$args = array_merge( $args, $tax_args );
 	}
-	
+
 	// If post parent attribute, set up parent
 	if( $post_parent ) {
 		if( 'current' == $post_parent ) {
@@ -852,8 +853,8 @@ function be_display_posts_shortcode($atts) {
 		}
 		$args['post_parent'] = $post_parent;
 	}
-	
-	// Set up html elements used to wrap the posts. 
+
+	// Set up html elements used to wrap the posts.
 	// Default is ul/li, but can also be ol/li and div/div
 	$wrapper_options = array( 'ul', 'ol', 'div' );
 	if( !in_array( $wrapper, $wrapper_options ) )
@@ -863,31 +864,31 @@ function be_display_posts_shortcode($atts) {
 	else
 		$inner_wrapper = 'li';
 
-	
+
 	$listing = new WP_Query( apply_filters( 'display_posts_shortcode_args', $args, $atts ) );
 	if ( !$listing->have_posts() )
 		return apply_filters ('display_posts_shortcode_no_results', false );
-		
+
 	$inner = '';
 	while ( $listing->have_posts() ): $listing->the_post(); global $post;
-		
+
 		if ( $image_size && has_post_thumbnail() )  $image = '<a class="image" href="'. get_permalink() .'">'. get_the_post_thumbnail($post->ID, $image_size).'</a> ';
 		else $image = '';
-			
+
 		$title = '<a class="title" href="'. get_permalink() .'">'. get_the_title() .'</a>';
-		
+
 		if ($include_date) $date = ' <span class="date">('. get_the_date($dateformat) .')</span>';
 		else $date = '';
-		
+
 		if ($include_excerpt) $excerpt = ' - <span class="excerpt">' . get_the_excerpt() . '</span>';
 		else $excerpt = '';
-		
+
 		$output = '<' . $inner_wrapper . ' class="listing-item">' . $image . $title . $date . $excerpt . '</' . $inner_wrapper . '>';
-		
+
 		$inner .= apply_filters( 'display_posts_shortcode_output', $output, $atts, $image, $title, $date, $excerpt, $inner_wrapper );
-		
+
 	endwhile; wp_reset_query();
-	
+
 	$open = apply_filters( 'display_posts_shortcode_wrapper_open', '<' . $wrapper . ' class="display-posts-listing">' );
 	$close = apply_filters( 'display_posts_shortcode_wrapper_close', '</' . $wrapper . '>' );
 	$return = $open . $inner . $close;
