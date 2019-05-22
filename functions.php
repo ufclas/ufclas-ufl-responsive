@@ -184,11 +184,6 @@ function ufandshands_header_adder() {
 	if ($facebookinsights) {
 	echo "<meta property=\"fb:admins\" content=\"".$facebookinsights."\" />";  
 	}
-	
-	// For mobile, set a cookie so that pages from mobile browsers will not be cached
-	if ( $detect_mobile && of_get_option('opt_responsive') && !isset($_COOKIE["UFLmobileFull"])) {
-		setcookie("UFLmobileMobile", "enabled", time()+2592000, "/");
-	}
 }
 add_action('wp_head', 'ufandshands_header_adder');
 

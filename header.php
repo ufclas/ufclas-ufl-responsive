@@ -1,3 +1,12 @@
+<?php
+    global $detect_mobile;
+    global $opt_responsive;
+
+    // For mobile, set a cookie so that pages from mobile browsers will not be cached
+    if ( $detect_mobile && of_get_option('opt_responsive') && !isset($_COOKIE["UFLmobileFull"])) {
+        setcookie("UFLmobileMobile", "enabled", time()+2592000, "/");
+    }
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
@@ -6,12 +15,11 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-	<?php ufclas_responsive_head_top(); // Custom hook to include content after the head tag ?>
-<?php
-global $detect_mobile;
-global $opt_responsive;
-?>
-<?php wp_head(); ?>
+	<?php
+		ufclas_responsive_head_top(); // Custom hook to include content after the head tag
+		wp_head();
+	?>
+
 </head>
 
 <body <?php body_class(); ?>>
