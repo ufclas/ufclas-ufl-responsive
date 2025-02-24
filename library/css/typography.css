@@ -16,17 +16,17 @@
 }
 
 .palatino {
-	font-family: Georgia, 'Palatino Linotype', Palatino, 'Book Antiqua', serif; 
+    font-family: Georgia, 'Palatino Linotype', Palatino, 'Book Antiqua', serif; 
 }
 
 html {
-	font-size: 100.01%;
+    font-size: 100.01%;
 }
 
 body {
-	font-size: 75%;
-	background: #FFF;
-	font-family: Arial, Helvetica, sans-serif;
+    font-size: 75%;
+    background: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1,
@@ -35,43 +35,43 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: normal;
-	color: #243778; /* Dark Blue */
-	font-family: 'ufshands', Arial, sans-serif;
-	word-spacing: .1em;
+    font-weight: normal;
+    color: #243778; /* Dark Blue */
+    font-family: 'ufshands', Arial, sans-serif;
+    word-spacing: .1em;
 }
 
 h1 {
-	font-size: 2.4em;
-	line-height: 1;
-	margin-bottom: 0.5em;
+    font-size: 2.4em;
+    line-height: 1;
+    margin-bottom: 0.5em;
 }
 
 h2 {
-	font-size: 2em;
-	margin-bottom: 0.5em;
+    font-size: 2em;
+    margin-bottom: 0.5em;
 }
 
 h3 {
-	font-size: 1.4em;
-	line-height: 1;
-	margin-bottom: 0.5em;
+    font-size: 1.4em;
+    line-height: 1;
+    margin-bottom: 0.5em;
 }
 
 h4 {
-	font-size: 1.2em;
-	line-height: 1.25;
-	margin-bottom: 0.5em;
+    font-size: 1.2em;
+    line-height: 1.25;
+    margin-bottom: 0.5em;
 }
 
 h5 {
-	font-size: 1em;
-	margin-bottom: 0.5em;
+    font-size: 1em;
+    margin-bottom: 0.5em;
 }
 
 h6 {
-	font-size: 1em;
-	margin-bottome: 0.5em;
+    font-size: 1em;
+    margin-bottome: 0.5em;
 }
 
 h1 img,
@@ -80,35 +80,35 @@ h3 img,
 h4 img,
 h5 img,
 h6 img {
-	margin: 0;
+    margin: 0;
 }
 
 p {
-	margin: 0 0 1.2em;
+    margin: 0 0 1.2em;
   line-height: 1.4em;
 }
 
 .left {
-	float: left !important;
+    float: left !important;
 }
 
 p .left {
-	margin: 1.5em 1.5em 1.5em 0;
-	padding:0;
+    margin: 1.5em 1.5em 1.5em 0;
+    padding:0;
 }
 
 .right {
-	float:right !important;
+    float:right !important;
 }
 
 p .right {
-	margin: 1.5em 0 1.5em 1.5em;
-	padding: 0;
+    margin: 1.5em 0 1.5em 1.5em;
+    padding: 0;
 }
 
 a {
-	color: #243778; /* Dark Blue */
-	text-decoration: underline;
+    color: #243778; /* Dark Blue */
+    text-decoration: underline;
 }
 
 a:hover, a:active {
@@ -125,77 +125,77 @@ a:hover {
 }
 
 blockquote {
-	margin:1.5em;
-	font-style: italic;
+    margin:1.5em;
+    font-style: italic;
 }
 
 strong,
 dfn {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 em,
 dfn {
-	font-style: italic;
+    font-style: italic;
 }
 
 sup,
 sub {
-	line-height: 0;
+    line-height: 0;
 }
 
 abbr,
 acronym {
-	border-bottom: 1px dotted #666;
+    border-bottom: 1px dotted #666;
 }
 
 address {
-	margin: 0 0 1.5em;
-	font-style:italic;
+    margin: 0 0 1.5em;
+    font-style:italic;
 }
 
 /* del */
 pre {
-	margin:1.5em 0;
-	white-space:pre;
+    margin:1.5em 0;
+    white-space:pre;
 }
 
 pre,
 code,
 tt {
-	font: 1em 'andale mono', 'lucida console', monospace;
-	line-height: 1.5;
+    font: 1em 'andale mono', 'lucida console', monospace;
+    line-height: 1.5;
 }
 
 li ul,
 li ol {
-	margin: 0;
+    margin: 0;
 }
 
 ul,
 ol {
-	margin: 0 1.5em 1.5em 0;
-	padding-left:1.5em;
+    margin: 0 1.5em 1.5em 0;
+    padding-left:1.5em;
 }
 
 ul {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 ol {
-	list-style-type: decimal;
+    list-style-type: decimal;
 }
 
 dl {
-	margin: 0 0 1.5em 0;
+    margin: 0 0 1.5em 0;
 }
 
 dl dt {
-	font-weight:bold;
+    font-weight:bold;
 }
 
 dd {
-	margin-left: 1.5em;
+    margin-left: 1.5em;
 }
 
 li ul,
@@ -233,45 +233,45 @@ caption {
 }
 
 .small {
-	font-size: .8em;
-	margin-bottom: 1.875em;
-	line-height: 1.875em;
+    font-size: .8em;
+    margin-bottom: 1.875em;
+    line-height: 1.875em;
 }
 
 .large {
-	font-size: 1.2em;
-	line-height: 2.5em;
-	margin-bottom: 1.25em;
+    font-size: 1.2em;
+    line-height: 2.5em;
+    margin-bottom: 1.25em;
 }
 
 .hide {
-	display:none;
+    display:none;
 }
 
 .highlight {
-	background: #FF0; /* Yellow */
+    background: #FF0; /* Yellow */
 }
 
 .first {
-	margin-left: 0;
-	padding-left: 0;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .last {
-	margin-right: 0;
-	padding-right: 0;
-	border-right: none;
-	border-bottom: none;
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: none;
 }
 
 .top {
-	margin-top: 0;
-	padding-top: 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .bottom {
-	margin-bottom: 0;
-	padding-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 body,

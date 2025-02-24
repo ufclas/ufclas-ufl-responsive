@@ -1,4 +1,4 @@
-<?php if (!isset($_COOKIE["UFLmobileMobile"]) || !isset($_COOKIE["UFLMobileFull"])): ?>
+<?php if (!isset($_COOKIE["UFLmobileMobile"]) || !isset($_COOKIE["UFLMobileFull"])) : ?>
 <div id="mobile-modal">
     <p style="margin-top:20px;">It looks like you are using a mobile device. Do you want to use the NEW mobile optimized design?</p>
     <form id="enable-responsive">

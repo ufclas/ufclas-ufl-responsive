@@ -12,15 +12,15 @@
 /* A container should group all your columns. */
 
 /**
-	* container-5 is used for role-based navigation regions.
-	* The 24-column grid is unsuitable for this purpose.
-	*/
+    * container-5 is used for role-based navigation regions.
+    * The 24-column grid is unsuitable for this purpose.
+    */
 
 .container,
 .container-5 {
-	width: 960px;
+    width: 960px;
   margin: 0 auto;
-	position: relative;
+    position: relative;
 }
 
 /*-  COLUMNS
@@ -190,11 +190,11 @@ next column, or to pull it into the previous column.  */
 /* In case you need to add a gutter above/below an element */
 
 div.prepend-top,
-.prepend-top 			{
+.prepend-top             {
   margin-top:1.5em;
 }
 div.append-bottom,
-.append-bottom 		{
+.append-bottom         {
   margin-bottom:1.5em;
 }
 

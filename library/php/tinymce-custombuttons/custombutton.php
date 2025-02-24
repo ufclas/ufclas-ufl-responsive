@@ -5,22 +5,25 @@
  *
  * @author sjeng
  */
-class CustomButton {
+class CustomButton
+{
     
-   public $title;
-   public $icon;
-   public $shortCodeTag;
-   public $description;
-   public $enclosing = false;
-   public $fields;
-   public $buttonSeparator = '';
+    public $title;
+    public $icon;
+    public $shortCodeTag;
+    public $description;
+    public $enclosing = false;
+    public $fields;
+    public $buttonSeparator = '';
    
-   function addField($field) {
-       if (!isset($this->fields))
-	       $this->fields = array();
+    function addField($field)
+    {
+        if (!isset($this->fields)) {
+            $this->fields = array();
+        }
        
-       array_push($this->fields, $field);
-   }
+        array_push($this->fields, $field);
+    }
    
 }
 

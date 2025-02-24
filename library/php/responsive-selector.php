@@ -20,7 +20,7 @@ function ajaxGetFull(){
         url:'<?php echo get_template_directory_uri() . '/library/php/SetCookieFull.php'; ?>',
         timeout: 2000,
         success: function(data) {
-	window.location.href = "?mobile=no";
+    window.location.href = "?mobile=no";
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
           alert("error retrieving content");
@@ -43,17 +43,17 @@ $('#mobile-modal-close').click(function(){hideModal();});
 global $detect_mobile;
 $fullLink = ("<li><p id='full-link' alt='change from mobile theme'>View Full Site</p></li>"); 
 $mobileLink = ("<li class='mobile-icon' id='mobile-link'><Switch to mobile</li>");
-if (isset($_COOKIE["UFLmobileMobile"]) ||  isset($_COOKIE["UFLmobileFull"])){
-  echo "hideModal(); \n";
+if (isset($_COOKIE["UFLmobileMobile"]) ||  isset($_COOKIE["UFLmobileFull"])) {
+    echo "hideModal(); \n";
 }
-if ($detect_mobile && !isset($_COOKIE["UFLmobileFull"])){
-  echo "$('#sidebar-nav').appendTo('#main-content'); \n";
-  echo "responsiveEmbed(); \n";
-  echo '$("#primary-nav .container").append("' . $fullLink . '");' . "\n";
+if ($detect_mobile && !isset($_COOKIE["UFLmobileFull"])) {
+    echo "$('#sidebar-nav').appendTo('#main-content'); \n";
+    echo "responsiveEmbed(); \n";
+    echo '$("#primary-nav .container").append("' . $fullLink . '");' . "\n";
 } 
 
-if (isset($_COOKIE["UFLmobileFull"]) && of_get_option("opt_responsive")){
-  echo '$("#primary-nav .container").append("' . $mobileLink . '");' . "\n";
+if (isset($_COOKIE["UFLmobileFull"]) && of_get_option("opt_responsive")) {
+    echo '$("#primary-nav .container").append("' . $mobileLink . '");' . "\n";
 }
 //hide popup if on desktop
 if (!$detect_mobile) { 

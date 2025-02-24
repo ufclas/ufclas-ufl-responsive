@@ -4,13 +4,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-function ufandshands_peoplelist($atts) {
-    extract(shortcode_atts(array(
-	    'directory' => 'radiology_fac.frag'
-    ), $atts));
+function ufandshands_peoplelist($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+            'directory' => 'radiology_fac.frag'
+            ), $atts
+        )
+    );
     
     if (isset($directory)) {
-	 echo <<<END1
+        echo <<<END1
 <div id="directory-listing">
 <div class="directory_abc">
 <a href="#a">A</a> 
@@ -41,12 +46,12 @@ function ufandshands_peoplelist($atts) {
 <a href="#z">Z</a> 
 </div>
 END1;
-	
-	$content = file_get_contents('x/com/radiology/frags/' . $directory);
-	print ($content); 
+    
+        $content = file_get_contents('x/com/radiology/frags/' . $directory);
+        print ($content); 
 
     }
 }
 
-add_shortcode('people-listing','ufandshands_peoplelist'); 
+add_shortcode('people-listing', 'ufandshands_peoplelist'); 
 ?>

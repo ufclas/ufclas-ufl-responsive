@@ -1,12 +1,13 @@
 <?php
 
-function loadCustomButtons() {
+function loadCustomButtons()
+{
     // Semi-decent way to get the base url for the images in form fields
-	$file_path = str_replace('\\', '/', dirname(__FILE__));
-	$file_index = strpos( $file_path, 'wp-content');
-	$custom_button_images_url = '//' . $_SERVER['HTTP_HOST'] . '/' . substr($file_path, $file_index);
-	
-	$buttonArr = array();
+    $file_path = str_replace('\\', '/', dirname(__FILE__));
+    $file_index = strpos($file_path, 'wp-content');
+    $custom_button_images_url = '//' . $_SERVER['HTTP_HOST'] . '/' . substr($file_path, $file_index);
+    
+    $buttonArr = array();
     
     $button = new CustomButton();
     $button->title = 'Left Column';
@@ -48,7 +49,7 @@ function loadCustomButtons() {
     $button->title = 'RSS Feed';
     $button->shortCodeTag = 'rss';
     $button->icon = '/images/rss.png';
-	$button->description = '<img src="' . $custom_button_images_url . '/images/shortcode-rss.png" class="alignright" alt="RSS"/><p>Insert an RSS feed into the body of your content.</p><p>RSS feeds are listings of content that another website would like people to subscribe to or share. You can embed these feeds on your website, and everytime the feed is updated by it\'s owner, your subscription is automatically updated.</p><p> Some examples of popular feeds include:</p><p>- <a href="http://news.ufl.edu/feed/">UF News News</a> (http://news.ufl.edu/feed/)<br />- <a href="http://news.ufl.edu/campus/feed/">Inside UF</a> (http://news.ufl.edu/campus/feed/)';
+    $button->description = '<img src="' . $custom_button_images_url . '/images/shortcode-rss.png" class="alignright" alt="RSS"/><p>Insert an RSS feed into the body of your content.</p><p>RSS feeds are listings of content that another website would like people to subscribe to or share. You can embed these feeds on your website, and everytime the feed is updated by it\'s owner, your subscription is automatically updated.</p><p> Some examples of popular feeds include:</p><p>- <a href="http://news.ufl.edu/feed/">UF News News</a> (http://news.ufl.edu/feed/)<br />- <a href="http://news.ufl.edu/campus/feed/">Inside UF</a> (http://news.ufl.edu/campus/feed/)';
     $button->addField(new FormField('Feed URL', FormField::Text, 'feed', '', 'The URL to the RSS feed. e.g., http://news.health.ufl.edu/feed/'));
     $button->addField(new FormField('Number of items to display', FormField::Text, 'num', '5'));
     $button->addField(new FormField('Display summary of item', FormField::Checkbox, 'summary', 'false'));
@@ -78,33 +79,39 @@ function loadCustomButtons() {
     $button->title = 'Tag Cloud';
     $button->shortCodeTag = 'tagcloud';
     $button->icon = '/images/tagcloud.png';
-	$button->description = '<p>Insert a listing of all of your website\'s tags (or categories). To learn more about tags in general, please visit our <a href="http://webservices.ahc.ufl.edu/help-support/how-to/categories-and-tags/" target="_new" >How To: Categories and Tags</a> website.</p><img src="/wp-content/themes/UFandShands/library/php/tinymce-custombuttons/images/shortcode-tagcloud.png" alt="Tag Cloud"/>';
+    $button->description = '<p>Insert a listing of all of your website\'s tags (or categories). To learn more about tags in general, please visit our <a href="http://webservices.ahc.ufl.edu/help-support/how-to/categories-and-tags/" target="_new" >How To: Categories and Tags</a> website.</p><img src="/wp-content/themes/UFandShands/library/php/tinymce-custombuttons/images/shortcode-tagcloud.png" alt="Tag Cloud"/>';
     $button->addField(
-		new FormField('Format', FormField::DropDown, 'format', 'flat', null,
-		    array(
-			new FieldOption('Flat', 'flat'),
-			new FieldOption('Columns', 'columns')
-		    )
-		));
+        new FormField(
+            'Format', FormField::DropDown, 'format', 'flat', null,
+            array(
+            new FieldOption('Flat', 'flat'),
+            new FieldOption('Columns', 'columns')
+            )
+        )
+    );
     $button->addField(
-		new FormField('Taxonomy', FormField::DropDown, 'taxonomy', 'post_tag', null,
-		    array(
-			new FieldOption('Tags', 'post_tag'),
-			new FieldOption('Categories', 'category')
-		    )
-		));
+        new FormField(
+            'Taxonomy', FormField::DropDown, 'taxonomy', 'post_tag', null,
+            array(
+            new FieldOption('Tags', 'post_tag'),
+            new FieldOption('Categories', 'category')
+            )
+        )
+    );
     $button->addField(new FormField('Number of tags to display', FormField::Text, 'num', '45'));
     //$button->addField(new FormField('Format', FormField::Text, 'format', 'flat'));
     $button->addField(new FormField('Smallest font size', FormField::Text, 'smallest', '8'));
     $button->addField(new FormField('Largest font size', FormField::Text, 'largest', '22'));
     //$button->addField(new FormField('Order by', FormField::Text, 'orderby', 'name'));
     $button->addField(
-		new FormField('Order', FormField::DropDown, 'order', 'ASC', null,
-		    array(
-			new FieldOption('Ascending', 'ASC'),
-			new FieldOption('Descending', 'DESC')
-		    )
-		));
+        new FormField(
+            'Order', FormField::DropDown, 'order', 'ASC', null,
+            array(
+            new FieldOption('Ascending', 'ASC'),
+            new FieldOption('Descending', 'DESC')
+            )
+        )
+    );
     
     $button->addField(new FormField('Columns', FormField::Text, 'columns', '4', 'Only applies in Columns format.'));
     array_push($buttonArr, $button);
@@ -115,26 +122,26 @@ function loadCustomButtons() {
     $button->shortCodeTag = 'gallery';
     $button->icon = '/images/gallery.png';
     array_push($buttonArr, $button);
-	
-	$button = new CustomButton();
-		/* Removing button due to bugs (does not work with shortCode Tag='widget')
-		$button->title = 'Recent Posts';
-		$button->shortCodeTag = 'widget';
-		$button->icon = '/images/recent-posts.png';
-		$button->description = 'Insert a listing of your recent posts';
-		$button->buttonSeparator = '|';
-		$button->addField(new FormField('Name of Widget', FormField::Hidden, 'widget_name', 'UFCOM_recent_posts', 'This should be hidden'));
-		$button->addField(new FormField('Specific category', FormField::Categories, 'specific_category_id'));
-		$button->addField(new FormField('Title', FormField::Text, 'title', 'Recent Posts', 'Heading title for this section.'));
-		$button->addField(new FormField('Number of posts', FormField::Text, 'numberofposts', '3', 'How many posts to display.'));
-		$button->addField(new FormField('Show post excerpt', FormField::Checkbox, 'showexcerpt', 'true'));
-		$button->addField(new FormField('Show thumbnails', FormField::Checkbox, 'showthumbnails', 'true'));
-		$button->addField(new FormField('Show dates', FormField::Checkbox, 'showdate', 'true'));
-		$button->addField(new FormField('Show RSS icon', FormField::Checkbox, 'showrssicon', 'true'));
-    	array_push($buttonArr, $button);
-	*/
+    
+    $button = new CustomButton();
+    /* Removing button due to bugs (does not work with shortCode Tag='widget')
+    $button->title = 'Recent Posts';
+    $button->shortCodeTag = 'widget';
+    $button->icon = '/images/recent-posts.png';
+    $button->description = 'Insert a listing of your recent posts';
+    $button->buttonSeparator = '|';
+    $button->addField(new FormField('Name of Widget', FormField::Hidden, 'widget_name', 'UFCOM_recent_posts', 'This should be hidden'));
+    $button->addField(new FormField('Specific category', FormField::Categories, 'specific_category_id'));
+    $button->addField(new FormField('Title', FormField::Text, 'title', 'Recent Posts', 'Heading title for this section.'));
+    $button->addField(new FormField('Number of posts', FormField::Text, 'numberofposts', '3', 'How many posts to display.'));
+    $button->addField(new FormField('Show post excerpt', FormField::Checkbox, 'showexcerpt', 'true'));
+    $button->addField(new FormField('Show thumbnails', FormField::Checkbox, 'showthumbnails', 'true'));
+    $button->addField(new FormField('Show dates', FormField::Checkbox, 'showdate', 'true'));
+    $button->addField(new FormField('Show RSS icon', FormField::Checkbox, 'showrssicon', 'true'));
+        array_push($buttonArr, $button);
+    */
   
-/*  disabled for now -- too complicated for normal users
+    /*  disabled for now -- too complicated for normal users
     $button = new CustomButton();
     $button->title = 'Chart';
     $button->shortCodeTag = 'chart';
@@ -148,7 +155,7 @@ function loadCustomButtons() {
     $button->addField(new FormField('Advanced', FormField::Text, 'advanced'));
     $button->addField(new FormField('Type', FormField::Text, 'type', 'pie'));
     array_push($buttonArr, $button);
-*/
+    */
 
     return $buttonArr;
 }

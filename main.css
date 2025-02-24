@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*-	DEBUG CLASSES
+/*-    DEBUG CLASSES
 ----------------------------------------------------------------------*/
 .debug {
   background-color: red; }
@@ -281,14 +281,14 @@ header #header-title #header-parent-organization-logo.ufandshands {
 header #header-title #header-parent-organization-logo.shands {
   /* Shands HealthCare logo turned off at request of MaPR */
   /*float: left;
-	background-color: transparent;
-	background-image: url(images/sprite-test.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: -708px -214px;
-	height: 55px;
-	width: 160px;
-	margin-right: 4px;*/
+    background-color: transparent;
+    background-image: url(images/sprite-test.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: -708px -214px;
+    height: 55px;
+    width: 160px;
+    margin-right: 4px;*/
   display: none; }
 
 header #header-title #header-parent-organization-logo.none {

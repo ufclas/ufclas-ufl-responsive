@@ -11,49 +11,55 @@ $mega_menu = of_get_option("opt_mega_menu");
 $ufl_menu = of_get_option("opt_ufl_menu");
 
   // UBER MENU: no menu containers
-	if (function_exists('wpmega_init')) { 
-		wp_nav_menu( array(
+if (function_exists('wpmega_init')) { 
+    wp_nav_menu(
+        array(
         'theme_location' => 'main_menu',
         'items_wrap' => '<ul id="%1$s" class="%2$s"><li id="home" class="ir"><a href="/">Home</a></li>%3$s</ul>',
         'depth' => 3 //Disable this arg in wp-uber-menu.php
-        ));
-	} else {
+        )
+    );
+} else {
     
-  // load normal menu containers
-		echo "<ul class='container'>";
-		echo "<li id='home' class='ir'><a href='". home_url() . "'>Home</a></li>";
-		
-		if ($ufl_menu) {
-  //HARD-CODED UFL.EDU MENU (TODO: Replace with UberMenu plugin)
-			include 'ufl-menu.php';
+    // load normal menu containers
+    echo "<ul class='container'>";
+    echo "<li id='home' class='ir'><a href='". home_url() . "'>Home</a></li>";
+        
+    if ($ufl_menu) {
+        //HARD-CODED UFL.EDU MENU (TODO: Replace with UberMenu plugin)
+        include 'ufl-menu.php';
 
-		} elseif($mega_menu) {
-  //MEGA MENU
-			include 'mega-menu.php';
+    } elseif($mega_menu) {
+        //MEGA MENU
+        include 'mega-menu.php';
 
-		}  elseif ( has_nav_menu( 'main_menu' ) ) { 
-  //MAIN MENU OVERRIDE
-			wp_nav_menu( array(
-			'walker'   => new ufl_nav_walker,
-			'container' => '',
-			'theme_location' => 'main_menu',
-			'depth' => 2
-	        ));
-		} else {
+    }  elseif (has_nav_menu('main_menu') ) { 
+        //MAIN MENU OVERRIDE
+        wp_nav_menu(
+            array(
+            'walker'   => new ufl_nav_walker,
+            'container' => '',
+            'theme_location' => 'main_menu',
+            'depth' => 2
+            )
+        );
+    } else {
       
-  //STANDARD DROPDOWN MENU
-			if ( has_nav_menu('main_menu') ) {
-			
-			}
-			  wp_list_pages(array(
-				  'walker'   => new ufandshands_page_walker,
-				  'title_li' => '',
-				  'depth'    => 2
-			  ));
-		}
-		echo "</ul>";
-	}
+        //STANDARD DROPDOWN MENU
+        if (has_nav_menu('main_menu') ) {
+            
+        }
+        wp_list_pages(
+            array(
+                  'walker'   => new ufandshands_page_walker,
+                  'title_li' => '',
+                  'depth'    => 2
+            )
+        );
+    }
+    echo "</ul>";
+}
     
 echo "</nav><!-- end #primary-nav -->";
-	
+    
 ?>

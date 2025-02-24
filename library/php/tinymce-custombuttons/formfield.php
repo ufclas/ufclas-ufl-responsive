@@ -4,7 +4,8 @@
  *
  * @author sjeng
  */
-class FormField {
+class FormField
+{
     
     public $label;
     public $fieldType;
@@ -20,25 +21,28 @@ class FormField {
     const Hidden = 4;
     const Categories = 5;
     
-    function __construct($label = null, $fieldType = null, $attributeName = null, $defaultValue = null, $description = null, $options = null) {
-	$this->label = $label;
-	$this->fieldType = $fieldType;
-	$this->attributeName = $attributeName;
-	$this->defaultValue = $defaultValue;
-	$this->description = $description;
-	$this->options = $options;
+    function __construct($label = null, $fieldType = null, $attributeName = null, $defaultValue = null, $description = null, $options = null)
+    {
+        $this->label = $label;
+        $this->fieldType = $fieldType;
+        $this->attributeName = $attributeName;
+        $this->defaultValue = $defaultValue;
+        $this->description = $description;
+        $this->options = $options;
     }
 
 }
 
 
-class FieldOption {
+class FieldOption
+{
     public $name;
     public $value;
     
-    function __construct($name = null, $value = null) {
-	$this->name = $name;
-	$this->value = $value;
+    function __construct($name = null, $value = null)
+    {
+        $this->name = $name;
+        $this->value = $value;
     }
 }
 ?>

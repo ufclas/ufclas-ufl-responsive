@@ -1,2 +1,2 @@
-	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('home_middle') ) : ?>
-	<?php endif; ?>
+    <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('home_middle') ) : ?>
+<?php endif; ?>

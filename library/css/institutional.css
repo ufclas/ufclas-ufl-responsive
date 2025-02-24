@@ -2,9 +2,9 @@
 ----------------------------------------------------------------------*/
 
 #institutional-nav {
-	background: transparent url(../../images/bg-institutional-nav.jpg) repeat-x;
-	border-bottom: 1px solid #D7DEF0; /* Light Blue */
-	height: 27px;
+    background: transparent url(../../images/bg-institutional-nav.jpg) repeat-x;
+    border-bottom: 1px solid #D7DEF0; /* Light Blue */
+    height: 27px;
   font-size: .9em;
   padding-left: 0;
   position: relative;
@@ -17,20 +17,20 @@
 }
 
 #institutional-nav .sub-mega {
-	background: #2a3f8c url(../../images/bg-inst-sub-mega.jpg) 0 0 repeat-x;
-	border: 2px solid #B4BEDD;
-	border-top: none;
+    background: #2a3f8c url(../../images/bg-inst-sub-mega.jpg) 0 0 repeat-x;
+    border: 2px solid #B4BEDD;
+    border-top: none;
 /*  display: block; FOR TESTING MEGA W/O JS*/
   display:none;
-	font-size: .9em;
-	left: 118px;
-	line-height: 1.9em;
-	position: absolute;
-	top: 23px;
-	margin-left:5px;
-	width: 780px;
-	padding: 0 15px 15px 15px;
-	z-index: 99999 !important;
+    font-size: .9em;
+    left: 118px;
+    line-height: 1.9em;
+    position: absolute;
+    top: 23px;
+    margin-left:5px;
+    width: 780px;
+    padding: 0 15px 15px 15px;
+    z-index: 99999 !important;
 }
 
 #inst-students .sub-mega {
@@ -62,13 +62,13 @@
 }
 
 #institutional-nav .container {
-	top: 2px;
-	position: relative;
+    top: 2px;
+    position: relative;
 }
 
 #institutional-nav li {
   float: left;
-	height: 23px;
+    height: 23px;
 }
 
 #institutional-nav li:hover {
@@ -80,21 +80,21 @@
 }
 
 #institutional-nav a {
-	border-left: 1px solid #495aaa;		/* Medium Blue */
-	border-right: 1px solid #061a67; 	/* Very Dark Blue */
-	line-height: 1.9em;
-	text-align: center;
+    border-left: 1px solid #495aaa;        /* Medium Blue */
+    border-right: 1px solid #061a67;     /* Very Dark Blue */
+    line-height: 1.9em;
+    text-align: center;
   display: block;
   height: 23px;
   position: relative;
   padding: 0; /* 22px;*/
   text-decoration: none;
-	font-family: Georgia,'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+    font-family: Georgia,'Palatino Linotype', Palatino, 'Book Antiqua', serif;
 }
 
 #institutional-nav a span {
     background: url("../../images/bg-downarrow.png") no-repeat right center transparent;
-	padding-right:10px;
+    padding-right:10px;
 }
 
 #institutional-nav li#inst-students span#inst-for {
@@ -117,13 +117,13 @@
 }
 
 #institutional-nav a:hover {
-	background-color: #061a67; /* Very Dark Blue */
-	text-decoration: none;
+    background-color: #061a67; /* Very Dark Blue */
+    text-decoration: none;
 }
 
 #institutional-nav .last {
-	border-right: none;
-	width: auto;
+    border-right: none;
+    width: auto;
 }
 
 #inst-home a {
@@ -204,7 +204,7 @@
   width: 155px;
 }
 #institutional-nav #inst-parents a {
-	border-right: none;
+    border-right: none;
 }
 
 #institutional-nav .sub-mega h3 a {
@@ -218,39 +218,39 @@
 ----------------------------------------------------------------------*/
 
 #institutional-footer {
-	background: #FFF url(../../images/bg-institutional-footer-wrap.jpg) 0 top repeat-x;
+    background: #FFF url(../../images/bg-institutional-footer-wrap.jpg) 0 top repeat-x;
 }
 
 #institutional-footer .container {
-	position: relative;
-	padding: 8px 0 20px 0;
+    position: relative;
+    padding: 8px 0 20px 0;
 }
 
 #institutional-footer .badge {
-	background: transparent url(../../images/bg-sprite-transparent.png) 0 0 no-repeat;
-	height: 48px;
-	width: 48px;
-	position: absolute;
-	left: 480px;
-	top: -20px;
-	display: block;
+    background: transparent url(../../images/bg-sprite-transparent.png) 0 0 no-repeat;
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    left: 480px;
+    top: -20px;
+    display: block;
 }
 
 #institutional-footer ul {
-	padding-left: 0;
-	display: block;
-	margin-bottom: 10px;
+    padding-left: 0;
+    display: block;
+    margin-bottom: 10px;
 }
 
 #institutional-footer li {
-	background: transparent url(../../images/bg-sprite-flat.jpg) -430px -7px no-repeat;
-	padding-left: 20px;
-	font-size: .85em;
-	line-height: 1.5em;
+    background: transparent url(../../images/bg-sprite-flat.jpg) -430px -7px no-repeat;
+    padding-left: 20px;
+    font-size: .85em;
+    line-height: 1.5em;
 }
 
 #institutional-footer li:last-child {
-	border: none;
+    border: none;
 }
 
 #institutional-footer li.vetmed-small-hospital {
@@ -262,125 +262,125 @@
 }
 
 #institutional-footer h5, #institutional-footer h5 a {
-	color: #EF7C00;
-	margin-bottom: .6em;
+    color: #EF7C00;
+    margin-bottom: .6em;
 }
 
 #institutional-footer h5 {
-	font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 #emergency-contact {
-	background: transparent url(../../images/bg-sprite-flat.jpg) -60px -44px no-repeat;
+    background: transparent url(../../images/bg-sprite-flat.jpg) -60px -44px no-repeat;
 }
 
 #emergency-contact,
 #colleges-institutes {
-	padding-top: 30px;
+    padding-top: 30px;
 }
 
 #colleges-institutes ul {
-	margin-right: 0;
+    margin-right: 0;
 }
 
 #emergency-contact p {
-	font-family: 'ufshands';
-	font-weight: normal;
-	font-size: 1.2em;
-	color: #243778;
-	margin-bottom: .5em;
-	padding-left: 30px;
-	padding-bottom: 2px;
+    font-family: 'ufshands';
+    font-weight: normal;
+    font-size: 1.2em;
+    color: #243778;
+    margin-bottom: .5em;
+    padding-left: 30px;
+    padding-bottom: 2px;
 }
 
 #emergency-contact #emergency {
-	font-size: 1.42em;
-	padding-left: 0;
+    font-size: 1.42em;
+    padding-left: 0;
 }
 
 #emergency-contact #footer-phone {
-	background: transparent url(../../images/bg-sprite-transparent.png) -1263px -393px no-repeat;
+    background: transparent url(../../images/bg-sprite-transparent.png) -1263px -393px no-repeat;
 }
 
 #emergency-contact #footer-email {
-	background: transparent url(../../images/bg-sprite-transparent.png) -1304px -346px no-repeat;
-	margin-bottom: 20px;
+    background: transparent url(../../images/bg-sprite-transparent.png) -1304px -346px no-repeat;
+    margin-bottom: 20px;
 }
 
 #branding {
-	border-left: 0;
-	border-right: 0;
-	padding: 15px 0 7px;
-	position: relative;
+    border-left: 0;
+    border-right: 0;
+    padding: 15px 0 7px;
+    position: relative;
 }
 
 #branding img,
 #branding p {
-	float: left;
-	margin-right: 10px;
-	padding-top: 5px;
-	margin-bottom: 10px;
+    float: left;
+    margin-right: 10px;
+    padding-top: 5px;
+    margin-bottom: 10px;
 }
 
 #branding p {
-	font-family: Georgia, serif;
-	font-style: italic;
-	font-size: .8em;
-	margin-bottom: 0;
-	color: #243778;
-	line-height: 1.3em;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: .8em;
+    margin-bottom: 0;
+    color: #243778;
+    line-height: 1.3em;
 }
 
 #branding img.last {
-	position: absolute;
-	right: 0;
-	top: 10px;
+    position: absolute;
+    right: 0;
+    top: 10px;
 }
 
 #footer-links {
-	border: 1px solid #DDE2F4;
-	border-left: 0;
-	border-right: 0;
-	border-bottom: 0;
-	padding-top: 22px;
+    border: 1px solid #DDE2F4;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    padding-top: 22px;
 }
 
 #footer-links ul {
-	margin-bottom: 0;
-	overflow: hidden;
+    margin-bottom: 0;
+    overflow: hidden;
 }
 
 #footer-links li {
-	float: left;
-	border-right: 1px solid #7E7E7E;
+    float: left;
+    border-right: 1px solid #7E7E7E;
 }
 
 #footer-links li, #footer-links p {
-	background: none;
-	font-size: .7em;
-	padding: 0 10px 0 0;
-	margin-right: 10px;
-	margin-top: 6px;
-	margin-bottom: 0;
-	line-height: 1.2em;
+    background: none;
+    font-size: .7em;
+    padding: 0 10px 0 0;
+    margin-right: 10px;
+    margin-top: 6px;
+    margin-bottom: 0;
+    line-height: 1.2em;
 }
 
 #footer-links .last {
-	border: 0;
+    border: 0;
 }
 
 .ie7 #branding p {
-	font-size: .75em;
+    font-size: .75em;
 }
 
 #footer-links .footer_logo {
-	margin-right: 7px;
-	margin-top: 7px;
-	float: right;
+    margin-right: 7px;
+    margin-top: 7px;
+    float: right;
 }
 #footer-links .footer_logo a img {
-	width:210px;
-	height:58px;
+    width:210px;
+    height:58px;
 }
 
 /*-  INSTITUTIONAL UTILITY LINKS

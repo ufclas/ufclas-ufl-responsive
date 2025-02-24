@@ -1,17 +1,20 @@
- $(document).ready(function() {
-	      
-    // PrettyPhoto
-    function ufandshands_lightbox() {
+ $(document).ready(
+    function () {
+          
+        // PrettyPhoto
+        function ufandshands_lightbox()
+        {
 
-      //$("a[rel^='prettyPhoto'],.gallery a").prettyPhoto({
-      $("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.gif'], a[href$='.png']").prettyPhoto({
-        animationSpeed:'fast',
-        slideshow:5000,
-        theme:'pp_default',
-        show_title:false,
-        social_tools:false,
-        overlay_gallery: true,
-        markup: '<div class="pp_pic_holder"> \
+            //$("a[rel^='prettyPhoto'],.gallery a").prettyPhoto({
+            $("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.gif'], a[href$='.png']").prettyPhoto(
+                {
+                    animationSpeed:'fast',
+                    slideshow:5000,
+                    theme:'pp_default',
+                    show_title:false,
+                    social_tools:false,
+                    overlay_gallery: true,
+                    markup: '<div class="pp_pic_holder"> \
 						<div class="ppt">&nbsp;</div> \
 						<div class="pp_top"> \
 							<div class="pp_left"></div> \
@@ -52,22 +55,28 @@
 						</div> \
 					</div> \
 					<div class="pp_overlay"></div>'
-      });
+                }
+            );
 
-    }
+        }
 
-    if(jQuery().prettyPhoto) {
+        if(jQuery().prettyPhoto) {
 
-      ufandshands_lightbox(); 
+            ufandshands_lightbox(); 
 
-    }
+        }
      
-});
+    }
+);
 
 
- $(document).ready(function() {
-	$("#main-content table:not(.no-row-js) tbody").each(function() {
-		$(this).find("tr:even").addClass("even");
-	});
-});
+$(document).ready(
+    function () {
+        $("#main-content table:not(.no-row-js) tbody").each(
+            function () {
+                $(this).find("tr:even").addClass("even");
+            }
+        );
+    }
+);
 
